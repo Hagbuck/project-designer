@@ -1,0 +1,1 @@
+var PROJECTNAME = "Project Designer"

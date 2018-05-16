@@ -1,6 +1,6 @@
 <!-- [POLYTECH] Web Project - Project Designer  -->
 <!-- 2017 - 2018                                -->
-<!-- Detcheberry Valentin - Vuillemin Anthony   -->
+<!-- Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC   -->
 
 <!DOCTYPE html>
 <html>
@@ -17,9 +17,9 @@
             <h1>Project Designer</h1>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac risus pretium, luctus nisl laoreet, facilisis enim. In lacinia sed lorem non bibendum. Sed lacinia arcu velit, eu porttitor tortor pretium at. Fusce vel justo tincidunt sapien accumsan bibendum. Pellentesque lobortis fermentum est, in consectetur est commodo ut. Morbi velit justo, dignissim in commodo et, tempus eu ante. Sed feugiat dui nec nisl finibus, rutrum viverra neque sagittis. Vivamus convallis augue in tortor dignissim condimentum. Donec tempus vehicula nisi, a sodales felis.
+                <span clas="projectName"></span> est un site web ayant pour but de faciliter l'élaboration de vos projets.
                 <br /><br />
-                Cras ullamcorper pellentesque viverra. Morbi suscipit ullamcorper metus eu volutpat. Quisque sem dolor, aliquet sit amet fermentum nec, auctor pharetra nisl. Etiam efficitur feugiat feugiat. Ut viverra eros eros. Donec a euismod tortor. Morbi sollicitudin ornare nunc, vel imperdiet mi ullamcorper at. Ut hendrerit augue ornare mi pellentesque, non maximus leo varius. Phasellus varius ante a neque vestibulum hendrerit. Donec cursus neque nunc, id lobortis turpis venenatis id. Ut eu luctus nibh, porttitor mattis risus. Fusce erat massa, venenatis eu massa quis, mollis sollicitudin enim. Duis tristique dolor in tristique suscipit. Pellentesque ex nunc, auctor id mi nec, feugiat malesuada ante.
+                Créez, éditez et repartissez vos idée par grande thématique afin d'obtenir une vision global de votre projet.
                 <br /><br />
                 Mauris vel luctus enim. Proin nec dictum mi. Nulla eleifend finibus diam in feugiat. Vivamus rutrum tortor luctus leo ornare rutrum. Donec interdum nibh et ipsum fringilla tempus. Donec eget ipsum vel enim scelerisque feugiat a vitae lorem. Nullam iaculis blandit accumsan. Ut posuere ultrices elit eu volutpat. Nunc quis sapien et tellus euismod bibendum in vel urna. Aliquam nec erat ut diam fringilla ultrices. Vivamus a diam venenatis, euismod ligula fermentum, interdum turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce at libero urna.
                 <br /><br />

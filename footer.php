@@ -1,3 +1,3 @@
-<footer>
-    <p>[POLYTECH] A web project by Detcheberry Valentin, Corentin TROADEC and Vuillemin Anthony </p>
-</footer>
+<div id="footer">
+    [POLYTECH] - A web project by Detcheberry Valentin, Troadec Corentin and Vuillemin Anthony.
+</div>
