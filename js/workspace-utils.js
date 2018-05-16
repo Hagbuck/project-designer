@@ -11,7 +11,7 @@ function fill_form_edit_tag(tag){
 
     $('input#tag_text').val(children[1].getText());
     $('input#tag_color').val(children[0].getAttr('fill'));
-    $('span#tag_id').val(tag.id);
+    $('span#tag_id').html('#' + tag.id);
 }
 
 function resetAllTagBorder(){
