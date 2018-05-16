@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="stylesheet/default.css">
         <link rel="stylesheet" type="text/css" href="stylesheet/myproject.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <script type="text/javascript" src="js/tablesort.js"></script>
+        <script type="text/javascript" src="js/projects.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <title>Project designer</title>
     </head>
@@ -23,6 +23,7 @@
             <h1> My Projects </h1>
 
             <div id="mainDivProject">
+
                 <div id="myprojects">
 
                   <div id="enteteProject">
@@ -34,10 +35,15 @@
                     <span> A | D </span>
                   </div>
                   <hr>
+
                   <div id="tabProjet"> </div>
 
                 </div>
-                <div id="mydiagrams"> </div>
+
+                <div id="mydiagrams">
+                  <h2 id="nameProject"> Project Name  </h2>
+                  <hr>
+                </div>
                 <div id="chatBox"> </div>
             </div>
 
@@ -53,18 +59,18 @@ Les grands axes et collaborateurs
 -->
 
 <script>
-
-//A faire sous forme de fonction
   var tabProjetJSON = {
       "0": {
+        "id" : "1",
         "name": "Projet Super",
-        "date_crea": "14/05/2018",
+        "date_crea": "17/05/2018",
         "description" : "Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.",
         "admin": ["Admin", "Autre Admin"],
         "modo": ["Presque Admin", "Modo donc pas Admin"],
         "actors": ["Jean-Michel", "Michel Jean", "Vincent", "VinDeuxCent"]
       },
       "1": {
+        "id" : "2",
         "name": "Projet Super mais moins que le Premier",
         "date_crea": "12/05/2018",
         "description" : "Duplexque isdem diebus acciderat malum, quod et Theophilum insontem atrox interceperat casus, et Serenianus dignus exsecratione cunctorum, innoxius, modo non reclamante publico vigore, discessit.",
@@ -74,28 +80,42 @@ Les grands axes et collaborateurs
       }
     };
 
-  tabProjetJSON = JSON.stringify(tabProjetJSON)
-  var dataProjet = JSON.parse(tabProjetJSON);
-  $.each(dataProjet, function(index, value) {
-    var stringAdmin = "";
-    for(var i=0;i<value["admin"].length;i++)
+
+    var tabDiagJSON = {
+        "0": {
+          "id" : "10",
+          "name": "MainGraph",
+          "projectid" : "1",
+          "description" : "Occurrere hastisque cunctorum quorum certamen.",
+          "keys": ["Univers", "Gameplay","Technologie"],
+          "contributors": ["Dieu", "Dieu de Dieu"]
+        },
+        "1": {
+          "id" : "15",
+          "name": "Détails Univers",
+          "projectid" : "1",
+          "description" : "Principem eius quas diu in itineribus itineribus sollemni ob pompa.",
+          "keys": ["Histoire", "Contexte","Scénarion"],
+          "contributors": ["Dieu", "Moi"]
+        },
+        "2": {
+          "id" : "23",
+          "name": "MainGraph",
+          "projectid" : "2",
+          "description" : "Diligendi quo et nosmet ut in qui amicitia benevolentia in.",
+          "keys": ["Budget", "Tasks","Organisation","Main d'oeuvre"],
+          "contributors": ["Toi", "Moi","Gregory"]
+        }
+      };
+
+    display_projects(tabProjetJSON);
+    var default_project = most_recent_project(tabProjetJSON)
+    display_diagrames(tabDiagJSON,default_project[0],default_project[1])
+
+    function get_diagrams(id,nom)
     {
-      stringAdmin += value["admin"][i]
-      if(i+1 !=value["admin"].length)
-        stringAdmin += ", "
-      else
-        stringAdmin += "."
+      display_diagrames(tabDiagJSON,id,nom);
     }
-
-
-    var stringProjet = '<div class="projet"> \
-      <p class="namePBlock"> <a href="#"> '+value["name"]+' </a> </p> \
-      <p class="datePBlock"> <span> Créé le :</span>  '+value["date_crea"]+' </p> \
-      <p class="descPBlock"> '+value["description"]+' </p> \
-      <p class="adminBlock"> <span>Admin</span> : '+stringAdmin+' </p> \
-    </div> \
-    <hr>';
-    $('#tabProjet').append(stringProjet);
-});
+    //console.log(default_id)
 
 </script>

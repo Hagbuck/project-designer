@@ -7,13 +7,107 @@
   margin:10px 0px 10px 0px;
 }
 
+.diagram
+{
+   display: flex;
+   padding: 10px;
+}
+
+.diagName
+{
+  width: 150px;
+  height: 150px;
+  background-color: orange;
+  color:white;
+  border-radius: 5px;
+  margin-right: 25px;
+  margin-left: 25px;
+  display: flex;
+  transition: 0.7s
+}
+
+.diagName:hover
+{
+  background-color:#CA5000;
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: 0.7s;
+}
+
+.diagName span
+{
+  margin: auto;
+}
+
+.diagDesc
+{
+  font-style: italic;
+}
+
+.diagkeys span,.diagDesc span
+{
+  font-weight: bold;
+}
+
+.contributors
+{
+  font-size: 14px;
+}
+
+.contributors span
+{
+  text-decoration: underline;
+}
+
+.diagInfo
+{
+  margin: auto;
+  margin-left: 0px;
+  background-color: #6B6A6A;
+  min-width:50vh;
+  min-height: 130px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 #myprojects
 {
   background-color: #EFEFEF;
   border-radius: 8px;
+  width: 400px;
 }
 
-#enteteProject
+#mydiagrams
+{
+  background-color:#333333;
+  border-radius: 8px;
+  min-width: 800px;
+}
+
+#mydiagrams hr
+{
+  width: 90%;
+  margin: auto;
+  text-align:center; /* IE, Opera... */
+}
+
+#mydiagrams h2
+{
+  color:orange;
+  text-align: center;
+}
+
+#chatBox
+{
+  background-color: #EFEFEF;
+  border-radius: 8px;
+  min-width: 400px;
+}
+
+#enteteProject,#enteteDiagram
 {
   display: flex;
   justify-content: space-around;
@@ -57,10 +151,4 @@
 {
   display: flex;
   justify-content: space-between;
-}
-
-
-#myprojects,#mydiagrams,#chatBox
-{
-  width:33%;
 }
