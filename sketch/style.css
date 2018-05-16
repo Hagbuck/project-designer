@@ -1,0 +1,83 @@
+/** 
+ * [POLYTECH] Web Project - Project Designer
+ * 2017 - 2018
+ * Detcheberry Valentin - Vuillemin Anthony
+ */
+
+*
+{
+    padding: 0px;
+    margin: 0px;
+
+    background-color: #CCCCCC;
+}
+
+html, body
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+footer
+{
+   display: table-row;
+}
+
+
+/** NAV **/
+
+nav, nav *
+{
+    background-color: #333333;    
+}
+
+nav
+{
+    padding: 1.2em;
+    border-bottom: 0.2em solid orange;
+}
+
+ul li
+{
+    display: inline-block;
+    width: 6em;
+    list-style-type: none;
+
+    padding-right: 1.2em;
+
+    color: white;
+    text-align: center;
+}
+
+ul li:hover
+{
+    color: orange;
+}
+
+/** SECTION **/
+
+section
+{
+    margin: 1em;
+}
+
+/** FOOTER **/
+
+footer
+{
+    height: 2em;
+    padding: 0.8em;
+}
+
+footer, footer *
+{
+    background-color: #333333;
+
+    color: white;
+    text-align: right;
+
+    padding: 0.8em;
+}

@@ -1,0 +1,60 @@
+#container, #tag_edit, #chatbox
+{
+    vertical-align: top;
+    margin:auto;
+    border: 1px solid black;
+    border-radius: 0.4em;
+    margin-top: 2em;
+
+    overflow: hidden;
+    background-color: #F0F0F0;
+}
+
+#tag_edit
+{
+    display: inline-block;
+    padding:0.2em;
+}
+
+#container, #chatbox
+{
+    height: 90%;
+}
+
+#container
+{
+    display:block;
+    width: 60%;
+}
+
+#chatbox
+{
+    width: 20%;
+}
+
+#container *
+{
+    background-color: #F0F0F0;
+}
+
+#flexbox
+{
+    display: flex;
+    justify-content: center;
+    height: 78%;
+}
+
+.flex_element
+{
+    margin: auto;
+}
+
+#delete_tag, #new_tag
+{
+    background-color: #AAAAAA;
+}
+
+#delete_tag:hover, #new_tag:hover
+{
+    background-color: orange;
+}
