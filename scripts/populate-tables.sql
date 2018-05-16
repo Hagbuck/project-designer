@@ -1,3 +1,0 @@
--- [POLYTECH] Web Project - Project Designer
--- 2017 - 2018
--- Detcheberry Valentin - Vuillemin Anthony
