@@ -1,6 +1,6 @@
 var text_offset = 12;
 var window_offset = 20;
-var branch_size = 200;
+var branch_size = 240;
 
 var width = document.getElementById("container").offsetWidth;
 var height = document.getElementById("container").offsetHeight;
@@ -27,8 +27,10 @@ var center = new Konva.Circle({
 layer.add(center);
 
 // BRANCHS
-for(var i = 0; i < 4; ++i){
-    var branch = createBranch('Dev' + i, Math.PI/2 * i, branch_size, center, window_offset);
+var nb_branch = 4;
+var angle = 2*Math.PI / nb_branch;
+for(var i = 0; i < nb_branch; ++i){
+    var branch = createBranch('Dev' + i, angle * i, branch_size, center, window_offset);
     layer.add(branch);
 }
 
