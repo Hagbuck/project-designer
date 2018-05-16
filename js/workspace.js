@@ -1,4 +1,6 @@
 var text_offset = 12;
+var window_offset = 20;
+var branch_size = 200;
 
 var width = document.getElementById("container").offsetWidth;
 var height = document.getElementById("container").offsetHeight;
@@ -13,9 +15,6 @@ var layer = new Konva.Layer();
 var centerX = stage.getWidth() / 2;
 var centerY = stage.getHeight() / 2;
 
-// A TAG
-var tag = createTag('Tag1', '#FF0000', centerX, centerY, text_offset);
-
 // THE CENTER
 var center = new Konva.Circle({
     x: stage.getWidth() / 2,
@@ -25,15 +24,17 @@ var center = new Konva.Circle({
     stroke: 'black',
     strokeWidth: 2
 })
+layer.add(center);
 
-// ONE BRANCH
-var branch = new Konva.Line({
-  points: [center.position().x, center.position().y, center.position().x, 0+20],
-  stroke: 'black',
-  strokeWidth: 3,
-  lineCap: 'round',
-  lineJoin: 'round'
-});
+// BRANCHS
+for(var i = 0; i < 4; ++i){
+    var branch = createBranch('Dev' + i, Math.PI/2 * i, branch_size, center, window_offset);
+    layer.add(branch);
+}
+
+// A TAG
+var tag = createTag('Tag1', '#FF0000', centerX, centerY, text_offset);
+layer.add(tag);
 
 tag.on('dragend', function() {
     // TODO : enregistrer pos dans DB
@@ -54,8 +55,4 @@ tag.on('mouseout', function() {
     document.body.style.cursor = 'default';
 });
 
-
-layer.add(center);
-layer.add(branch);
-layer.add(tag);
 stage.add(layer);

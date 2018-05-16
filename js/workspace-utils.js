@@ -20,7 +20,7 @@ function changeTagPosition(tag, x, y, text_offset){
 
 function createTag(text, color, centerX, centerY, text_offset){
     var tag = new Konva.Group({
-    draggable: true
+        draggable: true
     });
     var box = new Konva.Rect({
         x: centerX-100/2,
@@ -43,4 +43,38 @@ function createTag(text, color, centerX, centerY, text_offset){
     tag.add(box);
     tag.add(box_text);
     return tag;
+}
+
+
+function createBranch(text, angle, branch_size, center, window_offset){
+    /* Calcul des coordonnée d'un point
+    ** x = d*cos(alpha) + Ox
+    ** y = d*cos(alpha) + Oy
+    */
+    var last_point_x = branch_size * Math.cos(angle) + center.position().x;
+    var last_point_y = branch_size * Math.sin(angle) + center.position().y;
+
+    var branch = new Konva.Group({
+        draggable: true
+    });
+    var line = new Konva.Line({
+    points: [center.position().x, center.position().y, last_point_x, last_point_y],
+        stroke: 'black',
+        strokeWidth: 3,
+        lineCap: 'round',
+        lineJoin: 'round'
+    });
+    var branch_text = new Konva.Text({
+        x: last_point_x,
+        y: last_point_y,
+        fontFamily: 'Calibri',
+        fontSize: 16,
+        text: text,
+        fill: 'black'
+    });
+
+    branch.add(line);
+    branch.add(branch_text);
+
+    return branch;
 }
