@@ -50,6 +50,14 @@
             strokeWidth: 2
         })
 
+        var branch = new Konva.Line({
+          points: [center.position().x, center.position().y, center.position().x, 0+20],
+          stroke: 'black',
+          strokeWidth: 3,
+          lineCap: 'round',
+          lineJoin: 'round'
+        });
+
         var text = new Konva.Text({
             x: 10,
             y: 10,
@@ -65,7 +73,8 @@
             layer.draw();
         }
 
-        box.on('dragstart', function() {
+        box.on('dragend', function() {
+            // TODO : enregistrer pos dans DB
             writeMessage(box.position().x + ' : ' + box.position().y);
         });
 
@@ -79,6 +88,7 @@
 
         layer.add(text);
         layer.add(center);
+        layer.add(branch);
         layer.add(box);
         stage.add(layer);
     </script>
