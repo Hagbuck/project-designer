@@ -12,7 +12,8 @@ CREATE TABLE Utilisateur (
 
 CREATE TABLE Projet (
 	id_projet INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	nom_projet VARCHAR(256) NOT NULL
+	nom_projet VARCHAR(256) NOT NULL,
+	date_creation_projet DATE NOT NULL
 );
 
 CREATE TABLE Accede(
