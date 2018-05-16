@@ -15,7 +15,7 @@
         <?php include("header.php"); ?>
 
         <form method="post" action="create_new_diagram.php">
-            <input type="hidden" id="id_project" name="id_project">
+            <input type="hidden" id="id_project" name="id_project" value=<?php echo '"'.$_GET['id_project'].'"'; ?>>
 
             <label for="nom_diagram">Diagram name : </label>
             <input type="text" name="nom_diagram" id="nom_diagram"> <br />

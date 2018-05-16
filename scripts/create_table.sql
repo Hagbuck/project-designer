@@ -13,7 +13,8 @@ CREATE TABLE Utilisateur (
 CREATE TABLE Projet (
     id_projet INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nom_projet VARCHAR(256) NOT NULL,
-    date_creation_projet DATE NOT NULL
+    date_creation_projet DATE NOT NULL,
+    description_projet VARCHAR(512)
 );
 
 CREATE TABLE Accede(
@@ -30,6 +31,7 @@ CREATE TABLE Diagramme(
     id_diagramme INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_projet INTEGER NOT NULL,
     nom_diagramme VARCHAR(256) NOT NULL,
+    description_diagramme VARCHAR(512),
     FOREIGN KEY (id_projet) REFERENCES Projet(id_projet)
 );
 

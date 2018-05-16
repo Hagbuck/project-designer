@@ -24,7 +24,7 @@ class DAOBranch
             return false;
 
         while($row = $results->fetch()){
-            $branch = new Branch($row['id_branche'], $row['id_diagramme'], $row['nom_branche']);
+            $branch = new Branch($row['id_branche'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
             $branches.append($branch);
         }
 
