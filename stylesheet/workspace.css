@@ -49,12 +49,12 @@
     margin: auto;
 }
 
-#delete_tag
+#delete_tag, #new_tag
 {
     background-color: #AAAAAA;
 }
 
-#delete_tag:hover
+#delete_tag:hover, #new_tag:hover
 {
     background-color: orange;
 }

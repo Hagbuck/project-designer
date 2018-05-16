@@ -27,7 +27,7 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
         x: centerX-100/2,
         y: centerY-50/2,
         width: 100,
-        height: 50,
+        height: 50, 
         fill: color,
         stroke: 'black',
         strokeWidth: 2,

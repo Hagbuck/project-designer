@@ -28,6 +28,9 @@
             <div id="delete_tag" onclick="removeTag()">
                 <p>Remove tag</p>
             </div>
+            <div id="new_tag" onclick="newTag()">
+                <p>Create new tag</p>
+            </div>
         </div>
         <div id="container" class="flex_element"></div>
         <div id="chatbox" class="flex_element"></div>

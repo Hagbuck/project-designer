@@ -1,6 +1,8 @@
 var text_offset = 12;
 var window_offset = 20;
 var branch_size = 240;
+var default_tag_color = '#F0FA0F';
+var default_tag_text = 'New note';
 
 var width = document.getElementById("container").offsetWidth;
 var height = document.getElementById("container").offsetHeight;
@@ -37,7 +39,7 @@ for(var i = 0; i < nb_branch; ++i){
 // A TAG
 var tags_groups = new Konva.Group({});
 for(var i = 0; i < 3; ++i){
-    var tag = createTag('Tag'+i, '#F0FA0F', i, centerX, centerY, text_offset);
+    var tag = createTag(default_tag_text, default_tag_color, i, centerX, centerY, text_offset);
 
     changeTagPosition(tag, i*100, i*100, text_offset);
     stage.draw();
