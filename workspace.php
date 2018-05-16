@@ -18,7 +18,7 @@
 
             <label for="tag_color">Tag color : </label>
             <input type="color" name="tag_color" id="tag_color"> <br />
-            
+
             <input type="submit">
         </form>
     </div>

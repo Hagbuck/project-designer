@@ -18,7 +18,7 @@
 
             <p>
                 <span clas="projectName">Project Designer</span> est un site web ayant pour but de faciliter l'élaboration de vos projets. Nous mettons donc à votre édition un outils de pré-conception.
-                <br> Evhozieh oizhg operjboipeth pozek fpoekjpz kfpiboe^rkg zonbôrze jbêonb 
+                <br> Evhozieh oizhg operjboipeth pozek fpoekjpz kfpiboe^rkg zonbôrze jbêonb
                 <br /><br />
                 Créez, éditez et repartissez vos idée par grande thématique afin d'obtenir une vision global de votre projet.
                 <br /><br />
