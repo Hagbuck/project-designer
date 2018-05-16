@@ -45,6 +45,24 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
 
     tag.id = tag_id;
 
+    tag.on('click', function(){
+        fill_form_edit_tag(tag);
+        stage.draw();
+    });
+
+    tag.on('dragend', function() {
+        // TODO : enregistrer pos dans DB
+        console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
+    });
+
+    // add cursor styling
+    tag.on('mouseover', function() {
+        document.body.style.cursor = 'pointer';
+    });
+    tag.on('mouseout', function() {
+        document.body.style.cursor = 'default';
+    });
+
     return tag;
 }
 

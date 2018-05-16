@@ -40,25 +40,9 @@ for(var i = 0; i < 3; ++i){
     var tag = createTag('Tag'+i, '#F0FA0F', i, centerX, centerY, text_offset);
 
     changeTagPosition(tag, i*100, i*100, text_offset);
-        stage.draw();
+    stage.draw();
 
-    tag.on('dragend', function() {
-        // TODO : enregistrer pos dans DB
-        console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
-    });
-
-    tag.on('click', function(){
-        fill_form_edit_tag(tag);
-        stage.draw();
-    });
-
-    // add cursor styling
-    tag.on('mouseover', function() {
-        document.body.style.cursor = 'pointer';
-    });
-    tag.on('mouseout', function() {
-        document.body.style.cursor = 'default';
-    });
+    
 
     tags_groups.add(tag);
 }
