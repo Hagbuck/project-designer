@@ -5,9 +5,21 @@
 function fill_form_edit_tag(tag){
     var children = tag.getChildren();
 
+    resetAllTagBorder();
+
+    children[0].stroke('green');
+
     $('input#tag_text').val(children[1].getText());
     $('input#tag_color').val(children[0].getAttr('fill'));
-    $('input#tag_id').val(tag.id);
+    $('span#tag_id').val(tag.id);
+}
+
+function resetAllTagBorder(){
+    var children = tags_groups.getChildren();
+
+    for(var i = 0; i < children.length; ++i){
+        children[i].getChildren()[0].stroke('black');
+    }
 }
 
 function writeMessage(layer, text, message) {
@@ -54,6 +66,10 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
     tag.on('dragend', function() {
         // TODO : enregistrer pos dans DB
         console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
+    });
+
+    tag.on('dragstart', function(){
+        fill_form_edit_tag(tag);
     });
 
     // add cursor styling
