@@ -1,3 +1,5 @@
+var text_offset = 12;
+
 var width = document.getElementById("container").offsetWidth;
 var height = document.getElementById("container").offsetHeight;
 
@@ -8,34 +10,13 @@ var stage = new Konva.Stage({
 });
 
 var layer = new Konva.Layer();
-var rectX = stage.getWidth() / 2 - 50;
-var rectY = stage.getHeight() / 2 - 25;
+var centerX = stage.getWidth() / 2;
+var centerY = stage.getHeight() / 2;
 
-var tag = new Konva.Group({
-    draggable: true
-});
+// A TAG
+var tag = createTag('Tag1', '#FF0000', centerX, centerY, text_offset);
 
-var box = new Konva.Rect({
-    x: rectX,
-    y: rectY,
-    width: 100,
-    height: 50,
-    fill: '#00D2FF', 
-    stroke: 'black',
-    strokeWidth: 4
-});
-var box_text = new Konva.Text({
-    x: box.position().x + 12,
-    y: box.position().y + 12,
-    fontFamily: 'Calibri',
-    fontSize: 16,
-    text: 'Salut',
-    fill: 'black'
-});
-
-tag.add(box);
-tag.add(box_text);
-
+// THE CENTER
 var center = new Konva.Circle({
     x: stage.getWidth() / 2,
     y: stage.getHeight() / 2,
@@ -45,6 +26,7 @@ var center = new Konva.Circle({
     strokeWidth: 2
 })
 
+// ONE BRANCH
 var branch = new Konva.Line({
   points: [center.position().x, center.position().y, center.position().x, 0+20],
   stroke: 'black',
@@ -53,24 +35,15 @@ var branch = new Konva.Line({
   lineJoin: 'round'
 });
 
-var text = new Konva.Text({
-    x: 10,
-    y: 10,
-    fontFamily: 'Calibri',
-    fontSize: 24,
-    text: '',
-    fill: 'black'
+tag.on('dragend', function() {
+    // TODO : enregistrer pos dans DB
+    console.log(tag.x() + ' : ' + tag.y());
 });
 
-function writeMessage(message) {
-    text.setText(message);
-    console.log(message);
-    layer.draw();
-}
-
-box.on('dragend', function() {
-    // TODO : enregistrer pos dans DB
-    writeMessage(box.position().x + ' : ' + box.position().y);
+tag.on('click', function(){
+    fill_form_edit_tag(tag);
+    /*changeTagPosition(tag, 0, 0, text_offset);*/
+    stage.draw();
 });
 
 // add cursor styling
@@ -80,11 +53,8 @@ tag.on('mouseover', function() {
 tag.on('mouseout', function() {
     document.body.style.cursor = 'default';
 });
-tag.on('click', function(){
-    fill_form_edit_tag(tag);
-})
 
-layer.add(text);
+
 layer.add(center);
 layer.add(branch);
 layer.add(tag);

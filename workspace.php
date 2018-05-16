@@ -10,17 +10,21 @@
 </head>
 <body>
     <?php include("header.php"); ?>
-    <div id="container"></div>
-    <div id="tag_edit">
-        <form method="post" action="/change_tag_values.php">
-            <label for="tag_text"> Tag text : </label>
-            <input type="text" name="tag_text" id="tag_text"> <br />
+    <h1>TITRE DU DIAGRAMME</h1>
+    <div id="flexbox">
+        <div id="tag_edit" class="flex_element">
+            <form method="post" action="/change_tag_values.php">
+                <label for="tag_text"> Tag text : </label>
+                <input type="text" name="tag_text" id="tag_text"> <br />
 
-            <label for="tag_color">Tag color : </label>
-            <input type="color" name="tag_color" id="tag_color"> <br />
-            
-            <input type="submit">
-        </form>
+                <label for="tag_color">Tag color : </label>
+                <input type="color" name="tag_color" id="tag_color"> <br />
+                
+                <input type="submit">
+            </form>
+        </div>
+        <div id="container" class="flex_element"></div>
+        <div id="chatbox" class="flex_element"></div>
     </div>
     <?php include("footer.php"); ?>
     <script src="js/jquery.js"></script>

@@ -1,24 +1,50 @@
-#container
+#container, #tag_edit, #chatbox
 {
-    display:block;
+    vertical-align: top;
     margin:auto;
     border: 1px solid black;
-    border-radius: 1em;
+    border-radius: 0.4em;
     margin-top: 2em;
-    width: 80%;
-    height: 60%;
 
     overflow: hidden;
-}
-
-#container *
-{
-	background-color: #F0F0F0;
+    background-color: #F0F0F0;
 }
 
 #tag_edit
 {
-	display: inline-block;
-	vertical-align: top;
-	background-color: orange;
+    display: inline-block;
+    padding:0.2em;
+}
+
+#container, #chatbox
+{
+    height: 90%;
+}
+
+#container
+{
+    display:block;
+    width: 60%;
+}
+
+#chatbox
+{
+    width: 20%;
+}
+
+#container *
+{
+    background-color: #F0F0F0;
+}
+
+#flexbox
+{
+    display: flex;
+    justify-content: center;
+    height: 78%;
+}
+
+.flex_element
+{
+    margin: auto;
 }
