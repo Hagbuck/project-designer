@@ -35,7 +35,7 @@
             y: rectY,
             width: 100,
             height: 50,
-            fill: '#00D2FF', 
+            fill: '#00D2FF',
             stroke: 'black',
             strokeWidth: 4,
             draggable: true

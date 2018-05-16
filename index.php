@@ -8,12 +8,14 @@
         <meta charset="UTF-8" />
         <meta name="author" lang="fr" content="Vuillemin Anthony" />
         <link rel="stylesheet" type="text/css" href="stylesheet/default.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <title>Project designer</title>
     </head>
     <body>
         <?php include("header.php"); ?>
-        <section>
+        <section class="mainComponet">
             <h1>Project Designer</h1>
+
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac risus pretium, luctus nisl laoreet, facilisis enim. In lacinia sed lorem non bibendum. Sed lacinia arcu velit, eu porttitor tortor pretium at. Fusce vel justo tincidunt sapien accumsan bibendum. Pellentesque lobortis fermentum est, in consectetur est commodo ut. Morbi velit justo, dignissim in commodo et, tempus eu ante. Sed feugiat dui nec nisl finibus, rutrum viverra neque sagittis. Vivamus convallis augue in tortor dignissim condimentum. Donec tempus vehicula nisi, a sodales felis.
                 <br /><br />

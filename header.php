@@ -1,11 +1,17 @@
 <header>
         <nav>
             <ul>
-                <li><a href="index.php">Index</a></li>
-                <li>New shema</li>
+                <li><a href="index.php">Home</a></li>
+                <li>My Projects</li>
                 <li><a href="workspace.php">Workspace</a></li>
-                <li>Datas setting</li>
+
+                <!-- if user is connect
+                <li>Profil</li>
+                <li> Log Out </li> -->
+                
+                <!-- if user disconnect -->
                 <li>Login</li>
+                <li>Sign In</li>
             </ul>
         </nav>
 </header>
