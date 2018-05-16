@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" lang="fr" content="Vuillemin Anthony" />
-    <link rel="stylesheet" type="text/css" href="stylesheet/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet/default.css">
     <title>Workspace</title>
 </head>
 <body>

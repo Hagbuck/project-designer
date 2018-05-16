@@ -7,13 +7,13 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="author" lang="fr" content="Vuillemin Anthony" />
-        <link rel="stylesheet" type="text/css" href="stylesheet/style.css">
+        <link rel="stylesheet" type="text/css" href="stylesheet/default.css">
         <title>Project designer</title>
     </head>
     <body>
         <?php include("header.php"); ?>
         <section>
-            <h1>Project designer</h1>
+            <h1>Project Designer</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac risus pretium, luctus nisl laoreet, facilisis enim. In lacinia sed lorem non bibendum. Sed lacinia arcu velit, eu porttitor tortor pretium at. Fusce vel justo tincidunt sapien accumsan bibendum. Pellentesque lobortis fermentum est, in consectetur est commodo ut. Morbi velit justo, dignissim in commodo et, tempus eu ante. Sed feugiat dui nec nisl finibus, rutrum viverra neque sagittis. Vivamus convallis augue in tortor dignissim condimentum. Donec tempus vehicula nisi, a sodales felis.
                 <br /><br />
@@ -26,8 +26,6 @@
                 Ut imperdiet tellus non nisi pretium ultrices. Suspendisse facilisis vestibulum maximus. Proin ante ante, efficitur sit amet nunc id, sollicitudin porttitor tellus. Donec dignissim pharetra dui et efficitur. Curabitur sit amet interdum sapien. Donec vestibulum mauris dui, ac iaculis sapien dignissim id. Suspendisse a gravida purus, non lacinia dolor. Aliquam blandit odio a neque pulvinar consequat. Suspendisse sit amet diam imperdiet, tincidunt ante ac, finibus mi. Vestibulum condimentum suscipit velit porta blandit. Donec pretium eu felis non sagittis. Aliquam rutrum felis ex, id dictum tellus aliquet at.
             </p>
         </section>
-        <footer>
-            <p>[POLYTECH] A web project by Detcheberry Valentin and Vuillemin Anthony </p>
-        </footer>
+        <?php include 'footer.php'; ?>
     </body>
 </html>
