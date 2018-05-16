@@ -1,0 +1,66 @@
+
+.projet
+{
+  font-family: Open Sans;
+  font-size: 15px;
+  padding: 5px;
+  margin:10px 0px 10px 0px;
+}
+
+#myprojects
+{
+  background-color: #EFEFEF;
+  border-radius: 8px;
+}
+
+#enteteProject
+{
+  display: flex;
+  justify-content: space-around;
+}
+
+.namePBlock,.namePBlock *
+{
+  font-size: 15px;
+  font-weight: bold;
+  color:#333333;
+  text-decoration: none;
+}
+
+.namePBlock:hover
+{
+  text-decoration: underline;
+}
+
+.datePBlock span
+{
+  font-weight: bold;
+}
+
+.datePBlock,.datePBlock *,.adminBlock *
+{
+  font-style: italic;
+  font-size: 14px;
+}
+
+.adminBlock span
+{
+  text-decoration: underline;
+}
+
+.descPBlock
+{
+  font-style: italic;
+}
+
+#mainDivProject
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#myprojects,#mydiagrams,#chatBox
+{
+  width:33%;
+}

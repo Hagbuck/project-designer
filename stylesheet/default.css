@@ -18,7 +18,7 @@ html, body
     height: 100%;
     display: table;
     font-family: Open Sans;
-      background-color: #CCCCCC;
+    background-color: #CCCCCC;
 }
 
 footer
@@ -38,10 +38,7 @@ h1
 
 /** NAV **/
 
-nav
-{
-    background-color: #333333;
-}
+nav{background-image: linear-gradient(to right, #333333, #6B6A6A);}
 
 nav
 {
@@ -59,6 +56,7 @@ nav
     border-top: 0.2em solid orange;
     background-color: #333333;
     color:white;
+    position: absolute; bottom: 0; left: 0; right: 0
 }
 
 iframe
@@ -82,7 +80,7 @@ iframe
 {
   display: flex;
   justify-content: space-between;
-  background-color:#333333;
+  background-image: linear-gradient(to right, #333333, #6B6A6A);
   font-family: Quantify;
   font-size: 18px;
 }
