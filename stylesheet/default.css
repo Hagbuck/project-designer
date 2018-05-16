@@ -88,12 +88,3 @@ footer, footer *
 
     padding: 0.8em;
 }
-
-iframe
-{
-    display:block;
-    margin:auto;
-    border: 1px solid black;
-    border-radius: 1em;
-    margin-top: 2em;
-}

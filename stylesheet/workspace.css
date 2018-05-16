@@ -1,0 +1,29 @@
+body
+{
+    overflow: hidden;
+}
+
+#container
+{
+    display:block;
+    margin:auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    margin-top: 2em;
+    width: 80%;
+    height: 60%;
+
+    overflow: hidden;
+}
+
+#container *
+{
+	background-color: #F0F0F0;
+}
+
+#tag_edit
+{
+	display: inline-block;
+	vertical-align: top;
+	background-color: orange;
+}
