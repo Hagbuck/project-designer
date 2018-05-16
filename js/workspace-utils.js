@@ -76,7 +76,6 @@ function createBranch(text, angle, branch_size, center, window_offset){
     var last_point_y = branch_size * Math.sin(angle) + center.position().y;
 
     var branch = new Konva.Group({
-        draggable: true
     });
     var line = new Konva.Line({
     points: [center.position().x, center.position().y, last_point_x, last_point_y],
