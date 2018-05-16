@@ -62,7 +62,8 @@ section
     background-image: linear-gradient(to right, #333333, #6B6A6A);
     color:white;
     position: absolute;
-    bottom: 0; left: 0; right: 0
+    bottom: 0; left: 0; right: 0;
+    font-family: Open Sans;
 }
 
 iframe
