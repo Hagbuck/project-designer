@@ -14,6 +14,9 @@
     <div id="flexbox">
         <div id="tag_edit" class="flex_element">
             <form method="post" action="/change_tag_values.php">
+                <label for="tag_id">Tag id : </label>
+                <input type="number" name="tag_id" id="tag_id" disabled><br \>
+
                 <label for="tag_text"> Tag text : </label>
                 <input type="text" name="tag_text" id="tag_text"> <br />
 
@@ -22,6 +25,9 @@
                 
                 <input type="submit">
             </form>
+            <div id="delete_tag" onclick="removeTag()">
+                <p>Remove tag</p>
+            </div>
         </div>
         <div id="container" class="flex_element"></div>
         <div id="chatbox" class="flex_element"></div>

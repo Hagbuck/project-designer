@@ -48,3 +48,13 @@
 {
     margin: auto;
 }
+
+#delete_tag
+{
+    background-color: #AAAAAA;
+}
+
+#delete_tag:hover
+{
+    background-color: orange;
+}

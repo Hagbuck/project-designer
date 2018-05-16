@@ -42,8 +42,6 @@ for(var i = 0; i < 3; ++i){
     changeTagPosition(tag, i*100, i*100, text_offset);
     stage.draw();
 
-    
-
     tags_groups.add(tag);
 }
 

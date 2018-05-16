@@ -7,6 +7,7 @@ function fill_form_edit_tag(tag){
 
     $('input#tag_text').val(children[1].getText());
     $('input#tag_color').val(children[0].getAttr('fill'));
+    $('input#tag_id').val(tag.id);
 }
 
 function writeMessage(layer, text, message) {
@@ -64,6 +65,20 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
     });
 
     return tag;
+}
+
+function removeTag(){
+    var id = $('input#tag_id').val();
+    if(id != null && id != undefined && id != '')
+    {
+        var children = tags_groups.getChildren();
+        for(var i = 0; i < children.length; ++i){
+            if(children[i].id == id){
+                children[i].remove();
+                stage.draw();
+            }
+        }
+    }
 }
 
 
