@@ -27,7 +27,7 @@ var center = new Konva.Circle({
 layer.add(center);
 
 // BRANCHS
-var nb_branch = 4;
+var nb_branch = 6;
 var angle = 2*Math.PI / nb_branch;
 for(var i = 0; i < nb_branch; ++i){
     var branch = createBranch('Dev' + i, angle * i, branch_size, center, window_offset);
@@ -35,26 +35,33 @@ for(var i = 0; i < nb_branch; ++i){
 }
 
 // A TAG
-var tag = createTag('Tag1', '#FF0000', centerX, centerY, text_offset);
-layer.add(tag);
+var tags_groups = new Konva.Group({});
+for(var i = 0; i < 3; ++i){
+    var tag = createTag('Tag'+i, '#F0FA0F', i, centerX, centerY, text_offset);
 
-tag.on('dragend', function() {
-    // TODO : enregistrer pos dans DB
-    console.log(tag.x() + ' : ' + tag.y());
-});
+    changeTagPosition(tag, i*100, i*100, text_offset);
+        stage.draw();
 
-tag.on('click', function(){
-    fill_form_edit_tag(tag);
-    /*changeTagPosition(tag, 0, 0, text_offset);*/
-    stage.draw();
-});
+    tag.on('dragend', function() {
+        // TODO : enregistrer pos dans DB
+        console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
+    });
 
-// add cursor styling
-tag.on('mouseover', function() {
-    document.body.style.cursor = 'pointer';
-});
-tag.on('mouseout', function() {
-    document.body.style.cursor = 'default';
-});
+    tag.on('click', function(){
+        fill_form_edit_tag(tag);
+        stage.draw();
+    });
 
+    // add cursor styling
+    tag.on('mouseover', function() {
+        document.body.style.cursor = 'pointer';
+    });
+    tag.on('mouseout', function() {
+        document.body.style.cursor = 'default';
+    });
+
+    tags_groups.add(tag);
+}
+
+layer.add(tags_groups);
 stage.add(layer);

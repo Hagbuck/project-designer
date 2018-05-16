@@ -18,7 +18,7 @@ function changeTagPosition(tag, x, y, text_offset){
     tag.setPosition({x,y});
 }
 
-function createTag(text, color, centerX, centerY, text_offset){
+function createTag(text, color, tag_id, centerX, centerY, text_offset){
     var tag = new Konva.Group({
         draggable: true
     });
@@ -29,7 +29,7 @@ function createTag(text, color, centerX, centerY, text_offset){
         height: 50,
         fill: color,
         stroke: 'black',
-        strokeWidth: 4
+        strokeWidth: 2,
     });
     var box_text = new Konva.Text({
         x: box.position().x + text_offset,
@@ -42,6 +42,9 @@ function createTag(text, color, centerX, centerY, text_offset){
 
     tag.add(box);
     tag.add(box_text);
+
+    tag.id = tag_id;
+
     return tag;
 }
 
