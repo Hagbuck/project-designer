@@ -1,4 +1,4 @@
-/** 
+/**
  * [POLYTECH] Web Project - Project Designer
  * 2017 - 2018
  * Detcheberry Valentin - Vuillemin Anthony
@@ -8,22 +8,17 @@
 {
     padding: 0px;
     margin: 0px;
-
-    background-color: #CCCCCC;
 }
 
 html, body
 {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     width: 100%;
     height: 100%;
     display: table;
-}
-
-body
-{
-    overflow: hidden;
+    font-family: Open Sans;
+      background-color: #CCCCCC;
 }
 
 footer
@@ -32,59 +27,103 @@ footer
 }
 
 
+h1
+{
+  margin-bottom: 15px;
+  color:#333333;
+  font-family: Quantify;
+  font-size: 28px;
+}
+
+
 /** NAV **/
 
-nav, nav *
+nav
 {
-    background-color: #333333;    
+    background-color: #333333;
 }
 
 nav
 {
-    padding: 1.2em;
+    height: 50px;
     border-bottom: 0.2em solid orange;
-}
-
-ul li, a
-{
-    display: inline-block;
-    width: 6em;
-    list-style-type: none;
-
-    text-decoration: none;
-
-    padding-right: 1.2em;
-
-    color: white;
-    text-align: center;
-}
-
-ul li:hover, a:hover
-{
-    color: orange;
-}
-
-/** SECTION **/
-
-section
-{
-    margin: 1em;
 }
 
 /** FOOTER **/
 
-footer
+#footer
 {
-    height: 2em;
-    padding: 0.8em;
+    height: 40px;
+    padding-top:20px;
+    text-align:center;
+    border-top: 0.2em solid orange;
+    background-color: #333333;
+    color:white;
 }
 
-footer, footer *
+iframe
 {
-    background-color: #333333;
+    display:block;
+    margin:auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    margin-top: 2em;
+}
 
+
+
+/**** CLASS & ID ****/
+.mainComponet
+{
+  margin: 1em;
+}
+
+#menu
+{
+  display: flex;
+  justify-content: space-between;
+  background-color:#333333;
+  font-family: Quantify;
+  font-size: 18px;
+}
+
+#menu ul li
+{
+  height: auto;
+  display: inline-block;
+  width: 6em;
+  list-style-type: none;
+
+  color: white;
+  text-align: center;
+  transition:0.7s;
+}
+
+#menu ul li a
+{
+    text-decoration: none;
     color: white;
-    text-align: right;
+    transition:0.7s;
+}
 
-    padding: 0.8em;
+#menu ul li
+{
+  padding-top:15px;
+  padding-bottom: 17px;
+}
+
+
+
+
+#menu ul li:hover,#menu ul li a:hover
+{
+  background-color:orange;
+  color:#333333;
+  transition:0.7s;
+}
+
+/**** FONTS ***/
+@font-face {
+    font-family: Quantify;
+    src: url('./fonts/Quantify.ttf');
 }
