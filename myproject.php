@@ -20,7 +20,7 @@
     <body>
         <?php include("header.php"); ?>
         <section class="mainComponet">
-            <h1> My Projects </h1>
+            <h1 style="text-align:center"> My Projects </h1>
 
             <div id="mainDivProject">
 

@@ -105,6 +105,7 @@
   background-color: #EFEFEF;
   border-radius: 8px;
   min-width: 400px;
+  min-height: 300px;
 }
 
 #enteteProject,#enteteDiagram
@@ -119,6 +120,7 @@
   font-weight: bold;
   color:#333333;
   text-decoration: none;
+  cursor:pointer;
 }
 
 .namePBlock:hover
@@ -151,4 +153,10 @@
 {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#mainDivProject div
+{
+  margin:0px 10px 10px 10px;
 }
