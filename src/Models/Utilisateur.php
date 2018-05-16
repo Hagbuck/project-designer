@@ -1,6 +1,6 @@
 <?php
 
-namespace ;
+namespace ProjectDesigner\Models;
 
 class User
 {
