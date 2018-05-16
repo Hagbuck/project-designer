@@ -30,6 +30,10 @@
         var rectX = stage.getWidth() / 2 - 50;
         var rectY = stage.getHeight() / 2 - 25;
 
+        var tag = new Konva.Group({
+            draggable: true
+        });
+
         var box = new Konva.Rect({
             x: rectX,
             y: rectY,
@@ -37,15 +41,25 @@
             height: 50,
             fill: '#00D2FF',
             stroke: 'black',
-            strokeWidth: 4,
-            draggable: true
+            strokeWidth: 4
         });
+        var box_text = new Konva.Text({
+            x: box.position().x + 12,
+            y: box.position().y + 12,
+            fontFamily: 'Calibri',
+            fontSize: 16,
+            text: 'Salut',
+            fill: 'black'
+        });
+
+        tag.add(box);
+        tag.add(box_text);
 
         var center = new Konva.Circle({
             x: stage.getWidth() / 2,
             y: stage.getHeight() / 2,
             radius: 3,
-            fill: 'red',
+            fill: 'black',
             stroke: 'black',
             strokeWidth: 2
         })
@@ -79,17 +93,17 @@
         });
 
         // add cursor styling
-        box.on('mouseover', function() {
+        tag.on('mouseover', function() {
             document.body.style.cursor = 'pointer';
         });
-        box.on('mouseout', function() {
+        tag.on('mouseout', function() {
             document.body.style.cursor = 'default';
         });
 
         layer.add(text);
         layer.add(center);
         layer.add(branch);
-        layer.add(box);
+        layer.add(tag);
         stage.add(layer);
     </script>
 
