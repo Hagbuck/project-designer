@@ -56,5 +56,12 @@
 
 #delete_tag:hover, #new_tag:hover
 {
+<<<<<<< HEAD
     background-color: orange;
 }
+=======
+	display: inline-block;
+	vertical-align: top;
+	background-color: orange;
+}
+>>>>>>> front_design

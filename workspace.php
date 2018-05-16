@@ -17,6 +17,7 @@
                 <label for="tag_id">Tag id : </label>
                 <input type="number" name="tag_id" id="tag_id" disabled><br \>
 
+<<<<<<< HEAD
                 <label for="tag_text"> Tag text : </label>
                 <input type="text" name="tag_text" id="tag_text"> <br />
 
@@ -34,6 +35,13 @@
         </div>
         <div id="container" class="flex_element"></div>
         <div id="chatbox" class="flex_element"></div>
+=======
+            <label for="tag_color">Tag color : </label>
+            <input type="color" name="tag_color" id="tag_color"> <br />
+
+            <input type="submit">
+        </form>
+>>>>>>> front_design
     </div>
     <?php include("footer.php"); ?>
     <script src="js/jquery.js"></script>

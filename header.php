@@ -2,8 +2,10 @@
         <nav id="menu">
             <ul>
                 <a href="index.php"><li>Home</li></a>
-                <a href="#"><li>My Projects</li></a>
-                <a href="workspace.php"><li>Workspace</li></a>
+                <?php
+                  //if(isset($_SESSION['user']))
+                    echo "<a href='myproject.php'><li>My Projects</li></a><a href='workspace.php'><li>Workspace</li></a>";
+                ?>
             </ul>
             <ul>
               <?php

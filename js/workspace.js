@@ -14,8 +14,38 @@ var stage = new Konva.Stage({
 });
 
 var layer = new Konva.Layer();
+<<<<<<< HEAD
 var centerX = stage.getWidth() / 2;
 var centerY = stage.getHeight() / 2;
+=======
+var rectX = stage.getWidth() / 2 - 50;
+var rectY = stage.getHeight() / 2 - 25;
+
+var tag = new Konva.Group({
+    draggable: true
+});
+
+var box = new Konva.Rect({
+    x: rectX,
+    y: rectY,
+    width: 100,
+    height: 50,
+    fill: '#00D2FF',
+    stroke: 'black',
+    strokeWidth: 4
+});
+var box_text = new Konva.Text({
+    x: box.position().x + 12,
+    y: box.position().y + 12,
+    fontFamily: 'Calibri',
+    fontSize: 16,
+    text: 'Salut',
+    fill: 'black'
+});
+
+tag.add(box);
+tag.add(box_text);
+>>>>>>> front_design
 
 // THE CENTER
 var center = new Konva.Circle({
@@ -44,8 +74,15 @@ for(var i = 0; i < 3; ++i){
     changeTagPosition(tag, i*100, i*100, text_offset);
     stage.draw();
 
+<<<<<<< HEAD
     tags_groups.add(tag);
 }
 
 layer.add(tags_groups);
+=======
+layer.add(text);
+layer.add(center);
+layer.add(branch);
+layer.add(tag);
+>>>>>>> front_design
 stage.add(layer);
