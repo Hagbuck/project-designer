@@ -27,12 +27,9 @@
                 <div id="myprojects">
 
                   <div id="enteteProject">
-                    <div id="legend">
-                      <img id="imageProjet" />
-                      <span style="margin-bottom:10px"> My projects </span>
-                    </div>
-                    <span> - </span>
-                    <span> A | D </span>
+                      <img class="expand_arrow" src="./stylesheet/pictures/expand-arrow.png" />
+                      <span> Projects </span>
+                      <img class="expand_arrow" src="./stylesheet/pictures/expand-arrow.png" />
                   </div>
                   <hr>
 
@@ -45,7 +42,7 @@
                   <h2 id="nameProject"> Project Name  </h2>
                   <hr>
                 </div>
-                <div id="chatBox"> </div>
+               <!--   <div id="chatBox"> </div> -->
             </div>
 
         </section>

@@ -18,9 +18,9 @@ function display_projects(stringJSON)
     }
 
     var stringProjet = '<div class="projet"> \
-      <p class="namePBlock" onclick="get_diagrams(\''+value['id']+'\',\''+value['name']+'\')">  '+value["name"]+' </p> \
-      <p class="datePBlock"> <span> Créé le :</span>  '+value["date_crea"]+' </p> \
-      <p class="descPBlock"> '+value["description"]+' </p> \
+      <p class="namePBlock" onclick="get_diagrams(\''+value['id_projet']+'\',\''+value['nom_projet']+'\')">  '+value["nom_projet"]+' </p> \
+      <p class="datePBlock"> <span> Créé le :</span>  '+value["date_creation_projet"]+' </p> \
+      <p class="descPBlock"> '+value["description_projet"]+' </p> \
       <p class="adminBlock"> <span>Admin</span> : '+stringAdmin+' </p> \
     </div> \
     <hr style="margin-bottom:10px">';
@@ -41,13 +41,13 @@ function most_recent_project(stringJSON)
   var name_max = null;
 
   $.each(dataProjet, function(index, value) {
-    var splitdate = value["date_crea"].split("/");
-    var date = new Date(splitdate[2],splitdate[1],splitdate[0]);
+    var splitdate = value["date_creation_projet"].split("-");
+    var date = new Date(splitdate[0],splitdate[1],splitdate[2]);
     if(date >date_max)
     {
-      id_max = value["id"]
+      id_max = value["id_projet"]
       date_max = date
-      name_max =  value["name"]
+      name_max =  value["nom_projet"]
     }
 });
   return [id_max,name_max];

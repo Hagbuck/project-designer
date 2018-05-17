@@ -73,6 +73,12 @@
   padding: 10px;
 }
 
+.expand_arrow
+{
+  width: 30px;
+  height: 30px;
+}
+
 #myprojects
 {
   background-color: #EFEFEF;
@@ -112,6 +118,11 @@
 {
   display: flex;
   justify-content: space-around;
+}
+
+#enteteProject *
+{
+  margin: auto;
 }
 
 .namePBlock,.namePBlock *
