@@ -14,7 +14,7 @@ class Diagramme implements JsonSerializable
                                 $description_diagramme)
     {
         $this->id_diagramme = $id_diagramme;
-        $tthis->id_projet = $id_projet;
+        $this->id_projet = $id_projet;
         $this->nom_diagramme = $nom_diagramme;
         $this->description_diagramme = $description_diagramme;
     }
@@ -46,9 +46,9 @@ class Diagramme implements JsonSerializable
 
     public function jsonSerialize()
     {
-        return array("id_diagramme" =>$this->id_diagramme, 
-                    "id_projet" => $this->id_projet, 
-                    "nom_diagramme" => $this->nom_diagramme, 
+        return array("id_diagramme" =>$this->id_diagramme,
+                    "id_projet" => $this->id_projet,
+                    "nom_diagramme" => $this->nom_diagramme,
                     "description_diagramme" => $this->description_diagramme);
     }
 }
