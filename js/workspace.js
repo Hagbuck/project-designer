@@ -29,12 +29,14 @@ var center = new Konva.Circle({
 layer.add(center);
 
 // BRANCHS
+var branches_group = new Konva.Group({});
 var nb_branch = 6;
 var angle = 2*Math.PI / nb_branch;
 for(var i = 0; i < nb_branch; ++i){
     var branch = createBranch('Dev' + i, angle * i, branch_size, center, window_offset);
-    layer.add(branch);
+    branches_group.add(branch);
 }
+layer.add(branches_group);
 
 // A TAG
 var tags_groups = new Konva.Group({});

@@ -15,7 +15,7 @@ class DAODiagramme
     {
         $diagrams = array();
         
-        $query = 'SELECT * FROM Diagram WHERE id_project = '.$id.';';
+        $query = 'SELECT * FROM Diagramme WHERE id_project = '.$id.';';
         
         $results = $this->database->query($query);
 
@@ -23,7 +23,7 @@ class DAODiagramme
             return false;
 
         while($row = $results->fetch()){
-            $diagram = new Diagram($row['id_diagramme'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
+            $diagram = new Diagramme($row['id_diagramme'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
             array_push($diagrams, $diagram);
         }
 

@@ -29,7 +29,7 @@
             <div id="new_tag" onclick="newTag()">
                   <p>New Tag</p>
               </div>
-            <div id="new_branch" onclick="newBranch()">
+            <div id="new_branch" onclick="reloadBranches()">
                 <p>New Branch</p>
             </div>
           </div>
