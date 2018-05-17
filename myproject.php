@@ -105,7 +105,11 @@ Les grands axes et collaborateurs
         }
       };
 
-    display_projects(tabProjetJSON);
+      var test = getUserProjects();
+      //console.log(test)
+
+    /*display_projects(tabProjetJSON);
     var default_project = most_recent_project(tabProjetJSON)
-    display_diagrames(tabDiagJSON,default_project[0],default_project[1])
+
+    display_diagrames(tabDiagJSON,default_project[0],default_project[1])*/
 </script>

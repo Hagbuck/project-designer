@@ -31,8 +31,6 @@ if(isset($_POST['fonction']))
             $arr_projects['#'.$i] = $projects[$i];
         }
         echo json_encode($arr_projects);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'createDiagram')
@@ -55,8 +53,6 @@ if(isset($_POST['fonction']))
             $arr_digrams['#'.$i] = $diagrams[$i];
         }
         echo json_encode($arr_diagrams);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'createBranch')
@@ -79,8 +75,6 @@ if(isset($_POST['fonction']))
             $arr_branches['#'.$i] = $branches[$i];
         }
         echo json_encode($arr_branches);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'createTag')
@@ -121,8 +115,6 @@ if(isset($_POST['fonction']))
             $arr_tags['#'.$i] = $tags[$i];
         }
         echo json_encode($arr_tags);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'connexion')
@@ -171,7 +163,7 @@ if(isset($_POST['fonction']))
 
                 mysql_query("INSERT INTO Utilisateur VALUES('', '$nom', '$prenom', '$pseudo', '$mdp1', '$mail')");
             }
-         
+
             else
             {
                 echo 'Les deux mots de passe que vous avez rentrés ne correspondent pas.';

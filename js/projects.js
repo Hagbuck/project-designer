@@ -1,13 +1,13 @@
 
 function display_projects(stringJSON)
 {
-  stringJSON = JSON.stringify(stringJSON);
-  var dataProjet = JSON.parse(stringJSON);
-
+  var dataProjet = stringJSON;
 
   $.each(dataProjet, function(index, value) {
 
+
     var stringAdmin = "";
+    /*
     for(var i=0;i<value["admin"].length;i++)
     {
       stringAdmin += value["admin"][i]
@@ -16,7 +16,7 @@ function display_projects(stringJSON)
       else
         stringAdmin += "."
     }
-
+*/
     var stringProjet = '<div class="projet"> \
       <p class="namePBlock" onclick="get_diagrams(\''+value['id_projet']+'\',\''+value['nom_projet']+'\')">  '+value["nom_projet"]+' </p> \
       <p class="datePBlock"> <span> Créé le :</span>  '+value["date_creation_projet"]+' </p> \
@@ -33,8 +33,7 @@ $('#tabProjet').append('<div id="addProjectButton" onclick="create_project()"> <
 function most_recent_project(stringJSON)
 {
 
-  stringJSON = JSON.stringify(stringJSON);
-  var dataProjet = JSON.parse(stringJSON);
+  var dataProjet = stringJSON;
 
   var id_max = -1
   var date_max = new Date(0,0,0);
@@ -156,4 +155,32 @@ async function create_project()
     focusConfirm: false,
     preConfirm: (name,desc) => tenta_crea($(projectName).val(),$(projetDesc).val())
   })
+}
+
+
+
+function getUserProjects()
+{
+  $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=getUserProjects&user_id=1',
+     dataType : "json",
+     success  : function(data){getUserProjectsCallBackSuccess(data)},
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()")}
+    });
+}
+
+async function getUserProjectsCallBackSuccess(code_html)
+{
+  if(code_html != "ERROR")
+  {
+    console.log("[INFO] -> Success of getUserProjects()");
+    display_projects(code_html);
+  }
+  else
+  {
+    console.log("[ERROR] -> Fail to getUserProjects().\n"+code_html);
+    display_projects(JSON.stringify({}));
+  }
 }
