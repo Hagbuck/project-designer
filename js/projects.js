@@ -69,7 +69,7 @@ function get_diagrames(idProject,nom_projet)
      url : "traitement.php",
      type : 'POST',
      data : 'fonction=getProjectDiagrams&project_id='+idProject,
-     dataType : "html",
+     dataType : "json",
      success  : function(data){
        console.log(data)
        display_diagrames(data,idProject)},
@@ -82,6 +82,7 @@ function display_diagrames(dataDiagram,idProject)
 {
  console.log("[INFO] -> Success to getProjectDiagrams()")
  console.log(dataDiagram)
+
   $.each(dataDiagram, function(index, value) {
 
     /*
@@ -117,15 +118,15 @@ function display_diagrames(dataDiagram,idProject)
       <hr style="margin-bottom:10px">';
       */
       var stringDiagram = ' <div class="diagram"> \
-                              <div class="diagName"> <span>'+value["name"]+'</span> </div> \
+                              <div class="diagName"> <span>'+value["nom_diagramme"]+'</span> </div> \
                               <div class="diagInfo">\
-                                <p class="diagDesc"> <span>Description</span> :'+value["description"]+' </p> <br/>\
+                                <p class="diagDesc"> <span>Description</span> :'+value["description_diagramme"]+' </p> <br/>\
                               </div>\
                           </div>\
       <hr style="margin-bottom:10px">';
 
       $('#mydiagrams').append(stringDiagram);
-      $('#nameProject').html(nameProjet);
+      /*$('#nameProject').html(nameProjet);*/
 
 });
 $('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\''+idProject+'\')"> <span>+</span> </div><hr style="margin-bottom:10px">');

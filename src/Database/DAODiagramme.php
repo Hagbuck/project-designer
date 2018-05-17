@@ -26,7 +26,6 @@ class DAODiagramme
             $diagram = new Diagramme($row['id_diagramme'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
             array_push($diagrams, $diagram);
         }
-
         return $diagrams;
     }
 

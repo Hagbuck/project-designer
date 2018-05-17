@@ -53,7 +53,7 @@ if(isset($_POST['fonction']))
             $arr_digrams['#'.$i] = $diagrams[$i];
         }
 
-        echo json_encode($arr_diagrams);
+        echo json_encode($diagrams);
     }
 
     else if($_POST['fonction'] == 'createBranch')
