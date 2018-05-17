@@ -30,12 +30,7 @@ layer.add(center);
 
 // BRANCHS
 var branches_group = new Konva.Group({});
-var nb_branch = 6;
-var angle = 2*Math.PI / nb_branch;
-for(var i = 0; i < nb_branch; ++i){
-    var branch = createBranch('Dev' + i, angle * i, branch_size, center, window_offset);
-    branches_group.add(branch);
-}
+createBranches(12);
 layer.add(branches_group);
 
 // A TAG

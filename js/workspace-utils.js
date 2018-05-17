@@ -27,14 +27,36 @@ function writeMessage(layer, text, message) {
     layer.draw();
 }
 
+function removeBranches(){
+    if(branches_group != null && branches_group != undefined){
+        var children = branches_group.getChildren();
+        var tour = children.length;
+        for(var i = tour-1; i >= 0; --i){
+            /*console.log('remove branche' + children[i].getChildren()[1].getAttr('text'));*/
+            children[i].remove();
+            stage.draw();
+        }
+    }
+}
+
 function reloadBranches(){
     console.log('Reload branches');
-    var children = branches_group.getChildren();
-    for(var i = 0; i < children.length; ++i){
-        children[i].remove();
-    }
+    // Delete branches
+    removeBranches();
+    /*removeBranches();*/
+
+    // TODO : AJAX Recuperer branches
+    createBranches(4);
     stage.draw();
-    branches_group = null;
+}
+
+function createBranches(nb){
+    var nb_branch = nb;
+    var angle = 2*Math.PI / nb_branch;
+    for(var i = 0; i < nb_branch; ++i){
+        var branch = createBranch('Dev' + i, angle * i, branch_size, center, window_offset);
+        branches_group.add(branch);
+    }
 }
 
 function changeTagPosition(tag, x, y, text_offset){
