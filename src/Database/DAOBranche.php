@@ -36,6 +36,7 @@ class DAOBranche
         for($i = 0; $i < count($branches); ++$i)
         {
             $query = 'INSERT INTO Branche(id_diagramme, nom_branche) VALUES('.$branches[$i]->get_id_branche().', \''.$branches[$i]->get_nom_branche().'\')';
+            $this->database->query($query);
         }
     }
 }

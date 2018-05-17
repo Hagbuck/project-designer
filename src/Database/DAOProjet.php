@@ -41,6 +41,24 @@ class DAOProjet
         $query = 'INSERT INTO Projet(nom_projet, date_creation_projet, description_projet) VALUES(\''.$project->get_nom_projet().'\',\''.$project->get_date_creation_projet().'\',\''.$project->get_description_projet().'\')';
         $this->database->query($query);
     }
+
+    public function get_last_project_inserted()
+    {
+        $query = 'SELECT MAX(id_project) FROM Projet';
+        $this->database->query($query);
+        if ($results->rowCount() < 1)
+            return false;
+
+        return $results->feth()['id_project'];
+    }
+
+    public function createNewProjectWithUserAccess($project, $user_id, $admin, $modo)
+    {
+        injectNewProject($project);
+        $id_project = get_last_project_inserted();
+        $query = 'INSERT INTO Accede(id_project, id_utilisateur, est_admin, est_moderateur) VALUES('.$id_project.', '.$user_id.', '.$admin.', '.$modo.');';
+        $this->database->query($query);
+    }
 }
 
 ?>
