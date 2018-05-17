@@ -5,7 +5,7 @@ require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', 'mysql');
 
 if(isset($_POST['fonction']))
 {
@@ -31,8 +31,6 @@ if(isset($_POST['fonction']))
             $arr_projects['#'.$i] = $projects[$i];
         }
         echo json_encode($arr_projects);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'createDiagram')

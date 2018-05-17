@@ -180,7 +180,7 @@ function getUserProjects()
      data : 'fonction=getUserProjects&user_id=1',
      dataType : "json",
      success  : function(data){getUserProjectsCallBackSuccess(data)},
-     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()")}
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()");console.log(erreur)}
     });
 }
 
