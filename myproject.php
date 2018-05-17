@@ -77,39 +77,11 @@ Les grands axes et collaborateurs
       }
     };
 
-
-    var tabDiagJSON = {
-        "0": {
-          "id" : "10",
-          "name": "MainGraph",
-          "projectid" : "1",
-          "description" : "Occurrere hastisque cunctorum quorum certamen.",
-          "keys": ["Univers", "Gameplay","Technologie"],
-          "contributors": ["Dieu", "Dieu de Dieu"]
-        },
-        "1": {
-          "id" : "15",
-          "name": "Détails Univers",
-          "projectid" : "1",
-          "description" : "Principem eius quas diu in itineribus itineribus sollemni ob pompa.",
-          "keys": ["Histoire", "Contexte","Scénarion"],
-          "contributors": ["Dieu", "Moi"]
-        },
-        "2": {
-          "id" : "23",
-          "name": "MainGraph",
-          "projectid" : "2",
-          "description" : "Diligendi quo et nosmet ut in qui amicitia benevolentia in.",
-          "keys": ["Budget", "Tasks","Organisation","Main d'oeuvre"],
-          "contributors": ["Toi", "Moi","Gregory"]
-        }
-      };
-
-      var test = getUserProjects();
+      getUserProjects();
       //console.log(test)
 
-    /*display_projects(tabProjetJSON);
-    var default_project = most_recent_project(tabProjetJSON)
+    /*display_projects(tabProjetJSON); */
+  //  var default_project = most_recent_project(tabProjetJSON)
 
-    display_diagrames(tabDiagJSON,default_project[0],default_project[1])*/
+  //  display_diagrames(tabDiagJSON,default_project[0],default_project[1])*/
 </script>

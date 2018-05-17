@@ -54,7 +54,7 @@ function most_recent_project(stringJSON)
 }
 
 
-function display_diagrames(stringJSON,idProject,nameProjet)
+function get_diagrames(idProject,nom_projet)
 {
   $(".diagram").remove();
   $("#addDiagramButton").remove();
@@ -64,15 +64,25 @@ function display_diagrames(stringJSON,idProject,nameProjet)
   var alldiag = document.getElementById("mydiagrams")
   alldiag.getElementsByTagName("hr")
 
+  $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=getProjectDiagrams&project_id='+idProject,
+     dataType : "json",
+     success  : function(data){display_diagrames(JSON.stringify(data),idProject)},
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getProjectDiagrams()");console.log(erreur)}
+    });
 
-  stringJSON = JSON.stringify(stringJSON);
-  var dataDiagram = JSON.parse(stringJSON);
+}
 
-
+function display_diagrames(dataDiagram,idProject)
+{
+ console.log("[INFO] -> Success to getProjectDiagrams()")
+ console.log(dataDiagram)
+ /*
   $.each(dataDiagram, function(index, value) {
 
-    if(value["projectid"] == idProject)
-    {
+    /*
       var stringContributeur = "";
       for(var i=0;i<value["contributors"].length;i++)
       {
@@ -82,6 +92,7 @@ function display_diagrames(stringJSON,idProject,nameProjet)
         else
           stringContributeur += "."
       }
+
 
       var stringBranche = "";
       for(var i=0;i<value["keys"].length;i++)
@@ -105,9 +116,10 @@ function display_diagrames(stringJSON,idProject,nameProjet)
       <hr style="margin-bottom:10px">';
       $('#mydiagrams').append(stringDiagram);
       $('#nameProject').html(nameProjet);
-    }
+
 });
-$('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram()"> <span>+</span> </div><hr style="margin-bottom:10px">');
+*/
+$('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\"'+idProject+'\")"> <span>+</span> </div><hr style="margin-bottom:10px">');
 }
 
 
@@ -138,11 +150,12 @@ async function tenta_crea(name,desc)
   }
 }
 
-
+/*
 function get_diagrams(id,nom)
 {
   display_diagrames(tabDiagJSON,id,nom);
 }
+*/
 
 async function create_project()
 {
@@ -177,10 +190,58 @@ async function getUserProjectsCallBackSuccess(code_html)
   {
     console.log("[INFO] -> Success of getUserProjects()");
     display_projects(code_html);
+    var default_project = most_recent_project(code_html)
+    get_diagrames(default_project[0],default_project[1])
   }
   else
   {
     console.log("[ERROR] -> Fail to getUserProjects().\n"+code_html);
     display_projects(JSON.stringify({}));
+  }
+}
+
+
+
+async function create_diagram(id_projet)
+{
+  var id_user = 1
+  const {value: name,value :desc} = await swal({
+    title: 'Nouveau Diagrame',
+    html:
+      '<input id="diagName" class="swal2-input" placeholder="Nom diagrame">' +
+      '<textarea id="diagDesc" class="swal2-textarea" placeholder="Description du diagrame...">',
+    focusConfirm: false,
+    preConfirm: (name,desc) => tenta_crea($(diagName).val(),$(diagDesc).val(),id_projet)
+  })
+}
+
+
+async function tenta_crea_diag(name,desc,id_projet)
+{
+  var user = 1
+
+  if(name != "" && name !=undefined && desc != "" && desc !=undefined && id_projet >= 0)
+  {
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=createDiagram&id_projet='+id_projet+"&nom_diagramme="+name+"&description_diagramme="+desc,
+       success : function(code_html, statut){
+         if(code_html == "DONE")
+         {
+             swal({type: 'success',title: 'Le projet a bien été créé.',timer:3000})
+             //REDIRECTION
+         }
+        else
+         swal({type: 'error', title: 'Un problème est survenue.',html:code_html});
+       },
+       error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+      });
+    return true;
+  }
+
+  else {
+    swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
+    return false;
   }
 }
