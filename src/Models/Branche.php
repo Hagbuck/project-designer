@@ -1,6 +1,6 @@
 <?php
 
-class Branche
+class Branche implements JsonSerializable
 {
     private $id_branche;
     private $id_diagramme;
@@ -29,8 +29,8 @@ class Branche
 
     public function jsonSerialize()
     {
-        return array("id_branche" =>$this->id_branche, 
-                    "id_diagramme" => $this->id_diagramme, 
+        return array("id_branche" =>$this->id_branche,
+                    "id_diagramme" => $this->id_diagramme,
                     "nom_branche" => $this->nom_branche);
     }
 }

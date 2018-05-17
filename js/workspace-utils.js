@@ -115,6 +115,58 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
     return tag;
 }
 
+function createTagBis(text, color, tag_id, posX, posY, text_offset){
+    var tag = new Konva.Group({
+        draggable: true
+    });
+    var box = new Konva.Rect({
+        x: posX-100/2,
+        y: posY-50/2,
+        width: 100,
+        height: 50,
+        fill: color,
+        stroke: 'black',
+        strokeWidth: 2,
+    });
+    var box_text = new Konva.Text({
+        x: box.position().x + text_offset,
+        y: box.position().y + text_offset,
+        fontFamily: 'Calibri',
+        fontSize: 16,
+        text: text,
+        fill: 'black'
+    });
+
+    tag.add(box);
+    tag.add(box_text);
+
+    tag.id = tag_id;
+
+    tag.on('click', function(){
+        fill_form_edit_tag(tag);
+        stage.draw();
+    });
+
+    tag.on('dragend', function() {
+        // TODO : enregistrer pos dans DB
+        console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
+    });
+
+    tag.on('dragstart', function(){
+        fill_form_edit_tag(tag);
+    });
+
+    // add cursor styling
+    tag.on('mouseover', function() {
+        document.body.style.cursor = 'pointer';
+    });
+    tag.on('mouseout', function() {
+        document.body.style.cursor = 'default';
+    });
+
+    return tag;
+}
+
 function removeTag(){
     var id = $('#tag_id').html();
     if(id != null && id != undefined && id != '' && id != 'none')
@@ -141,6 +193,7 @@ function createBranch(text, angle, branch_size, center, window_offset){
 
     var branch = new Konva.Group({
     });
+
     var line = new Konva.Line({
     points: [center.position().x, center.position().y, last_point_x, last_point_y],
         stroke: 'black',
@@ -148,6 +201,7 @@ function createBranch(text, angle, branch_size, center, window_offset){
         lineCap: 'round',
         lineJoin: 'round'
     });
+
     var branch_text = new Konva.Text({
         x: last_point_x,
         y: last_point_y,

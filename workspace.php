@@ -51,6 +51,9 @@
 <script src="js/workspace.js"></script>
 </html>
   <script>
+    display_branch(1)
+    display_tags(1)
+
     if($("#tag_id").html()=="")
       $("#tag_id").html("none");
 

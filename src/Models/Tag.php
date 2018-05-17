@@ -58,8 +58,8 @@ class Tag implements JsonSerializable
 
     public function jsonSerialize()
     {
-        return array("id_tag" =>$this->id_tag, 
-                    "id_diagramme" => $this->id_diagramme, 
+        return array("id_tag" =>$this->id_tag,
+                    "id_diagramme" => $this->id_diagramme,
                     "texte_tag" => $this->texte_tag,
                     "pos_x_tag" => $this->pos_x_tag,
                     "pos_y_tag" => $this->pos_y_tag,

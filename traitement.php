@@ -68,7 +68,7 @@ if(isset($_POST['fonction']))
 
     else if($_POST['fonction'] == 'getBranch')
     {
-        $dao = new DAOBranch($db);
+        $dao = new DAOBranche($db);
         $branches = $dao->getBranchesFromDiagramId($_POST['diagramme_id']);
 
         $arr_branches = array();

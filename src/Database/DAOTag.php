@@ -29,7 +29,7 @@ class DAOTag
         $this->database->query($query);
     }
 
-    public function getTagsFromDiagramId($diagram_id)
+    public function getBranchesFromDiagramId($diagram_id)
     {
         $tags = array();
 
