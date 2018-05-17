@@ -44,7 +44,7 @@ class DAOProjet
 
     public function get_last_project_inserted()
     {
-        $query = 'SELECT MAX(id_project) FROM Projet;';
+        $query = 'SELECT MAX(id_projet) FROM Projet;';
         $this->database->query($query);
         if ($results->rowCount() < 1)
             return false;
