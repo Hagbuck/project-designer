@@ -6,6 +6,7 @@ function display_projects(stringJSON)
 
 
   $.each(dataProjet, function(index, value) {
+
     var stringAdmin = "";
     for(var i=0;i<value["admin"].length;i++)
     {
@@ -15,7 +16,6 @@ function display_projects(stringJSON)
       else
         stringAdmin += "."
     }
-
 
     var stringProjet = '<div class="projet"> \
       <p class="namePBlock" onclick="get_diagrams(\''+value['id']+'\',\''+value['name']+'\')">  '+value["name"]+' </p> \
@@ -58,6 +58,7 @@ function most_recent_project(stringJSON)
 function display_diagrames(stringJSON,idProject,nameProjet)
 {
   $(".diagram").remove();
+  $("#addDiagramButton").remove();
   $("#mydiagrams").children("hr").remove();
   $('#mydiagrams').append("<hr>");
 
@@ -120,7 +121,7 @@ async function tenta_crea(name,desc)
     $.ajax({
        url : "traitement.php",
        type : 'POST',
-       data : 'fonction=createProject&user_id='+user+"nom_projet="+name+"&description_projet="+desc,
+       data : 'fonction=createProject&user_id='+user+"&nom_projet="+name+"&description_projet="+desc,
        success : function(code_html, statut){
          if(code_html == "DONE")
           swal({type: 'success',title: 'Le projet a bien été créé.',timer:3000})
@@ -136,4 +137,23 @@ async function tenta_crea(name,desc)
     swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
     return false;
   }
+}
+
+
+function get_diagrams(id,nom)
+{
+  display_diagrames(tabDiagJSON,id,nom);
+}
+
+async function create_project()
+{
+  var id_user = 1
+  const {value: name,value :desc} = await swal({
+    title: 'Nouveau Projet',
+    html:
+      '<input id="projectName" class="swal2-input" placeholder="Nom projet">' +
+      '<textarea id="projetDesc" class="swal2-textarea" placeholder="Description du projet...">',
+    focusConfirm: false,
+    preConfirm: (name,desc) => tenta_crea($(projectName).val(),$(projetDesc).val())
+  })
 }
