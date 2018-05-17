@@ -11,7 +11,7 @@ function fill_form_edit_tag(tag){
 
     $('input#tag_text').val(children[1].getText());
     $('input#tag_color').val(children[0].getAttr('fill'));
-    $('span#tag_id').html('#' + tag.id);
+    $('span#tag_id').html(tag.id);
 }
 
 function resetAllTagBorder(){
@@ -39,7 +39,7 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
         x: centerX-100/2,
         y: centerY-50/2,
         width: 100,
-        height: 50, 
+        height: 50,
         fill: color,
         stroke: 'black',
         strokeWidth: 2,
@@ -84,9 +84,11 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
 }
 
 function removeTag(){
-    var id = $('input#tag_id').val();
-    if(id != null && id != undefined && id != '')
+    var id = $('#tag_id').html();
+    if(id != null && id != undefined && id != '' && id != 'none')
     {
+        id = id.substring(2,id.length-1); // On enlève le #
+        console.log(id);
         var children = tags_groups.getChildren();
         for(var i = 0; i < children.length; ++i){
             if(children[i].id == id){

@@ -23,10 +23,10 @@ function display_projects(stringJSON)
       <p class="descPBlock"> '+value["description"]+' </p> \
       <p class="adminBlock"> <span>Admin</span> : '+stringAdmin+' </p> \
     </div> \
-    <hr>';
+    <hr style="margin-bottom:10px">';
     $('#tabProjet').append(stringProjet);
 });
-
+$('#tabProjet').append('<div id="addProjectButton" onclick="create_project()"> <span>+</span> </div><hr>');
 }
 
 
@@ -102,9 +102,38 @@ function display_diagrames(stringJSON,idProject,nameProjet)
                                 <p class="contributors"> <span>Contribueurs</span> : '+stringContributeur+'. </p>\
                               </div>\
                           </div>\
-      <hr>';
+      <hr style="margin-bottom:10px">';
       $('#mydiagrams').append(stringDiagram);
       $('#nameProject').html(nameProjet);
     }
 });
+$('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram()"> <span>+</span> </div><hr style="margin-bottom:10px">');
+}
+
+
+async function tenta_crea(name,desc)
+{
+  var user = 1
+
+  if(name != "" && name !=undefined && desc != "" && desc !=undefined)
+  {
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=createProject&user_id='+user+"nom_projet="+name+"&description_projet="+desc,
+       success : function(code_html, statut){
+         if(code_html == "DONE")
+          swal({type: 'success',title: 'Le projet a bien été créé.',timer:3000})
+        else
+         swal({type: 'error', title: 'Un problème est survenue.',html:code_html});
+       },
+       error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+      });
+    return true;
+  }
+
+  else {
+    swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
+    return false;
+  }
 }

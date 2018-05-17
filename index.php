@@ -9,6 +9,7 @@
         <meta name="author" lang="fr" content="Vuillemin Anthony" />
         <link rel="stylesheet" type="text/css" href="stylesheet/default.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.js"></script>
         <title>Project designer</title>
     </head>
     <body>
