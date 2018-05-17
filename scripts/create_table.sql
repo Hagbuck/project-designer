@@ -20,8 +20,8 @@ CREATE TABLE Projet (
 CREATE TABLE Accede(
     id_projet INTEGER NOT NULL,
     id_utilisateur INTEGER NOT NULL,
-    est_admin INT NOT NULL,
-    est_moderateur INT NOT NULL,
+    est_admin BOOLEAN NOT NULL,
+    est_moderateur BOOLEAN NOT NULL,
     FOREIGN KEY (id_projet) REFERENCES Projet(id_projet),
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
     PRIMARY KEY(id_projet, id_utilisateur)

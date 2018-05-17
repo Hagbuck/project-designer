@@ -1,8 +1,8 @@
 <?php
 
-namespace ProjectDesigner\Models;
+/*namespace ProjectDesigner\Models;*/
 
-class Project
+class Projet implements JsonSerializable
 {
     private $id_projet;
     private $nom_projet;
@@ -44,4 +44,14 @@ class Project
     {
         return json_encode($this);
     }
+
+    public function jsonSerialize()
+    {
+        return array("id_projet" =>$this->id_projet, 
+                    "nom_projet" => $this->nom_projet, 
+                    "date_creation_projet" => $this->date_creation_projet, 
+                    "description_projet" => $this->description_projet);
+    }
 }
+
+?>

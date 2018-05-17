@@ -1,8 +1,6 @@
 <?php
 
-namespace ProjectDesigner\Models;
-
-class Branch
+class Branche
 {
     private $id_branche;
     private $id_diagramme;
@@ -28,3 +26,13 @@ class Branch
     public function get_nom_branche(){
         return $this->nom_branche;
     }
+
+    public function jsonSerialize()
+    {
+        return array("id_branche" =>$this->id_branche, 
+                    "id_diagramme" => $this->id_diagramme, 
+                    "nom_branche" => $this->nom_branche);
+    }
+}
+
+?>

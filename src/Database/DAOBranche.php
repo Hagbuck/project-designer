@@ -1,10 +1,10 @@
 <?php
 
-namespace ProjectDesigner\Database;
+include('\src\Database\MyDatabase.php');
+include('\src\Models\Branche.php');
 
-use ProjectDesigner\Models\Branche;
 
-class DAOBranch
+class DAOBranche
 {
     private $database;
     public function __construct($database)
@@ -30,4 +30,14 @@ class DAOBranch
 
         return $branches;
     }
+
+    public function createBranches($branches)
+    {
+        for($i = 0; $i < count($branches); ++$i)
+        {
+            $query = 'INSERT INTO Branche(id_diagramme, nom_branche) VALUES('.$branches[$i]->get_id_branche().', \''.$branches[$i]->get_nom_branche().'\')';
+        }
+    }
 }
+
+?>

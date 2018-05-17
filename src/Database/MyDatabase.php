@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectDesigner\Database;
+/*namespace ProjectDesigner\Database;*/
 
 /**
  * Connexion with a PostgreSQL database
@@ -49,3 +49,7 @@ class MyDatabase
         return md5($password);
     }
 }
+
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
+
+?>

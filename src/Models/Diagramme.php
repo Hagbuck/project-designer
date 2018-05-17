@@ -1,7 +1,5 @@
 <?php
 
-namespace ProjectDesigner\Models;
-
 class Diagramme
 {
     private $id_diagramme;
@@ -39,5 +37,18 @@ class Diagramme
     public function get_description_diagramme()
     {
         return $this->description_diagramme;
+    }
+
+    public function asJSON()
+    {
+        return json_encode($this);
+    }
+
+    public function jsonSerialize()
+    {
+        return array("id_diagramme" =>$this->id_diagramme, 
+                    "id_projet" => $this->id_projet, 
+                    "nom_diagramme" => $this->nom_diagramme, 
+                    "description_diagramme" => $this->description_diagramme);
     }
 }

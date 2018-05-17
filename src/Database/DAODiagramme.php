@@ -24,8 +24,8 @@ class DAOProjet
             return false;
 
         while($row = $results->fetch()){
-            $diagram = new Diagram($row['id_diagramme'], $row['nom_diagramme'], $row['description_diagramme']);
-            $diagrams.append($diagram);
+            $diagram = new Diagram($row['id_diagramme'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
+            array_push($diagrams, $diagram);
         }
 
         return $diagrams;

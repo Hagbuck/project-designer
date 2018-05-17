@@ -1,10 +1,11 @@
 <?php
 
-namespace ProjectDesigner\Database;
+/*namespace ProjectDesigner\Database;*/
 
 /*use ProjectDesigner\Models\Projet;*/
 
-include('MyDatabase.php');
+include('\src\Database\MyDatabase.php');
+include('\src\Models\Projet.php');
 
 class DAOProjet
 {
@@ -19,6 +20,8 @@ class DAOProjet
         $projects = array();
 
         $query = 'SELECT * FROM Projet, Accede WHERE Accede.id_utilisateur = '.$user_id.' AND Accede.id_projet = Projet.id_projet;';
+
+        echo $query . '<br />';
         
         $results = $this->database->query($query);
 
@@ -27,8 +30,9 @@ class DAOProjet
 
         while($row = $results->fetch()){
             $project = new Projet($row['id_projet'], $row['nom_projet'], $row['date_creation_projet'], $row['description_projet']);
-            $projects.append($project);
+            array_push($projects, $project);
         }
+
         return $projects;
     }
 
@@ -38,3 +42,5 @@ class DAOProjet
         $this->database->query($query);
     }
 }
+
+?>
