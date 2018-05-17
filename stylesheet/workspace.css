@@ -132,6 +132,7 @@
 {
   background-color: #216A12;
   color:white;
+  transition: 0.7s;
 }
 
 #delete_tag:hover

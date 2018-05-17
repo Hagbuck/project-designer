@@ -1,3 +1,4 @@
+<script src="js/sweetalert2.js"></script>
 <header>
         <nav id="menu">
             <ul>

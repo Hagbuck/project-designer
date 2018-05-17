@@ -160,3 +160,36 @@
 {
   margin:0px 10px 10px 10px;
 }
+
+
+#addProjectButton,#addDiagramButton
+{
+  background-color: #68B159;
+  height: 40px;
+  border-radius: 5px;
+  cursor:pointer;
+  display: flex;
+  color:white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#mainDivProject #addDiagramButton
+{
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+#addProjectButton span,#addDiagramButton span
+{
+  margin:auto;
+}
+
+
+#addProjectButton:hover,#addDiagramButton:hover
+{
+  background-color: #216A12;
+  color:white;
+  transition: 0.7s;
+}

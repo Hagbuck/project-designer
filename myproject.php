@@ -36,7 +36,8 @@
                   </div>
                   <hr>
 
-                  <div id="tabProjet"> </div>
+                  <div id="tabProjet">
+                  </div>
 
                 </div>
 
@@ -115,6 +116,17 @@ Les grands axes et collaborateurs
     {
       display_diagrames(tabDiagJSON,id,nom);
     }
-    //console.log(default_id)
 
+    async function create_project()
+    {
+      var id_user = 1
+      const {value: name,value :desc} = await swal({
+        title: 'Nouveau Projet',
+        html:
+          '<input id="projectName" class="swal2-input" placeholder="Nom projet">' +
+          '<textarea id="projetDesc" class="swal2-textarea" placeholder="Description du projet...">',
+        focusConfirm: false,
+        preConfirm: (name,desc) => tenta_crea($(projectName).val(),$(projetDesc).val())
+      })
+    }
 </script>
