@@ -2,7 +2,9 @@
 
 namespace ProjectDesigner\Database;
 
-use ProjectDesigner\Models\Projet;
+/*use ProjectDesigner\Models\Projet;*/
+
+include('MyDatabase.php');
 
 class DAOProjet
 {

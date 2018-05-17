@@ -2,12 +2,10 @@
 
 namespace ProjectDesigner\Database;
 
-use ProjectDesigner\Configuration;
-
 /**
  * Connexion with a PostgreSQL database
  */
-class MyDatabase implements IDatabase
+class MyDatabase
 {
     private $pdo;
 
@@ -21,15 +19,6 @@ class MyDatabase implements IDatabase
     {
         $this->pdo = new \PDO('mysql:host=' . $host . ';dbname=' . $db, $username, $password);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-    }
-
-    public static function fromConfiguration(Configuration $config)
-    {
-        return new MyDatabase(
-            $config->getDatabaseHost(),
-            $config->getDatabaseName(),
-            $config->getDatabaseLogin(),
-            $config->getDatabasePasswd());
     }
 
     public function __destruct()

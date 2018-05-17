@@ -39,4 +39,9 @@ class Project
     {
         return $this->description_projet;
     }
+
+    public function asJSON()
+    {
+        return json_encode($this);
+    }
 }
