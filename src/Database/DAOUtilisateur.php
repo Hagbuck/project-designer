@@ -1,8 +1,7 @@
 <?php
 
-namespace ProjectDesigner\Database;
-
-use ProjectDesigner\Models\User;
+require_once('\src\Database\MyDatabase.php');
+require_once('\src\Models\Utilisateur.php');
 
 class DAO_utilisateur
 {

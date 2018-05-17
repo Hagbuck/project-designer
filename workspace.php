@@ -29,6 +29,9 @@
             <div id="new_tag" onclick="newTag()">
                   <p>New Tag</p>
               </div>
+            <div id="new_branch" onclick="reloadBranches()">
+                <p>New Branch</p>
+            </div>
           </div>
           <div id="chatbox" class="flex_element"></div>
         </div>

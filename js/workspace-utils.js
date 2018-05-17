@@ -27,6 +27,16 @@ function writeMessage(layer, text, message) {
     layer.draw();
 }
 
+function reloadBranches(){
+    console.log('Reload branches');
+    var children = branches_group.getChildren();
+    for(var i = 0; i < children.length; ++i){
+        children[i].remove();
+    }
+    stage.draw();
+    branches_group = null;
+}
+
 function changeTagPosition(tag, x, y, text_offset){
     tag.setPosition({x,y});
 }
@@ -98,7 +108,6 @@ function removeTag(){
         }
     }
 }
-
 
 function createBranch(text, angle, branch_size, center, window_offset){
     /* Calcul des coordonnée d'un point
