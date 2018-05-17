@@ -5,7 +5,7 @@ require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', 'mysql');
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
 
 if(isset($_POST['fonction']))
 {
@@ -53,8 +53,6 @@ if(isset($_POST['fonction']))
             $arr_digrams['#'.$i] = $diagrams[$i];
         }
         echo json_encode($arr_diagrams);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'createBranch')
@@ -77,8 +75,6 @@ if(isset($_POST['fonction']))
             $arr_branches['#'.$i] = $branches[$i];
         }
         echo json_encode($arr_branches);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'createTag')
@@ -119,8 +115,6 @@ if(isset($_POST['fonction']))
             $arr_tags['#'.$i] = $tags[$i];
         }
         echo json_encode($arr_tags);
-
-        echo "DONE";
     }
 
     else if($_POST['fonction'] == 'connexion')
