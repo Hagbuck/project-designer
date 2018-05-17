@@ -2,7 +2,7 @@
 
 namespace ProjectDesigner\Database;
 
-use ProjectDesigner\Models\Branch;
+use ProjectDesigner\Models\Branche;
 
 class DAOBranch
 {
@@ -24,7 +24,7 @@ class DAOBranch
             return false;
 
         while($row = $results->fetch()){
-            $branch = new Branch($row['id_branche'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
+            $branch = new Branche($row['id_branche'], $row['id_projet'], $row['nom_diagramme'], $row['description_diagramme']);
             $branches.append($branch);
         }
 

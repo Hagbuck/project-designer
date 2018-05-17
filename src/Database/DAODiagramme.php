@@ -2,10 +2,9 @@
 
 namespace ProjectDesigner\Database;
 
-use ProjectDesigner\Models\Project;
 use ProjectDesigner\Models\Diagram;
 
-class DAOProject
+class DAOProjet
 {
     private $database;
     public function __construct($database)
@@ -17,7 +16,7 @@ class DAOProject
     {
         $diagrams = array();
         
-        $query = 'SELECT * FROM Projet WHERE id_project = '.$id.';';
+        $query = 'SELECT * FROM Diagram WHERE id_project = '.$id.';';
         
         $results = $this->database->query($query);
 
@@ -25,10 +24,15 @@ class DAOProject
             return false;
 
         while($row = $results->fetch()){
-            $diagram = new Project($row['id_projet'], $row['nom_projet'], $row['date_creation_projet'], $row['description_projet']);
+            $diagram = new Diagram($row['id_diagramme'], $row['nom_diagramme'], $row['description_diagramme']);
             $diagrams.append($diagram);
         }
 
         return $diagrams;
     }
-}
+
+    public function injectNewDiagram($diagram)
+    {
+        $query = 'INSERT INTO Diagramme(nom_diagramme, id_project, description_diagramme) VALUES(\''.$diagram->get_nom_diagramme().'\',\''.$diagram->get_id_projet().'\',\''.$diagram->get_description_diagramme().'\')';
+        $this->database->query($query);
+    }
