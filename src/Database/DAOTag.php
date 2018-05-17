@@ -1,9 +1,9 @@
 <?php
 
-include('\src\Database\MyDatabase.php');
-include('\src\Models\Tag.php');
+require_once('\src\Database\MyDatabase.php');
+require_once('\src\Models\Tag.php');
 
-class DAOBranche
+class DAOTag
 {
     private $database;
     public function __construct($database)
@@ -17,9 +17,9 @@ class DAOBranche
         $this->database->query($query);
     }
 
-    public function removeTag($tag)
+    public function removeTag($tag_id)
     {
-        $query = 'DELETE FROM tag WHERE id_tag = '.$tag->get_id_tag().' ;';
+        $query = 'DELETE FROM tag WHERE id_tag = '.$tag_id.' ;';
         $this->database->query($query);
     }
 

@@ -15,13 +15,15 @@
         <?php include("header.php"); ?>
         <section class="mainComponet">
             <h1>Connexion</h1>
-                <form method="post" action="connexion.php">
+                <form method="post" action="traitement.php">
+                    <input type="hidden" name="fonction" id="fonction" value="connexion" />
                     <p>
                         <label>Pseudo</label> : <input type="text" name="pseudo" />
                     </p>
                     <p>
                         <label>Mot de passe</label> : <input type="text" name="mdp" />
                     </p>
+                    <input type="submit" value="Se connecter" />
                 </form>
         </section>
         <?php include 'footer.php'; ?>

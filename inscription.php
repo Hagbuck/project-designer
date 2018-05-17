@@ -15,7 +15,8 @@
         <?php include("header.php"); ?>
         <section class="mainComponet">
             <h1>Inscription</h1>
-                <form method="post" action="inscription.php">
+                <form method="post" action="traitement.php">
+                    <input type="hidden" name="fonction" id="fonction" value="inscription" />
                     <p>
                         <label>Votre pseudo</label> : <input type="text" name="pseudo" />
                     </p>
@@ -37,8 +38,11 @@
                     <p>
                         <label>Votre pseudo</label> : <input type="text" name="pseudo" />
                     </p>
+                    <p>
+                        <input type="submit" value="M'inscrire" />
+                    </p>
                 </form>
         </section>
-        <?php include 'footer.php'; ?>
+        <?php include('footer.php'); ?>
     </body>
 </html>

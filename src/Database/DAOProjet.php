@@ -1,11 +1,7 @@
 <?php
 
-/*namespace ProjectDesigner\Database;*/
-
-/*use ProjectDesigner\Models\Projet;*/
-
-include('\src\Database\MyDatabase.php');
-include('\src\Models\Projet.php');
+require_once('\src\Database\MyDatabase.php');
+require_once('\src\Models\Projet.php');
 
 class DAOProjet
 {
