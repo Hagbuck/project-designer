@@ -57,7 +57,6 @@ Nom
 Description
 Les grands axes et collaborateurs
 -->
-
 <script>
   var tabProjetJSON = {
       "0": {

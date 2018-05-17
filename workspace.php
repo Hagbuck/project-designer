@@ -5,6 +5,7 @@
     <meta name="author" lang="fr" content="Vuillemin Anthony" />
     <link rel="stylesheet" type="text/css" href="stylesheet/default.css">
     <link rel="stylesheet" type="text/css" href="stylesheet/workspace.css">
+    <script src="js/jquery.js"></script>
 
     <title>Workspace</title>
 </head>
@@ -13,35 +14,35 @@
     <h1>TITRE DU DIAGRAMME</h1>
     <div id="flexbox">
 
+        <div id="leftBlock">
         <div id="toolBox">
+            <h3>Tool Box</h3> <br>
+            <div id="editBox" class="flex_element">
 
-          <h3>Tool Box</h3> <br>
-          <div id="editBox" class="flex_element">
+              <h4>Note #<span id="tag_id"></span>  </h4> <br>
+              <input id="tag_text" type="text" placeholder="Text note" /> <br>
+              <input type="color" name="tag_color" id="tag_color" onchange="replace_hexa(this.value);" > <input id="tag_hexa" type="text" placeholder="#FFFFFF" onchange="replace_color(this.value);"/>  <br />
+              <div id="delete_tag" onclick="removeTag()"> <p>Delete me !</p></div>
 
-            <h4>Note #<span id="tag_id"></span>  </h4> <br>
-            <input id="tag_text" type="text" placeholder="Text note" /> <br>
-            <input type="color" name="tag_color" id="tag_color" onchange="replace_hexa(this.value);" > <input id="tag_hexa" type="text" placeholder="#FFFFFF" onchange="replace_color(this.value);"/>  <br />
-            <div id="delete_tag" onclick="removeTag()"> <p>Delete me !</p></div>
-
-          </div>
-
-          <div id="new_tag" onclick="newTag()">
-                <p>New Tag</p>
             </div>
+
+            <div id="new_tag" onclick="newTag()">
+                  <p>New Tag</p>
+              </div>
+          </div>
+          <div id="chatbox" class="flex_element"></div>
         </div>
 
-
-        <div id="container" class="flex_element"></div>
-        <div id="chatbox" class="flex_element"></div>
+        <div id="rightBlock">
+          <div id="container" class="flex_element"></div>
+        </div>
       </div>
 
     <?php include("footer.php"); ?>
-
-    <script src="js/jquery.js"></script>
-    <script src="js/konvas.min.js"></script>
-    <script src="js/workspace-utils.js"></script>
-    <script src="js/workspace.js"></script>
 </body>
+<script src="js/konvas.min.js"></script>
+<script src="js/workspace-utils.js"></script>
+<script src="js/workspace.js"></script>
 </html>
   <script>
     if($("#tag_id").html()=="")
