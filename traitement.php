@@ -45,6 +45,7 @@ if(isset($_POST['fonction']))
 
     else if($_POST['fonction'] == 'getProjectDiagrams')
     {
+
         $dao = new DAODiagramme($db);
         $diagrams = $dao->getDiagramsFromProjectId($_POST['project_id']);
 

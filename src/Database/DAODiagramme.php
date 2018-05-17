@@ -14,9 +14,9 @@ class DAODiagramme
     public function getDiagramsFromProjectId($id)
     {
         $diagrams = array();
-        
-        $query = 'SELECT * FROM Diagramme WHERE id_project = '.$id.';';
-        
+
+        $query = 'SELECT * FROM Diagramme WHERE id_projet = '.$id.';';
+
         $results = $this->database->query($query);
 
         if ($results->rowCount() < 1)
@@ -32,7 +32,7 @@ class DAODiagramme
 
     public function injectNewDiagram($diagram)
     {
-        $query = 'INSERT INTO Diagramme(nom_diagramme, id_project, description_diagramme) VALUES(\''.$diagram->get_nom_diagramme().'\',\''.$diagram->get_id_projet().'\',\''.$diagram->get_description_diagramme().'\')';
+        $query = 'INSERT INTO Diagramme(nom_diagramme, id_projet, description_diagramme) VALUES(\''.$diagram->get_nom_diagramme().'\',\''.$diagram->get_id_projet().'\',\''.$diagram->get_description_diagramme().'\')';
         $this->database->query($query);
     }
 }
