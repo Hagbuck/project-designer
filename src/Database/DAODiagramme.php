@@ -15,7 +15,7 @@ class DAODiagramme
     {
         $diagrams = array();
 
-        $query = 'SELECT * FROM Diagramme WHERE id_projet = '.$id.';';
+        $query = 'SELECT * FROM diagramme WHERE id_projet = '.$id.';';
 
         $results = $this->database->query($query);
 

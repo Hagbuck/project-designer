@@ -18,7 +18,7 @@ function display_projects(stringJSON)
     }
 */
     var stringProjet = '<div class="projet"> \
-      <p class="namePBlock" onclick="get_diagrams(\''+value['id_projet']+'\',\''+value['nom_projet']+'\')">  '+value["nom_projet"]+' </p> \
+      <p class="namePBlock" onclick="get_diagrames(\''+value['id_projet']+'\',\''+value['nom_projet']+'\')">  '+value["nom_projet"]+' </p> \
       <p class="datePBlock"> <span> Créé le :</span>  '+value["date_creation_projet"]+' </p> \
       <p class="descPBlock"> '+value["description_projet"]+' </p> \
       <p class="adminBlock"> <span>Admin</span> : '+stringAdmin+' </p> \
@@ -60,6 +60,7 @@ function get_diagrames(idProject,nom_projet)
   $("#addDiagramButton").remove();
   $("#mydiagrams").children("hr").remove();
   $('#mydiagrams').append("<hr>");
+  $("#nameProject").html(nom_projet)
 
   var alldiag = document.getElementById("mydiagrams")
   alldiag.getElementsByTagName("hr")
@@ -68,8 +69,10 @@ function get_diagrames(idProject,nom_projet)
      url : "traitement.php",
      type : 'POST',
      data : 'fonction=getProjectDiagrams&project_id='+idProject,
-     dataType : "json",
-     success  : function(data){display_diagrames(JSON.stringify(data),idProject)},
+     dataType : "html",
+     success  : function(data){
+       console.log(data)
+       display_diagrames(data,idProject)},
      error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getProjectDiagrams()");console.log(erreur)}
     });
 
@@ -79,7 +82,6 @@ function display_diagrames(dataDiagram,idProject)
 {
  console.log("[INFO] -> Success to getProjectDiagrams()")
  console.log(dataDiagram)
- /*
   $.each(dataDiagram, function(index, value) {
 
     /*
@@ -92,8 +94,8 @@ function display_diagrames(dataDiagram,idProject)
         else
           stringContributeur += "."
       }
-
-
+      */
+      /*
       var stringBranche = "";
       for(var i=0;i<value["keys"].length;i++)
       {
@@ -104,7 +106,6 @@ function display_diagrames(dataDiagram,idProject)
           stringBranche += "."
       }
 
-
       var stringDiagram = ' <div class="diagram"> \
                               <div class="diagName"> <span>'+value["name"]+'</span> </div> \
                               <div class="diagInfo">\
@@ -114,12 +115,20 @@ function display_diagrames(dataDiagram,idProject)
                               </div>\
                           </div>\
       <hr style="margin-bottom:10px">';
+      */
+      var stringDiagram = ' <div class="diagram"> \
+                              <div class="diagName"> <span>'+value["name"]+'</span> </div> \
+                              <div class="diagInfo">\
+                                <p class="diagDesc"> <span>Description</span> :'+value["description"]+' </p> <br/>\
+                              </div>\
+                          </div>\
+      <hr style="margin-bottom:10px">';
+
       $('#mydiagrams').append(stringDiagram);
       $('#nameProject').html(nameProjet);
 
 });
-*/
-$('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\"'+idProject+'\")"> <span>+</span> </div><hr style="margin-bottom:10px">');
+$('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\''+idProject+'\')"> <span>+</span> </div><hr style="margin-bottom:10px">');
 }
 
 
@@ -211,13 +220,14 @@ async function create_diagram(id_projet)
       '<input id="diagName" class="swal2-input" placeholder="Nom diagrame">' +
       '<textarea id="diagDesc" class="swal2-textarea" placeholder="Description du diagrame...">',
     focusConfirm: false,
-    preConfirm: (name,desc) => tenta_crea($(diagName).val(),$(diagDesc).val(),id_projet)
+    preConfirm: (name,desc) => tenta_crea_diag($(diagName).val(),$(diagDesc).val(),id_projet)
   })
 }
 
 
 async function tenta_crea_diag(name,desc,id_projet)
 {
+
   var user = 1
 
   if(name != "" && name !=undefined && desc != "" && desc !=undefined && id_projet >= 0)
@@ -229,8 +239,8 @@ async function tenta_crea_diag(name,desc,id_projet)
        success : function(code_html, statut){
          if(code_html == "DONE")
          {
-             swal({type: 'success',title: 'Le projet a bien été créé.',timer:3000})
-             //REDIRECTION
+             swal({type: 'success',title: 'Le diagramme a bien été créé.',timer:3000})
+             document.location.href="myproject.php";
          }
         else
          swal({type: 'error', title: 'Un problème est survenue.',html:code_html});

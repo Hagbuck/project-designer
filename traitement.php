@@ -36,10 +36,9 @@ if(isset($_POST['fonction']))
     else if($_POST['fonction'] == 'createDiagram')
     {
         $dao = new DAODiagramme($db);
-        $diagram = new Diagram(0, $_POST['id_projet'], $_POST['nom_diagramme'], $_POST['description_diagramme']);
+        $diagram = new Diagramme(0, $_POST['id_projet'], $_POST['nom_diagramme'], $_POST['description_diagramme']);
 
-        $dao->getDiagramsFromProjectId($diagram);
-
+        $dao->injectNewDiagram($diagram);
         echo "DONE";
     }
 
@@ -53,6 +52,7 @@ if(isset($_POST['fonction']))
         for($i = 0; $i < count($diagrams); ++$i){
             $arr_digrams['#'.$i] = $diagrams[$i];
         }
+
         echo json_encode($arr_diagrams);
     }
 
