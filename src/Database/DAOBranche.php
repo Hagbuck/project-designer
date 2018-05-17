@@ -1,7 +1,7 @@
 <?php
 
-include('\src\Database\MyDatabase.php');
-include('\src\Models\Branche.php');
+require_once('\src\Database\MyDatabase.php');
+require_once('\src\Models\Branche.php');
 
 
 class DAOBranche

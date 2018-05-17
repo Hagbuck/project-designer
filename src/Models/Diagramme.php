@@ -1,6 +1,6 @@
 <?php
 
-class Diagramme
+class Diagramme implements JsonSerializable
 {
     private $id_diagramme;
     private $id_projet;

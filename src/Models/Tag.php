@@ -1,6 +1,6 @@
 <?php
 
-class Tag
+class Tag implements JsonSerializable
 {
     private $id_tag;
     private $id_diagramme;
@@ -60,9 +60,9 @@ class Tag
     {
         return array("id_tag" =>$this->id_tag, 
                     "id_diagramme" => $this->id_diagramme, 
-                    "texte_tag" => $this->texte_tag);
-                    "pos_x_tag" => $this->pos_x_tag);
-                    "pos_y_tag" => $this->pos_y_tag);
+                    "texte_tag" => $this->texte_tag,
+                    "pos_x_tag" => $this->pos_x_tag,
+                    "pos_y_tag" => $this->pos_y_tag,
                     "couleur_tag" => $this->couleur_tag);
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace ProjectDesigner\Database;
+require_once('\src\Database\MyDatabase.php');
+require_once('\src\Models\Diagramme.php');
 
-use ProjectDesigner\Models\Diagram;
-
-class DAOProjet
+class DAODiagramme
 {
     private $database;
     public function __construct($database)
@@ -36,3 +35,6 @@ class DAOProjet
         $query = 'INSERT INTO Diagramme(nom_diagramme, id_project, description_diagramme) VALUES(\''.$diagram->get_nom_diagramme().'\',\''.$diagram->get_id_projet().'\',\''.$diagram->get_description_diagramme().'\')';
         $this->database->query($query);
     }
+}
+
+?>

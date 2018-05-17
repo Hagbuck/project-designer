@@ -1,7 +1,5 @@
 <?php
 
-/*namespace ProjectDesigner\Models;*/
-
 class Projet implements JsonSerializable
 {
     private $id_projet;

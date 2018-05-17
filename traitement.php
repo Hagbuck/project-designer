@@ -1,6 +1,9 @@
 <?php
 
-include(__DIR__.'\src\Database\DAOProjet.php');
+require_once(__DIR__.'\src\Database\DAOBranche.php');
+require_once(__DIR__.'\src\Database\DAODiagramme.php');
+require_once(__DIR__.'\src\Database\DAOProjet.php');
+require_once(__DIR__.'\src\Database\DAOTag.php');
 
 $db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
 
@@ -28,6 +31,98 @@ if(isset($_POST['fonction']))
             $arr_projects['#'.$i] = $projects[$i];
         }
         echo json_encode($arr_projects);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'createDiagram')
+    {
+        $dao = new DAODiagramme($db);
+        $diagram = new Diagram(0, $_POST['id_projet'], $_POST['nom_diagramme'], $_POST['description_diagramme']);
+
+        $dao->getDiagramsFromProjectId($diagram);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'getProjectDiagrams')
+    {
+        $dao = new DAODiagramme($db);
+        $diagrams = $dao->getDiagramsFromProjectId($_POST['project_id']);
+
+        $arr_diagrams = array();
+        for($i = 0; $i < count($diagrams); ++$i){
+            $arr_digrams['#'.$i] = $diagrams[$i];
+        }
+        echo json_encode($arr_diagrams);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'createBranch')
+    {
+        $dao = new DAOBranche($db);
+        $branch = new Branche(0, $_POST['digramme_id'], $_POST['nom_branche']);
+
+        $dao->createBranch($branch);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'getBranch')
+    {
+        $dao = new DAOBranch($db);
+        $branches = $dao->getBranchesFromDiagramId($_POST['diagramme_id']);
+
+        $arr_branches = array();
+        for($i = 0; $i < count($branches); ++$i){
+            $arr_branches['#'.$i] = $branches[$i];
+        }
+        echo json_encode($arr_branches);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'createTag')
+    {
+        $dao = new DAOTag($db);
+        $tag = new Tag(0, $_POST['id_diagramme'], $_POST['texte_tag'], $_POST['pos_x_tag'], $_POST['pos_y_tag'], $_POST['couleur_tag']);
+
+        $dao->createTag($tag);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'updateTag')
+    {
+        $dao = new DAOTag($db);
+        $tag = new Tag($_POST['tag_id'], $_POST['id_diagramme'], $_POST['texte_tag'], $_POST['pos_x_tag'], $_POST['pos_y_tag'], $_POST['couleur_tag']);
+
+        $dao->updateTag($tag);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'removeTag')
+    {
+        $dao = new DAOTag($db);
+        $dao->removeTag($_POST['tag_id']);
+
+        echo "DONE";
+    }
+
+    else if($_POST['fonction'] == 'getTags')
+    {
+        $dao = new DAOTag($db);
+        $tags = $dao->getBranchesFromDiagramId($_POST['diagramme_id']);
+
+        $arr_tags = array();
+        for($i = 0; $i < count($tags); ++$i){
+            $arr_tags['#'.$i] = $tags[$i];
+        }
+        echo json_encode($arr_tags);
+
+        echo "DONE";
     }
 
   else
