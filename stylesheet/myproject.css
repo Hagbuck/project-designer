@@ -79,32 +79,7 @@
   height: 30px;
 }
 
-#myprojects
-{
-  background-color: #EFEFEF;
-  border-radius: 8px;
-  width: 400px;
-}
 
-#mydiagrams
-{
-  background-color:#333333;
-  border-radius: 8px;
-  min-width: 800px;
-}
-
-#mydiagrams hr
-{
-  width: 90%;
-  margin: auto;
-  text-align:center; /* IE, Opera... */
-}
-
-#mydiagrams h2
-{
-  color:orange;
-  text-align: center;
-}
 
 #chatBox
 {
@@ -163,15 +138,44 @@
 #mainDivProject
 {
   display: flex;
-  justify-content: space-between;
+  align-items:stretcht;
+  align-content: stretcht;
   flex-wrap: wrap;
 }
 
 #mainDivProject div
 {
-  margin:0px 10px 10px 10px;
+  margin:auto;
 }
 
+#myprojects
+{
+  background-color: #EFEFEF;
+  border-radius: 8px;
+  min-width: 400px;
+  padding: 5px;
+}
+
+#mainDivProject #mydiagrams
+{
+  background-color:#333333;
+  border-radius: 8px;
+  flex-grow:2;
+  margin-left: 20px;
+}
+
+#mydiagrams hr
+{
+  width: 90%;
+  margin: auto;
+  text-align:center; /* IE, Opera... */
+}
+
+#mydiagrams h2
+{
+  color:orange;
+  text-align: center;
+}
 
 #addProjectButton,#addDiagramButton
 {

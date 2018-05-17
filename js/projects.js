@@ -1,4 +1,39 @@
+/*******************************************************/
+/***************** RECUPERATION PROJET *****************/
+/*******************************************************/
 
+/******* REQUEST AJAX *******/
+function getUserProjects()
+{
+  $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=getUserProjects&user_id=1',
+     dataType : "json",
+     success  : function(data){getUserProjectsCallBackSuccess(data)},
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()");console.log(erreur)}
+    });
+}
+
+/**** RESPONSE AJAX ****/
+async function getUserProjectsCallBackSuccess(code_html)
+{
+  if(code_html != "ERROR")
+  {
+    console.log("[INFO] -> Success of getUserProjects()");
+    display_projects(code_html);
+    var default_project = most_recent_project(code_html)
+    get_diagrames(default_project[0],default_project[1])
+  }
+  else
+  {
+    console.log("[ERROR] -> Fail to getUserProjects().\n"+code_html);
+    display_projects(JSON.stringify({}));
+  }
+}
+
+
+/**** DISPLAY PROJECTS ******/
 function display_projects(stringJSON)
 {
   var dataProjet = stringJSON;
@@ -26,7 +61,7 @@ function display_projects(stringJSON)
     <hr style="margin-bottom:10px">';
     $('#tabProjet').append(stringProjet);
 });
-$('#tabProjet').append('<div id="addProjectButton" onclick="create_project()"> <span>+</span> </div><hr>');
+$('#tabProjet').append('<div id="addProjectButton" onclick="create_project()"> <span>+</span> </div><hr style="margin-top: 10px;">');
 }
 
 
@@ -53,7 +88,11 @@ function most_recent_project(stringJSON)
 
 }
 
+/*******************************************************/
+/*************** RECUPERATION DIAGRAME *****************/
+/*******************************************************/
 
+/******* REQUEST AJAX *******/
 function get_diagrames(idProject,nom_projet)
 {
   $(".diagram").remove();
@@ -78,6 +117,7 @@ function get_diagrames(idProject,nom_projet)
 
 }
 
+/**** DISPLAY DIAGRAM ******/
 function display_diagrames(dataDiagram,idProject)
 {
  console.log("[INFO] -> Success to getProjectDiagrams()")
@@ -126,10 +166,27 @@ function display_diagrames(dataDiagram,idProject)
       <hr style="margin-bottom:10px">';
 
       $('#mydiagrams').append(stringDiagram);
-      /*$('#nameProject').html(nameProjet);*/
 
 });
 $('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\''+idProject+'\')"> <span>+</span> </div><hr style="margin-bottom:10px">');
+}
+
+
+
+/*******************************************************/
+/******************* CREATION PROJET *******************/
+/*******************************************************/
+async function create_project()
+{
+  var id_user = 1
+  const {value: name,value :desc} = await swal({
+    title: 'Nouveau Projet',
+    html:
+      '<input id="projectName" class="swal2-input" placeholder="Nom projet">' +
+      '<textarea id="projetDesc" class="swal2-textarea" placeholder="Description du projet...">',
+    focusConfirm: false,
+    preConfirm: (name,desc) => tenta_crea($(projectName).val(),$(projetDesc).val())
+  })
 }
 
 
@@ -160,57 +217,10 @@ async function tenta_crea(name,desc)
   }
 }
 
-/*
-function get_diagrams(id,nom)
-{
-  display_diagrames(tabDiagJSON,id,nom);
-}
-*/
 
-async function create_project()
-{
-  var id_user = 1
-  const {value: name,value :desc} = await swal({
-    title: 'Nouveau Projet',
-    html:
-      '<input id="projectName" class="swal2-input" placeholder="Nom projet">' +
-      '<textarea id="projetDesc" class="swal2-textarea" placeholder="Description du projet...">',
-    focusConfirm: false,
-    preConfirm: (name,desc) => tenta_crea($(projectName).val(),$(projetDesc).val())
-  })
-}
-
-
-
-function getUserProjects()
-{
-  $.ajax({
-     url : "traitement.php",
-     type : 'POST',
-     data : 'fonction=getUserProjects&user_id=1',
-     dataType : "json",
-     success  : function(data){getUserProjectsCallBackSuccess(data)},
-     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()");console.log(erreur)}
-    });
-}
-
-async function getUserProjectsCallBackSuccess(code_html)
-{
-  if(code_html != "ERROR")
-  {
-    console.log("[INFO] -> Success of getUserProjects()");
-    display_projects(code_html);
-    var default_project = most_recent_project(code_html)
-    get_diagrames(default_project[0],default_project[1])
-  }
-  else
-  {
-    console.log("[ERROR] -> Fail to getUserProjects().\n"+code_html);
-    display_projects(JSON.stringify({}));
-  }
-}
-
-
+/*******************************************************/
+/****************** CREATION DIAGRAME ******************/
+/*******************************************************/
 
 async function create_diagram(id_projet)
 {

@@ -22,19 +22,19 @@
               <h4>Note #<span id="tag_id"></span>  </h4> <br>
               <input id="tag_text" type="text" placeholder="Text note" /> <br>
               <input type="color" name="tag_color" id="tag_color" onchange="replace_hexa(this.value);" > <input id="tag_hexa" type="text" placeholder="#FFFFFF" onchange="replace_color(this.value);"/>  <br />
-              <div id="delete_tag" onclick="removeTag()"> <p>Delete me !</p></div>
+              <div id="delete_tag" onclick="removeTag()" class="toolButton"> <span>Delete me !</span></div>
 
             </div>
 
-            <div id="new_tag" onclick="newTag()">
-                  <p>New Tag</p>
+              <div id="new_tag" onclick="newTag()" class="toolButton">
+                    <span>New Tag</span>
+                </div>
+              <div id="new_branch" onclick="reloadBranches()" class="toolButton">
+                  <span>New Branch</span>
               </div>
-            <div id="new_branch" onclick="reloadBranches()">
-                <p>New Branch</p>
-            </div>
-            <div id="new_branch" onclick="deteBranch()">
-                <p>Delete a Branch</p>
-            </div>
+              <div id="new_branch" onclick="deteBranch()" class="toolButton">
+                  <span>Delete a Branch</span>
+              </div>
           </div>
           <!-- <div id="chatbox" class="flex_element"></div> -->
         </div>
