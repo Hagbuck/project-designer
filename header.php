@@ -13,7 +13,7 @@
                 if(isset($_SESSION['user']))
                   echo "<a href='#'><li>Profil</li></a><a href='#'><li> Log Out </li></a>";
                 else
-                  echo "<a href='#'><li>Login</li></a><a href='#'><li>Sign In</li></a>";
+                  echo "<a href='connexion.php'><li>Login</li></a><a href='inscription.php'><li>Sign In</li></a>";
               ?>
             </ul>
         </nav>

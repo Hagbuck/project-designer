@@ -125,6 +125,61 @@ if(isset($_POST['fonction']))
         echo "DONE";
     }
 
+    else if($_POST['fonction'] == 'connexion')
+    {
+        mysql_connect("localhost", "root", "");
+        mysql_select_db("projectdesigner");
+        $pseudo = mysql_real_escape_string(htmlspecialchars($_POST['pseudo']));
+        $mdp = mysql_real_escape_string(htmlspecialchars($_POST['mdp']));
+
+        // cryptage mdp
+        //$mdp = sha1($mdp);
+
+        $nbre = mysql_query("SELECT COUNT(*) AS exist FROM connexion WHERE pseudo='$pseudo'");
+        $donnees = mysql_fetch_array($nbre);
+        if($donnees['exist'] != 0) // Si le pseudo existe.
+        {
+            $requete = mysql_query("SELECT * FROM connexion WHERE pseudo='$pseudo'");
+            $infos = mysql_fetch_array($requete);
+            if($mdp == $infos['passe'])
+            {
+                //CONNEXION
+            }
+            else // si couple pseudo/mdp incorrect
+            {
+                echo 'Vous n\'avez pas rentré les bons identifiants';
+            }
+        }
+    }
+
+    else if ($_POST['fonction'] == 'inscription')
+    {
+        if(!empty($_POST['pseudo']))
+        {
+            //connection BD
+            mysql_connect("localhost", "root", "");
+            mysql_select_db("projectdesigner");
+
+            $mdp1 = mysql_real_escape_string(htmlspecialchars($_POST['mdp1']));
+            $mdp2 = mysql_real_escape_string(htmlspecialchars($_POST['mdp2']));
+            if($mdp1 == $mdp2) // vérification mdp
+            {
+                $pseudo = mysql_real_escape_string(htmlspecialchars($_POST['pseudo']));
+                $mail = mysql_real_escape_string(htmlspecialchars($_POST['mail']));
+                // cryptage mdp :
+                //$mdp1 = sha1($mdp1);
+
+                mysql_query("INSERT INTO Utilisateur VALUES('', '$nom', '$prenom', '$pseudo', '$mdp1', '$mail')");
+            }
+         
+            else
+            {
+                echo 'Les deux mots de passe que vous avez rentrés ne correspondent pas.';
+            }
+        }
+
+    }
+
   else
     echo "UNKNOW COMMAND";
 }
