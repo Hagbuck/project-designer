@@ -115,13 +115,13 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
     return tag;
 }
 
-function createTagBis(text, color, tag_id, posX, posY, text_offset){
+function createTagBis(text, color, tag_id, posX, posY,text_offset){
     var tag = new Konva.Group({
         draggable: true
     });
     var box = new Konva.Rect({
-        x: posX-100/2,
-        y: posY-50/2,
+        x: centerX - posX ,
+        y: centerY - posY,
         width: 100,
         height: 50,
         fill: color,
