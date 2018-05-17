@@ -49,7 +49,4 @@ class MyDatabase
         return md5($password);
     }
 }
-
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
-
 ?>

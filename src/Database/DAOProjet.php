@@ -21,8 +21,8 @@ class DAOProjet
 
         $query = 'SELECT * FROM Projet, Accede WHERE Accede.id_utilisateur = '.$user_id.' AND Accede.id_projet = Projet.id_projet;';
 
-        echo $query . '<br />';
-        
+        //echo $query . '<br />';
+
         $results = $this->database->query($query);
 
         if ($results->rowCount() < 1)
