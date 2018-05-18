@@ -120,7 +120,7 @@ function newTag(diagramme_id){
    });
 }
 
-function updateTag(){
+function updateTag(diagramme_id){
     var id = $('#tag_id').html();
     if(id != null && id != undefined && id != '' && id != 'none')
     {

@@ -5,7 +5,7 @@ require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', 'mysql');
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
 
 if(isset($_POST['fonction']))
 {
@@ -98,7 +98,7 @@ if(isset($_POST['fonction']))
 
         $dao->updateTag($tag);
 
-        echo "DONE";
+        echo json_encode($tag);
     }
 
     else if($_POST['fonction'] == 'removeTag')
