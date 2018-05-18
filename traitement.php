@@ -81,7 +81,7 @@ if(isset($_POST['fonction']))
     else if($_POST['fonction'] == 'createTag')
     {
         $dao = new DAOTag($db);
-        $tag = new Tag(0, $_POST['diagramme_id'], $_POST['text_tag'], $_POST['pos_x_tag'], $_POST['pos_y_tag'], $_POST['couleur_tag']);
+        $tag = new Tag(0, $_POST['diagramme_id'], $_POST['texte_tag'], $_POST['pos_x_tag'], $_POST['pos_y_tag'], $_POST['couleur_tag']);
         $dao->createTag($tag);
 
         $last_tag = $dao->getLastTagInjectedFromDiagramId($_POST['diagramme_id']);
