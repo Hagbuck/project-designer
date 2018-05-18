@@ -50,38 +50,7 @@
     </body>
 </html>
 
-<!-- Pour diagram
-Nom
-Description
-Les grands axes et collaborateurs
--->
+
 <script>
-  var tabProjetJSON = {
-      "#0": {
-        "id_projet" : "1",
-        "nom_projet": "Projet Super",
-        "date_creation_projet": "2018-05-17",
-        "description_projet" : "Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.",
-        "admin": ["Admin", "Autre Admin"],
-        "modo": ["Presque Admin", "Modo donc pas Admin"],
-        "actors": ["Jean-Michel", "Michel Jean", "Vincent", "VinDeuxCent"]
-      },
-      "#1": {
-        "id_projet" : "2",
-        "nom_projet": "Projet Super mais moins que le Premier",
-        "date_creation_projet": "2018-05-15",
-        "description_projet" : "Duplexque isdem diebus acciderat malum, quod et Theophilum insontem atrox interceperat casus, et Serenianus dignus exsecratione cunctorum, innoxius, modo non reclamante publico vigore, discessit.",
-        "admin": ["Nuri", "King"],
-        "modo": ["Maudirateur"],
-        "actors": ["Patrick", "Trick"]
-      }
-    };
-
       getUserProjects();
-      //console.log(test)
-
-    /*display_projects(tabProjetJSON); */
-  //  var default_project = most_recent_project(tabProjetJSON)
-
-  //  display_diagrames(tabDiagJSON,default_project[0],default_project[1])*/
 </script>

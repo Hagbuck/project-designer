@@ -23,7 +23,8 @@
   margin-right: 25px;
   margin-left: 25px;
   display: flex;
-  transition: 0.7s
+  transition: 0.7s;
+  text-decoration:none;
 }
 
 .diagName:hover

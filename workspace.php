@@ -11,7 +11,8 @@
 </head>
 <body>
     <?php include("header.php"); ?>
-    <h1>TITRE DU DIAGRAMME</h1>
+    <h1 id="diagHeader"><a href="myproject.php"><span id="projetNameHeader"></span></a> > <span id="diagNameHeader"></span></h1>
+
     <div id="flexbox">
 
         <div id="leftBlock">
@@ -34,7 +35,7 @@
               <div id="new_branch" onclick="newBranch(1)" class="toolButton">
                   <span>New Branch</span>
               </div>
-              <div id="new_branch" onclick="delBranch(1)" class="toolButton">
+              <div id="del_branch" onclick="delBranch(1)" class="toolButton">
                   <span>Delete a Branch</span>
               </div>
           </div>
@@ -52,10 +53,17 @@
 <script src="js/workspace-utils.js"></script>
 <script src="js/workspace.js"></script>
 </html>
-  <script>
-    display_branch(1)
-    display_tags(1)
+  <?php
 
+  if(!isset($_GET['project']) || !isset($_GET['diag']))
+    echo "<script>invalid_access();</script>";
+  else
+    echo "<script>valid_access('".$_GET['project']."','".$_GET['diag']."')</script>";
+
+
+
+  ?>
+  <script>
     if($("#tag_id").html()=="")
       $("#tag_id").html("none");
 

@@ -11,6 +11,15 @@ class DAODiagramme
         $this->database = $database;
     }
 
+    public function getNameDiagramById($id)
+    {
+      $query = 'SELECT nom_diagramme FROM diagramme WHERE id_diagramme = '.$id.';';
+      $results = $this->database->query($query);
+      while($row = $results->fetch())
+          $diagram = $row['nom_diagramme'];
+      return $diagram;
+    }
+
     public function getDiagramsFromProjectId($id)
     {
         $diagrams = array();

@@ -32,6 +32,30 @@
     background-color: #F0F0F0;
 }
 
+#diagHeader
+{
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+#diagHeader a
+{
+  text-decoration: none;
+  color:#333333;
+}
+
+#projetNameHeader:hover
+{
+  text-decoration: underline;
+}
+
+#diagNameHeader
+{
+  color:#6B6A6A;
+  font-size: 20px;
+  font-style: italic;
+}
+
 #toolBox
 {
     display: flex;
@@ -127,14 +151,16 @@
   margin-top: 10px;
 }
 
-#delete_tag
+#delete_tag,#del_branch
 {
   background-color: orange;
+    transition: 0.7s;
 }
 
 #new_tag, #new_branch, #update_tag
 {
   background-color: #68B159;
+    transition: 0.7s;
 }
 
 #new_tag:hover, #new_branch:hover, #update_tag:hover
@@ -144,7 +170,7 @@
   transition: 0.7s;
 }
 
-#delete_tag:hover
+#delete_tag:hover,#del_branch:hover
 {
   background-color:#CA5000;
   transition:0.7s;

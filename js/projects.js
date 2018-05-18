@@ -158,7 +158,7 @@ function display_diagrames(dataDiagram,idProject)
       <hr style="margin-bottom:10px">';
       */
       var stringDiagram = ' <div class="diagram"> \
-                              <div class="diagName"> <span>'+value["nom_diagramme"]+'</span> </div> \
+                              <a class="diagName" href="workspace.php?project='+value["id_projet"]+'&diag='+value["id_diagramme"]+'"><div> <span>'+value["nom_diagramme"]+'</span></div> </a> \
                               <div class="diagInfo">\
                                 <p class="diagDesc"> <span>Description</span> :'+value["description_diagramme"]+' </p> <br/>\
                               </div>\

@@ -5,7 +5,7 @@ require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', 'mysql');
 
 if(isset($_POST['fonction']))
 {
@@ -55,6 +55,23 @@ if(isset($_POST['fonction']))
 
         echo json_encode($diagrams);
     }
+
+    else if($_POST['fonction'] == 'getNameDiagramById')
+    {
+
+        $dao = new DAODiagramme($db);
+        $diagram = $dao->getNameDiagramById($_POST['digramme_id']);
+        echo $diagram;
+    }
+
+    else if($_POST['fonction'] == 'getNameProjectById')
+    {
+        $dao = new DAOProjet($db);
+        $projet = $dao->getNameProjectById($_POST['projet_id']);
+        echo $projet;
+    }
+
+
 
     else if($_POST['fonction'] == 'createBranch')
     {

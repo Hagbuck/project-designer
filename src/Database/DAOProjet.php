@@ -32,6 +32,16 @@ class DAOProjet
         return $projects;
     }
 
+
+    public function getNameProjectById($id)
+    {
+      $query = 'SELECT nom_projet FROM projet WHERE id_projet = '.$id.';';
+      $results = $this->database->query($query);
+      while($row = $results->fetch())
+          $projet = $row['nom_projet'];
+      return $projet;
+    }
+
     public function injectNewProject($project)
     {
         $query = 'INSERT INTO Projet(nom_projet, date_creation_projet, description_projet) VALUES(\''.$project->get_nom_projet().'\',\''.$project->get_date_creation_projet().'\',\''.$project->get_description_projet().'\')';

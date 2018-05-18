@@ -5,7 +5,7 @@
                 <a href="index.php"><li>Home</li></a>
                 <?php
                   //if(isset($_SESSION['user']))
-                    echo "<a href='myproject.php'><li>My Projects</li></a><a href='workspace.php'><li>Workspace</li></a>";
+                    echo "<a href='myproject.php'><li>My Projects</li></a>";
                 ?>
             </ul>
             <ul>

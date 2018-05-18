@@ -50,19 +50,20 @@ function display_branch(diagramme_id)
        $.each(data, function(index, value){nb_branch++})
 
        var angle = 2*Math.PI / nb_branch
-       //console.log(nb_branch)
 
-       $.each(data, function(index, value) {
+       if(data['#0'] != null)
+       {
+         $.each(data, function(index, value) {
 
-          var branch = createBranch(value["nom_branche"], angle * n, branch_size, center, window_offset);
-          n++
-          stage.draw();
-          branches_group.add(branch);
-        })
-
-        layer.add(branches_group);
-        stage.add(layer);
-        stage.draw();
+            var branch = createBranch(value["nom_branche"], angle * n, branch_size, center, window_offset);
+            n++
+            stage.draw();
+            branches_group.add(branch);
+          })
+       }
+       layer.add(branches_group);
+       stage.add(layer);
+       stage.draw();
 
       }
        ,
@@ -80,14 +81,16 @@ function display_tags(diagramme_id)
      dataType : "json",
      success  : function(data){
 
-       $.each(data, function(index, value) {
+       if(data['#0'] != null)
+       {
+         $.each(data, function(index, value) {
 
-         //var tag = createTagBis(value["texte_tag"], value["couleur_tag"], value["id_tag"], value["pos_x_tag"], value["pos_y_tag"], text_offset)
-         var tag = createTag(value["texte_tag"], value["couleur_tag"], parseInt(value["id_tag"]), centerX, centerY, text_offset);
-         changeTagPosition(tag, parseInt(value['pos_x_tag']), parseInt(value['pos_y_tag']));
-          tags_groups.add(tag);
+           var tag = createTag(value["texte_tag"], value["couleur_tag"], parseInt(value["id_tag"]), centerX, centerY, text_offset);
+           changeTagPosition(tag, parseInt(value['pos_x_tag']), parseInt(value['pos_y_tag']));
+            tags_groups.add(tag);
 
-        })
+          })
+       }
         stage.draw();
         layer.add(tags_groups);
         stage.add(layer);
@@ -249,4 +252,48 @@ async function tenta_del_branch(name,diagramme_id)
     swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
     return false;
   }
+}
+
+function invalid_access()
+{
+  swal({
+      title: 'Accés Interdit',
+      text: "Cette ressource n'est pas accessible de la sorte.",
+      type: 'error',
+      confirmButtonText: 'Sortir'
+    }).then((result) => {  if (result.value) {document.location.href="myproject.php";}})
+}
+
+function valid_access(projet,diag)
+{
+  header_diagramme(diag);
+  header_project(projet);
+  display_branch(diag);
+  display_tags(diag);
+  $('#newTag').attr("onclick","newTag("+diag+")")
+  $('#new_branch').attr("onclick","newBranch("+diag+")")
+  $('#del_branch').attr("onclick","delBranch("+diag+")")
+
+}
+
+function header_diagramme(id)
+{
+  $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=getNameDiagramById&digramme_id='+id,
+     success : function(code_html, statut){$('#diagNameHeader').html(code_html)},
+     error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+    });
+}
+
+function header_project(id)
+{
+  $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=getNameProjectById&projet_id='+id,
+     success : function(code_html, statut){$('#projetNameHeader').html(code_html)},
+     error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+    });
 }
