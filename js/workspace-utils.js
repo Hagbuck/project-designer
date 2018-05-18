@@ -11,6 +11,7 @@ function fill_form_edit_tag(tag){
 
     $('input#tag_text').val(children[1].getText());
     $('input#tag_color').val(children[0].getAttr('fill'));
+    $('input#tag_hexa').val(children[0].getAttr('fill'));
     $('span#tag_id').html(tag.id);
 }
 
@@ -113,6 +114,8 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
 
     tag.on('dragend', function() {
         // TODO : enregistrer pos dans DB
+        fill_form_edit_tag(tag);
+        updateTag(1);
         console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
     });
 
