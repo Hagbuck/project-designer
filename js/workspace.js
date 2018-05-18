@@ -270,7 +270,7 @@ function valid_access(projet,diag)
   header_project(projet);
   display_branch(diag);
   display_tags(diag);
-  $('#newTag').attr("onclick","newTag("+diag+")")
+  $('#new_tag').attr("onclick","newTag("+diag+")")
   $('#new_branch').attr("onclick","newBranch("+diag+")")
   $('#del_branch').attr("onclick","delBranch("+diag+")")
 

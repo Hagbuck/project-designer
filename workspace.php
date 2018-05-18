@@ -29,13 +29,13 @@
             </div>
 
               <!-- A MODIF PAR ID DIAG -->
-              <div id="new_tag" onclick="newTag(1)" class="toolButton">
+              <div id="new_tag" class="toolButton">
                     <span>New Tag</span>
                 </div>
-              <div id="new_branch" onclick="newBranch(1)" class="toolButton">
+              <div id="new_branch" class="toolButton">
                   <span>New Branch</span>
               </div>
-              <div id="del_branch" onclick="delBranch(1)" class="toolButton">
+              <div id="del_branch" class="toolButton">
                   <span>Delete a Branch</span>
               </div>
           </div>
