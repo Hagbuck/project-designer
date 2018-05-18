@@ -63,6 +63,21 @@ function changeTagPosition(tag, x, y){
     tag.setPosition({x,y});
 }
 
+function updateTag(id, text, pos_x, pos_y, color){
+
+    console.log(id);
+    var children = tags_groups.getChildren();
+    for(var i = 0; i < children.length; ++i){
+        if(children[i].id == id){
+            var tag_child = children[i].getChildren();
+            tag_child[0].fill(color);
+            tag_child[1].setText(text);
+            changeTagPosition(children[i], pos_x, pos_y);
+            stage.draw();
+        }
+    }
+}
+
 function createTag(text, color, tag_id, centerX, centerY, text_offset){
     var tag = new Konva.Group({
         draggable: true
@@ -92,6 +107,7 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
 
     tag.on('click', function(){
         fill_form_edit_tag(tag);
+        updateTag(tag.id, 'CLICKED', 0, 0, 'red');
         stage.draw();
     });
 
