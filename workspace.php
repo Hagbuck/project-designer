@@ -34,7 +34,7 @@
               <div id="new_branch" onclick="newBranch(1)" class="toolButton">
                   <span>New Branch</span>
               </div>
-              <div id="new_branch" onclick="deteBranch()" class="toolButton">
+              <div id="new_branch" onclick="delBranch(1)" class="toolButton">
                   <span>Delete a Branch</span>
               </div>
           </div>
