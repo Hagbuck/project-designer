@@ -5,7 +5,7 @@ require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', 'mysql');
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
 
 if(isset($_POST['fonction']))
 {
@@ -81,7 +81,7 @@ if(isset($_POST['fonction']))
     else if($_POST['fonction'] == 'createTag')
     {
         $dao = new DAOTag($db);
-        $tag = new Tag(0, $_POST['diagramme_id'], $_POST['text_tag'], $_POST['pos_x_tag'], $_POST['pos_y_tag'], $_POST['couleur_tag']);
+        $tag = new Tag(0, $_POST['diagramme_id'], $_POST['texte_tag'], $_POST['pos_x_tag'], $_POST['pos_y_tag'], $_POST['couleur_tag']);
         $dao->createTag($tag);
 
         $last_tag = $dao->getLastTagInjectedFromDiagramId($_POST['diagramme_id']);
@@ -98,7 +98,7 @@ if(isset($_POST['fonction']))
 
         $dao->updateTag($tag);
 
-        echo "DONE";
+        echo json_encode($tag);
     }
 
     else if($_POST['fonction'] == 'removeTag')

@@ -25,7 +25,7 @@ class DAOTag
 
     public function updateTag($tag)
     {
-        $query = 'UPDATE Tag SET pos_x_tag = '.$tag->get_pos_x_tag().', pos_y_tag = '.$tag->get_pos_y_tag().', text_tag=\''.$tag->get_text_tag().'\', couleur_tag = \''.$tag->get_couleur_tag().'\' WHERE id_tag = '.$tag->get_id_tag().' ;';
+        $query = 'UPDATE Tag SET pos_x_tag = '.$tag->get_pos_x_tag().', pos_y_tag = '.$tag->get_pos_y_tag().', texte_tag=\''.$tag->get_text_tag().'\', couleur_tag = \''.$tag->get_couleur_tag().'\' WHERE id_tag = '.$tag->get_id_tag().' ;';
         $this->database->query($query);
     }
 
