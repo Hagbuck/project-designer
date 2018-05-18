@@ -59,7 +59,7 @@ function createBranches(nb){
     }
 }
 
-function changeTagPosition(tag, x, y, text_offset){
+function changeTagPosition(tag, x, y){
     tag.setPosition({x,y});
 }
 

@@ -82,13 +82,13 @@ function display_tags(diagramme_id)
 
        $.each(data, function(index, value) {
 
-         var tag = createTagBis(value["texte_tag"], value["couleur_tag"], value["id_tag"], value["pos_x_tag"], value["pos_y_tag"], text_offset)
-         //var tag = createTag(value["texte_tag"], value["couleur_tag"], value["id_tag"], centerX, centerY, text_offset)
-          stage.draw();
+         //var tag = createTagBis(value["texte_tag"], value["couleur_tag"], value["id_tag"], value["pos_x_tag"], value["pos_y_tag"], text_offset)
+         var tag = createTag(value["texte_tag"], value["couleur_tag"], value["id_tag"], centerX, centerY, text_offset);
+         changeTagPosition(tag, parseInt(value['pos_x_tag']), parseInt(value['pos_y_tag']));
           tags_groups.add(tag);
 
         })
-
+        stage.draw();
         layer.add(tags_groups);
         stage.add(layer);
         stage.draw();
