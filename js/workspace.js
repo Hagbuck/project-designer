@@ -120,7 +120,6 @@ function newTag(diagramme_id){
    });
 }
 
-<<<<<<< HEAD
 async function newBranch(diagramme_id)
 {
   const {value: name} = await swal({
@@ -155,62 +154,3 @@ async function tenta_crea_branch(name,diagramme_id)
     return false;
   }
 }
-
-=======
-function updateTag(diagramme_id){
-    var id = $('#tag_id').html();
-    if(id != null && id != undefined && id != '' && id != 'none')
-    {
-        id = id.substring(2,id.length-1); // On enlève le #
-        var children = tags_groups.getChildren();
-        console.log('nb note' + children.length);
-        for(var j = 0; j < children.length; ++j){
-            if(children[j].id == id){
-                var tag_child = children[j].getChildren();
-                 $.ajax({
-                     url : "traitement.php",
-                     type : 'POST',
-                     data : 'fonction=updateTag&tag_id='+id+'&id_diagramme='+diagramme_id+'&texte_tag='+tag_child[1].text()+'&pos_x_tag='+children[j].x()+'&pos_y_tag='+children[j].y()+'&couleur_tag='+tag_child[0].fill(),
-                     dataType : "json",
-                     success  : function(data){
-                        updateTag(id, data['texte_tag'], data['pos_x_tag'],data['pos_y_tag'],data['couleur_tag']);
-                        stage.draw();
-                        console.log(id + ' updated');
-                      }
-                       ,
-                     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to update_tag()");console.log(erreur)}
-                });
-            }
-        }
-    }
-}
-
-function removeTag(){
-
-}
->>>>>>> b44bb884afe09ed731f74262342aada8c74650af
-
-
-//getBranch
-//getTag
-
-/*
-// BRANCHS
-
-createBranches(12);
-layer.add(branches_group);
-
-// A TAG
-var tags_groups = new Konva.Group({});
-for(var i = 0; i < 3; ++i){
-    var tag = createTag(default_tag_text, default_tag_color, i, centerX, centerY, text_offset);
-
-    changeTagPosition(tag, i*100, i*100, text_offset);
-    stage.draw();
-
-    tags_groups.add(tag);
-}
-
-layer.add(tags_groups);
-stage.add(layer);
-*/
