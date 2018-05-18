@@ -1,7 +1,7 @@
   //DEFAULT PROPRIETIES
   var text_offset = 12;
   var window_offset = 20;
-  var branch_size = 240;
+  var branch_size = 275;
   var default_tag_color = '#F0FA0F';
   var default_tag_text = 'New note';
 

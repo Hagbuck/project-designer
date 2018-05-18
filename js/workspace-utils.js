@@ -225,7 +225,7 @@ function createBranch(text, angle, branch_size, center, window_offset){
         x: last_point_x,
         y: last_point_y,
         fontFamily: 'Calibri',
-        fontSize: 16,
+        fontSize: 22,
         text: text,
         fill: 'black'
     });
