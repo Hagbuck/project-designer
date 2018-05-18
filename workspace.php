@@ -22,6 +22,7 @@
               <h4>Note #<span id="tag_id"></span>  </h4> <br>
               <input id="tag_text" type="text" placeholder="Text note" /> <br>
               <input type="color" name="tag_color" id="tag_color" onchange="replace_hexa(this.value);" > <input id="tag_hexa" type="text" placeholder="#FFFFFF" onchange="replace_color(this.value);"/>  <br />
+              <div id="update_tag" onclick="updateTag()" class="toolButton"> <span>Update</span></div>
               <div id="delete_tag" onclick="removeTag()" class="toolButton"> <span>Delete me !</span></div>
 
             </div>

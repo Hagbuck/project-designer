@@ -107,7 +107,7 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
 
     tag.on('click', function(){
         fill_form_edit_tag(tag);
-        updateTag(tag.id, 'CLICKED', 0, 0, 'red');
+        /*updateTag(tag.id, 'CLICKED', 0, 0, 'red');*/
         stage.draw();
     });
 

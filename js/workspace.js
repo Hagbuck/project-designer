@@ -120,6 +120,33 @@ function newTag(diagramme_id){
    });
 }
 
+function updateTag(){
+    var id = $('#tag_id').html();
+    if(id != null && id != undefined && id != '' && id != 'none')
+    {
+        id = id.substring(2,id.length-1); // On enlève le #
+        console.log(id);
+        var children = tags_groups.getChildren();
+        for(var i = 0; i < children.length; ++i){
+            if(children[i].id == id){
+                var tag_child = children[i].getChildren();
+                 $.ajax({
+                     url : "traitement.php",
+                     type : 'POST',
+                     data : 'fonction=updateTag&tag_id='+id+'&diagramme_id='+diagramme_id+'&text_tag='+tag_child[1].text()+'&pos_x_tag='+children[i].x()+'&pos_y_tag='+children[i].y()+'&couleur_tag='+tag_child[0].fill(),
+                     dataType : "json",
+                     success  : function(data){
+                        updateTag(id, value['text_tag'], value['pos_x_tag'],value['pos_y_tag'],value['couleur_tag']);
+                        stage.draw();
+                      }
+                       ,
+                     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to update_tag()");console.log(erreur)}
+                });
+            }
+        }
+    }
+}
+
 
 
 //getBranch
