@@ -213,3 +213,40 @@ async function tenta_crea_branch(name,diagramme_id)
     return false;
   }
 }
+
+
+async function delBranch(diagramme_id)
+{
+  const {value: name} = await swal({
+    title: 'Suppresion d\'un branche',
+    type:"warning",
+    html: '<input id="branchName" class="swal2-input" placeholder="Nom Branche">',
+    preConfirm: (name) => tenta_del_branch($(branchName).val(),diagramme_id)
+  })
+}
+
+async function tenta_del_branch(name,diagramme_id)
+{
+  if(name != "" && name !=undefined)
+  {
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=delBranch&digramme_id='+diagramme_id+"&nom_branche="+name,
+       success : function(code_html, statut){
+         if(code_html == "DONE")
+           swal({type: 'success',title: 'La branche a bien été supprimée. Veuillez actualiser.',timer:3000})
+
+        else
+         swal({type: 'error', title: 'Un problème est survenue.',html:code_html,timer:50000});
+       },
+       error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+      });
+    return true;
+  }
+
+  else {
+    swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
+    return false;
+  }
+}

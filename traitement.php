@@ -66,6 +66,16 @@ if(isset($_POST['fonction']))
         echo "DONE";
     }
 
+    else if($_POST['fonction'] == 'delBranch')
+    {
+        $dao = new DAOBranche($db);
+        $branch = $dao->getBranchesFromDiagramIdAndName($_POST['digramme_id'],$_POST['nom_branche']);
+
+        $dao->delBranch($branch);
+
+        echo "DONE";
+    }
+
     else if($_POST['fonction'] == 'getBranch')
     {
         $dao = new DAOBranche($db);
