@@ -15,7 +15,7 @@ class DAOProjet
     {
         $projects = array();
 
-        $query = 'SELECT * FROM Projet, Accede WHERE Accede.id_utilisateur = '.$user_id.' AND Accede.id_projet = Projet.id_projet;';
+        $query = 'SELECT * FROM Projet, Accede WHERE Accede.id_utilisateur = '.$user_id.' AND Accede.id_projet = Projet.id_projet ORDER BY date_creation_projet DESC;';
 
         //echo $query . '<br />';
 

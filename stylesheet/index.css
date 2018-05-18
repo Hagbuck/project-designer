@@ -1,0 +1,73 @@
+#exampleDiag
+{
+  background-color: grey;
+  padding: 10px;
+  border-radius: 10px;
+  width: 500px;
+  border:2px solid orange;
+  margin:auto;
+  margin-top:15px;margin-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+#exampleDiag img
+{
+  text-align: center;
+  margin: auto;
+  height: 400px;
+}
+
+html,body
+{
+  background-image: url("pictures/backindex.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+h1
+{
+  color:white;
+}
+
+#sign_in
+{
+  width: 15%;
+  height: 15%;
+}
+
+#foot_index
+{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#foot_index *
+{
+  margin: auto;
+}
+
+h2
+{
+  font-size: 20px;
+  font-family:Quantify;
+  margin:15px 0 15px 0;
+}
+
+.mainComponet
+{
+  background-color: #6B6A6A;
+  padding: 10px;
+  border-radius: 10px;
+}
