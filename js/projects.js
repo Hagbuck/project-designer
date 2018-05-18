@@ -226,10 +226,10 @@ async function create_diagram(id_projet)
 {
   var id_user = 1
   const {value: name,value :desc} = await swal({
-    title: 'Nouveau Diagrame',
+    title: 'Nouveau Diagramme',
     html:
-      '<input id="diagName" class="swal2-input" placeholder="Nom diagrame">' +
-      '<textarea id="diagDesc" class="swal2-textarea" placeholder="Description du diagrame...">',
+      '<input id="diagName" class="swal2-input" placeholder="Nom diagramme">' +
+      '<textarea id="diagDesc" class="swal2-textarea" placeholder="Description du diagramme...">',
     focusConfirm: false,
     preConfirm: (name,desc) => tenta_crea_diag($(diagName).val(),$(diagDesc).val(),id_projet)
   })
