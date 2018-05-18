@@ -186,12 +186,12 @@ function createTagBis(text, color, tag_id, posX, posY,text_offset){
     return tag;
 }
 
-function removeTag(){
+function remove_tag(){
     var id = $('#tag_id').html();
     if(id != null && id != undefined && id != '' && id != 'none')
     {
-        id = id.substring(2,id.length-1); // On enlève le #
-        console.log(id);
+        //id = id.substring(2); // On enlève le 
+        id = parseInt(id);
         var children = tags_groups.getChildren();
         for(var i = 0; i < children.length; ++i){
             if(children[i].id == id){

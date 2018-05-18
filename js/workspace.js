@@ -50,7 +50,7 @@ function display_branch(diagramme_id)
        $.each(data, function(index, value){nb_branch++})
 
        var angle = 2*Math.PI / nb_branch
-       console.log(nb_branch)
+       //console.log(nb_branch)
 
        $.each(data, function(index, value) {
 
@@ -83,7 +83,7 @@ function display_tags(diagramme_id)
        $.each(data, function(index, value) {
 
          //var tag = createTagBis(value["texte_tag"], value["couleur_tag"], value["id_tag"], value["pos_x_tag"], value["pos_y_tag"], text_offset)
-         var tag = createTag(value["texte_tag"], value["couleur_tag"], value["id_tag"], centerX, centerY, text_offset);
+         var tag = createTag(value["texte_tag"], value["couleur_tag"], parseInt(value["id_tag"]), centerX, centerY, text_offset);
          changeTagPosition(tag, parseInt(value['pos_x_tag']), parseInt(value['pos_y_tag']));
           tags_groups.add(tag);
 
@@ -102,17 +102,13 @@ function newTag(diagramme_id){
     $.ajax({
      url : "traitement.php",
      type : 'POST',
-     data : 'fonction=createTag&diagramme_id='+diagramme_id+'&text_tag='+default_tag_text+'&pos_x_tag='+(centerX-100/2)+'&pos_y_tag='+(centerY-50/2)+'&couleur_tag='+default_tag_color,
+     data : 'fonction=createTag&id_diagramme='+diagramme_id+'&texte_tag='+default_tag_text+'&pos_x_tag='+(centerX-100/2)+'&pos_y_tag='+(centerY-50/2)+'&couleur_tag='+default_tag_color,
      dataType : "json",
      success  : function(data){
-        console.log(data);
-        var tag = createTagBis(data["texte_tag"], data["couleur_tag"], data["id_tag"], data["pos_x_tag"], data["pos_y_tag"], text_offset)
-         //var tag = createTag(value["texte_tag"], value["couleur_tag"], value["id_tag"], centerX, centerY, text_offset)
-        stage.draw();
+        //var tag = createTagBis(data["texte_tag"], data["couleur_tag"], data["id_tag"], data["pos_x_tag"], data["pos_y_tag"], text_offset)
+         var tag = createTag(data["texte_tag"], data["couleur_tag"], parseInt(data["id_tag"]), centerX, centerY, text_offset);
+         //changeTagPosition(tag, parseInt(data["pos_x_tag"], data["pos_y_tag"]));
         tags_groups.add(tag);
-
-        layer.add(tags_groups);
-        stage.add(layer);
         stage.draw();
       }
        ,
@@ -124,7 +120,8 @@ function updateTag(diagramme_id){
     var id = $('#tag_id').html();
     if(id != null && id != undefined && id != '' && id != 'none')
     {
-        id = id.substring(2,id.length-1); // On enlève le #
+        //id = id.substring(2); // On enlève le #
+        id = parseInt(id);
         var children = tags_groups.getChildren();
         for(var j = 0; j < children.length; ++j){
             if(children[j].id == id){
@@ -156,6 +153,30 @@ function updateTag(diagramme_id){
 }
 
 function removeTag(){
+    var id = $('#tag_id').html();
+    if(id != null && id != undefined && id != '' && id != 'none')
+    {
+        //id = id.substring(2); // On enlève le ' #'
+        id = parseInt(id);
+        console.log('id to remove : ' + id);
+        var children = tags_groups.getChildren();
+        for(var j = 0; j < children.length; ++j){
+            if(children[j].id == id){
+                 $.ajax({
+                     url : "traitement.php",
+                     type : 'POST',
+                     data : 'fonction=removeTag&tag_id='+id,
+                     dataType : "html",
+                     success  : function(data){
+                        //updateTag(id, data['texte_tag'], data['pos_x_tag'],data['pos_y_tag'],data['couleur_tag']);
+                        remove_tag();
+                        }
+                       ,
+                     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to remove_tag()");console.log(erreur)}
+                });
+            }
+        }
+    }
 }
 
 async function newBranch(diagramme_id)
