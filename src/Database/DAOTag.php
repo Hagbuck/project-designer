@@ -47,6 +47,20 @@ class DAOTag
 
         return $tags;
     }
+
+    public function getLastTagInjectedFromDiagramId($diagram_id)
+    {
+
+        $query = 'SELECT * FROM Tag WHERE id_diagramme = '.$diagram_id.' ORDER BY ID DESC LIMIT 1;';
+
+        $results = $this->database->query($query);
+
+        if ($results->rowCount() < 1)
+            return false;
+
+        $row = $results->fetch();
+        return new Tag($row['id_tag'], $row['id_diagramme'], $row['texte_tag'], $row['pos_x_tag'], $row['pos_y_tag'], $row['couleur_tag']);
+    }
 }
 
 ?>

@@ -44,7 +44,6 @@ function display_branch(diagramme_id)
      data : 'fonction=getBranch&diagramme_id='+diagramme_id,
      dataType : "json",
      success  : function(data){
-
        var n = 1
        var nb_branch =0
 
@@ -97,6 +96,28 @@ function display_tags(diagramme_id)
        ,
      error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to display_tag()");console.log(erreur)}
     });
+}
+
+function newTag(diagramme_id){
+    $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=createTag&diagramme_id='+diagramme_id+'&text_tag='+default_tag_text+'&pos_x_tag='+(centerX-100/2)+'&pos_y_tag='+(centerY-50/2)+'&couleur_tag='+default_tag_color,
+     dataType : "json",
+     success  : function(data){
+        console.log(data);
+        var tag = createTagBis(data["texte_tag"], data["couleur_tag"], data["id_tag"], data["pos_x_tag"], data["pos_y_tag"], text_offset)
+         //var tag = createTag(value["texte_tag"], value["couleur_tag"], value["id_tag"], centerX, centerY, text_offset)
+        stage.draw();
+        tags_groups.add(tag);
+
+        layer.add(tags_groups);
+        stage.add(layer);
+        stage.draw();
+      }
+       ,
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to create_new_tag()");console.log(erreur)}
+   });
 }
 
 
