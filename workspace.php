@@ -27,7 +27,8 @@
 
             </div>
 
-              <div id="new_tag" onclick="newTag()" class="toolButton">
+              <!-- A MODIF PAR ID DIAG -->
+              <div id="new_tag" onclick="newTag(1)" class="toolButton">
                     <span>New Tag</span>
                 </div>
               <div id="new_branch" onclick="reloadBranches()" class="toolButton">
