@@ -20,7 +20,7 @@ class Branche implements JsonSerializable
     }
 
     public function get_id_diagramme(){
-        return $this->id_diagramm;
+        return $this->id_diagramme;
     }
 
     public function get_nom_branche(){

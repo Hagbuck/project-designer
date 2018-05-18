@@ -61,7 +61,7 @@ if(isset($_POST['fonction']))
         $dao = new DAOBranche($db);
         $branch = new Branche(0, $_POST['digramme_id'], $_POST['nom_branche']);
 
-        $dao->createBranch($branch);
+        $dao->injectNewBranch($branch);
 
         echo "DONE";
     }
