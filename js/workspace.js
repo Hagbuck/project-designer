@@ -126,19 +126,26 @@ function updateTag(diagramme_id){
     {
         id = id.substring(2,id.length-1); // On enlève le #
         var children = tags_groups.getChildren();
-        console.log('nb note' + children.length);
         for(var j = 0; j < children.length; ++j){
             if(children[j].id == id){
                 var tag_child = children[j].getChildren();
                  $.ajax({
                      url : "traitement.php",
                      type : 'POST',
-                     data : 'fonction=updateTag&tag_id='+id+'&id_diagramme='+diagramme_id+'&texte_tag='+tag_child[1].text()+'&pos_x_tag='+children[j].x()+'&pos_y_tag='+children[j].y()+'&couleur_tag='+tag_child[0].fill(),
+                     data : 'fonction=updateTag&tag_id='+id+'&id_diagramme='+diagramme_id+'&texte_tag='+$('#tag_text').val()+'&pos_x_tag='+children[j].x()+'&pos_y_tag='+children[j].y()+'&couleur_tag='+$('#tag_hexa').val(),
                      dataType : "json",
                      success  : function(data){
-                        updateTag(id, data['texte_tag'], data['pos_x_tag'],data['pos_y_tag'],data['couleur_tag']);
-                        stage.draw();
-                        console.log(id + ' updated');
+                        //updateTag(id, data['texte_tag'], data['pos_x_tag'],data['pos_y_tag'],data['couleur_tag']);
+                        var children = tags_groups.getChildren();
+                        for(var j = 0; j < children.length; ++j){
+                            if(children[j].id == id){
+                                var tag_child = children[j].getChildren();
+                                tag_child[0].fill(data['couleur_tag']);
+                                tag_child[1].setText(data['texte_tag']);
+                                changeTagPosition(children[j], parseInt(data['pos_x_tag']), parseInt(data['pos_y_tag']));
+                                stage.draw();
+                            }
+                        }
                       }
                        ,
                      error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to update_tag()");console.log(erreur)}
