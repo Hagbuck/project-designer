@@ -31,7 +31,7 @@
               <div id="new_tag" onclick="newTag(1)" class="toolButton">
                     <span>New Tag</span>
                 </div>
-              <div id="new_branch" onclick="reloadBranches()" class="toolButton">
+              <div id="new_branch" onclick="newBranch(1)" class="toolButton">
                   <span>New Branch</span>
               </div>
               <div id="new_branch" onclick="deteBranch()" class="toolButton">

@@ -5,7 +5,7 @@ require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
+$db = new MyDatabase('localhost', 'projectdesigner', 'root', 'mysql');
 
 if(isset($_POST['fonction']))
 {
@@ -61,7 +61,7 @@ if(isset($_POST['fonction']))
         $dao = new DAOBranche($db);
         $branch = new Branche(0, $_POST['digramme_id'], $_POST['nom_branche']);
 
-        $dao->createBranch($branch);
+        $dao->injectNewBranch($branch);
 
         echo "DONE";
     }

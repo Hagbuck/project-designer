@@ -31,6 +31,12 @@ class DAOBranche
         return $branches;
     }
 
+    public function injectNewBranch($branch)
+    {
+      $query = 'INSERT INTO Branche(id_diagramme, nom_branche) VALUES('.$branch->get_id_diagramme().', \''.$branch->get_nom_branche().'\')';
+      $this->database->query($query);
+    }
+
     public function createBranches($branches)
     {
         for($i = 0; $i < count($branches); ++$i)
