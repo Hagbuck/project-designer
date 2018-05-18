@@ -36,7 +36,7 @@ class Tag implements JsonSerializable
         return $this->id_diagramme;
     }
 
-    public function get_texte_tag()
+    public function get_text_tag()
     {
         return $this->texte_tag;
     }

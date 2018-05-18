@@ -11,9 +11,9 @@ class DAOTag
         $this->database = $database;
     }
 
-    public function createNewTag($tag)
+    public function createTag($tag)
     {
-        $query = 'INSERT INTO Tag(id_diagramme, texte_tag, pos_x_tag, pos_y_tag, couleur_tag) VALUES('.$tag->get_id_tag().', \''.$tag->get_text_tag().'\', '.$tag->get_pos_y_tag().', '.$tag->get_pos_y_tag().', \''.$tag->get_couleur_tag().'\');';
+        $query = 'INSERT INTO Tag(id_diagramme, texte_tag, pos_x_tag, pos_y_tag, couleur_tag) VALUES('.$tag->get_id_diagramme().', \''.$tag->get_text_tag().'\', '.$tag->get_pos_y_tag().', '.$tag->get_pos_y_tag().', \''.$tag->get_couleur_tag().'\');';
         $this->database->query($query);
     }
 
@@ -51,7 +51,7 @@ class DAOTag
     public function getLastTagInjectedFromDiagramId($diagram_id)
     {
 
-        $query = 'SELECT * FROM Tag WHERE id_diagramme = '.$diagram_id.' ORDER BY ID DESC LIMIT 1;';
+        $query = 'SELECT * FROM Tag WHERE id_diagramme = '.$diagram_id.' ORDER BY id_tag DESC LIMIT 1;';
 
         $results = $this->database->query($query);
 
