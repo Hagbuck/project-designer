@@ -172,19 +172,20 @@ if(isset($_POST['fonction']))
                 echo "SUCCESS";
 
                 $_SESSION['user_pseudo'] = $pseudo;
+                $_SESSION['user_id'] = $infos['id_utilisateur'];
+                $_SESSION['user_name'] = $infos['nom_utilisateur'];
+                $_SESSION['user_prenom'] = $infos['prenom_utilisateur'];
                 //Autre variables de sessions ?
             }
             else // si couple pseudo/mdp incorrect
-            {
                 echo 'FAIL';
-            }
+
         }
 
-        else {
+        else
           echo "FAIL";
-        }
 
-    }
+        }
 
 
     else if($_POST['fonction'] == 'logOut')
@@ -214,16 +215,21 @@ if(isset($_POST['fonction']))
 
                 mysql_query("INSERT INTO Utilisateur VALUES('', '$nom', '$prenom', '$pseudo', '$mdp1', '$mail')");
 
-                $_SESSION['user_pseudo'] = $pseudo;
-                //Autre variables de sessions ?
+                $requete = mysql_query("SELECT * FROM utilisateur WHERE pseudo_utilisateur='$pseudo'");
+                $infos = mysql_fetch_array($requete);
 
                 echo "DONE";
+
+                $_SESSION['user_pseudo'] = $pseudo;
+                $_SESSION['user_id'] = $infos['id_utilisateur'];
+                $_SESSION['user_name'] = $infos['nom_utilisateur'];
+                $_SESSION['user_prenom'] = $infos['prenom_utilisateur'];
+                //Autre variables de sessions ?
             }
 
             else
-            {
                 echo 'Wrong passwords correspondance.';
-            }
+
         }
 
     }

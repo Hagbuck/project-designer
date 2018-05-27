@@ -1,7 +1,7 @@
 <!-- [POLYTECH] Web Project - Project Designer  -->
 <!-- 2017 - 2018                                -->
 <!-- Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC   -->
-
+<?php session_start();?>
 <!DOCTYPE html>
 
 <!-- RAJOUT CONVERT CANVA EN MODELE IMPRIMABLE
@@ -47,10 +47,6 @@
 
         </section>
         <?php include 'footer.php'; ?>
+        <?php echo '<script>getUserProjects('.$_SESSION['user_id'].');</script>' ?>
     </body>
 </html>
-
-
-<script>
-      getUserProjects();
-</script>

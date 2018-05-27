@@ -13,7 +13,7 @@ function display_connexionIHM()
     progressSteps: ['1', '2']
   }).queue([
     {
-      title: 'Vos identifiant',
+      title: 'Vos identifiants',
       text: 'Identifiant'
     },
     'Mot de Passe',
@@ -150,11 +150,11 @@ function parseDataLogOut(data)
   }
 }
 
-/*****************************************************************************/
-/******************************** CONNEXION **********************************/
+/******************************************************************************/
+/***************************** INSCRIPTION  **********************************/
 /*****************************************************************************/
 
-//IHM & AJAX REQUEST FOR CONNEXION
+//IHM
 async function display_inscriptionIHM()
 {
   const {value: pseudo,value :mail,value : pass, value : passC, value : nom, value : prenom} = await swal({
@@ -173,9 +173,9 @@ async function display_inscriptionIHM()
 }
 
 
+//AJAX REQUEST & CONTROLS
 async function inscriptionTenta(pseudo,mail,pass,passC,nom,prenom)
 {
-  console.log(pseudo,mail,pass,passC,nom,prenom)
 
   if(pseudo != "" && pseudo !=undefined &&
     mail != "" && mail !=undefined &&
@@ -190,6 +190,13 @@ async function inscriptionTenta(pseudo,mail,pass,passC,nom,prenom)
       swal({type: 'error',title: 'Les deux Mot de Passe sont différents.',timer:5000})
       return false;
     }
+
+    else if(!validateEmail(mail))
+    {
+      swal({type: 'error',title: 'Email invalide.',timer:5000})
+      return false;
+    }
+
 
     $.ajax({
        url : "traitement.php",
@@ -215,4 +222,13 @@ async function inscriptionTenta(pseudo,mail,pass,passC,nom,prenom)
     swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
     return false;
   }
+}
+
+
+/******************************************************************************/
+/******************************* OTHERS  **************************************/
+/******************************************************************************/
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
