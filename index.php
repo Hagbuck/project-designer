@@ -2,6 +2,8 @@
 <!-- 2017 - 2018                                -->
 <!-- Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC   -->
 
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html>
     <head>
