@@ -1,5 +1,9 @@
 
+/*****************************************************************************/
+/******************************** CONNEXION **********************************/
+/*****************************************************************************/
 
+//IHM & AJAX REQUEST FOR CONNEXION
 function display_connexionIHM()
 {
     swal.mixin({
@@ -33,7 +37,7 @@ function display_connexionIHM()
 
       else
       {
-
+        //AJAX REQUEST
         $.ajax({
            url : "traitement.php",
            type : 'POST',
@@ -54,21 +58,18 @@ function display_connexionIHM()
                })
 
            }
-          });
+         });//END AJAX
       }
 
     }
   })
 }
 
-
+//CONTROLE RESPONSE AJAX
 function parseDataConnexion(data)
 {
-
   if(data=="SUCCESS")
-  {
       document.location.href="index.php"
-  }
 
   else if(data == "FAIL")
   {
@@ -87,9 +88,13 @@ function parseDataConnexion(data)
         html: data
       })
   }
-
 }
 
+/*****************************************************************************/
+/********************************** LOG OUT **********************************/
+/*****************************************************************************/
+
+//IHM & AJAX REQUEST FOR LOGOUT
 function logOut()
 {
     swal({
@@ -124,21 +129,16 @@ function logOut()
 
          }
         });
-
-
     }
   })
 }
 
-
+//CONTROLE RESPONSE AJAX
 function parseDataLogOut(data)
 {
 
   if(data=="SUCCESS")
-  {
       document.location.href="index.php"
-  }
-
 
   else
   {
@@ -148,5 +148,71 @@ function parseDataLogOut(data)
         html: data
       })
   }
+}
 
+/*****************************************************************************/
+/******************************** CONNEXION **********************************/
+/*****************************************************************************/
+
+//IHM & AJAX REQUEST FOR CONNEXION
+async function display_inscriptionIHM()
+{
+  const {value: pseudo,value :mail,value : pass, value : passC, value : nom, value : prenom} = await swal({
+    title: 'Inscription',
+    html:
+      '<input id="pseudo" class="swal2-input" placeholder="Votre Pseudo">' +
+      '<input id="mail" class="swal2-input" placeholder="Votre m@il" type="mail">'  +
+      '<input id="pass" class="swal2-input" placeholder="Mot de passe" type="password">' +
+      '<input id="passC" class="swal2-input" placeholder="Confirmation" type="password">' +
+      '<input id="nom" class="swal2-input" placeholder="Votre Nom">' +
+      '<input id="prenom" class="swal2-input" placeholder="Votre Prénom">'
+      ,
+    focusConfirm: false,
+    preConfirm: (pseudo,mail,pass,passC,nom,prenom) => inscriptionTenta($('#pseudo').val(),$('#mail').val(),$('#pass').val(),$('#passC').val(),$('#nom').val(),$('#prenom').val())
+  })
+}
+
+
+async function inscriptionTenta(pseudo,mail,pass,passC,nom,prenom)
+{
+  console.log(pseudo,mail,pass,passC,nom,prenom)
+
+  if(pseudo != "" && pseudo !=undefined &&
+    mail != "" && mail !=undefined &&
+    pass != "" && pass !=undefined &&
+    passC != "" && passC !=undefined &&
+    nom != "" && nom !=undefined &&
+    prenom != "" && prenom !=undefined
+  )
+  {
+    if(pass != passC)
+    {
+      swal({type: 'error',title: 'Les deux Mot de Passe sont différents.',timer:5000})
+      return false;
+    }
+
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=inscription&pseudo='+pseudo+"&mail="+mail+"&pass="+pass+'&passC='+passC+"&nom="+nom+"&prenom="+prenom,
+       success : function(code_html, statut){
+
+         if(code_html == "DONE")
+         {
+             swal({type: 'success',title: 'Inscription validée.',timer:3000})
+             document.location.href="index.php";
+         }
+
+        else
+         swal({type: 'error', title: 'Un problème est survenue.',html:code_html});
+       },
+       error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+      });
+    return true;
+  }
+
+  else {
+    swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
+    return false;
+  }
 }

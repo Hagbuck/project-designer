@@ -230,7 +230,7 @@ async function create_diagram(id_projet)
     html:
       '<input id="diagName" class="swal2-input" placeholder="Nom diagramme">' +
       '<textarea id="diagDesc" class="swal2-textarea" placeholder="Description du diagramme...">',
-    focusConfirm: false,
+    focusConfirm: true,
     preConfirm: (name,desc) => tenta_crea_diag($(diagName).val(),$(diagDesc).val(),id_projet)
   })
 }

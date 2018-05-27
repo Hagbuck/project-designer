@@ -122,6 +122,18 @@ iframe
   transition:0.7s;
 }
 
+#rightNavBar
+{
+    min-width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#rightNavBar li:first-child
+{
+  min-width: 300px;
+}
+
 /**** FONTS ***/
 @font-face {
     font-family: Quantify;

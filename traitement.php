@@ -170,7 +170,7 @@ if(isset($_POST['fonction']))
             if($mdp == $infos['mdp_utilisateur'])
             {
                 echo "SUCCESS";
-                // On s'amuse à créer quelques variables de session dans $_SESSION
+
                 $_SESSION['user_pseudo'] = $pseudo;
                 //Autre variables de sessions ?
             }
@@ -198,24 +198,31 @@ if(isset($_POST['fonction']))
         if(!empty($_POST['pseudo']))
         {
             //connection BD
-            mysql_connect("localhost", "root", "");
+            mysql_connect("localhost", "root", "mysql");
             mysql_select_db("projectdesigner");
 
-            $mdp1 = mysql_real_escape_string(htmlspecialchars($_POST['mdp1']));
-            $mdp2 = mysql_real_escape_string(htmlspecialchars($_POST['mdp2']));
+            $mdp1 = mysql_real_escape_string(htmlspecialchars($_POST['pass']));
+            $mdp2 = mysql_real_escape_string(htmlspecialchars($_POST['passC']));
             if($mdp1 == $mdp2) // vérification mdp
             {
                 $pseudo = mysql_real_escape_string(htmlspecialchars($_POST['pseudo']));
                 $mail = mysql_real_escape_string(htmlspecialchars($_POST['mail']));
+                $nom = mysql_real_escape_string(htmlspecialchars($_POST['nom']));
+                $prenom = mysql_real_escape_string(htmlspecialchars($_POST['prenom']));
                 // cryptage mdp :
                 //$mdp1 = sha1($mdp1);
 
                 mysql_query("INSERT INTO Utilisateur VALUES('', '$nom', '$prenom', '$pseudo', '$mdp1', '$mail')");
+
+                $_SESSION['user_pseudo'] = $pseudo;
+                //Autre variables de sessions ?
+
+                echo "DONE";
             }
 
             else
             {
-                echo 'Les deux mots de passe que vous avez rentrés ne correspondent pas.';
+                echo 'Wrong passwords correspondance.';
             }
         }
 
