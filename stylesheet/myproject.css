@@ -220,3 +220,19 @@
   color:white;
   transition: 0.7s;
 }
+
+#noproject span
+{
+  text-align: center;
+  color:white;
+  font-size: 15px;
+  font-family: Quantify;
+  margin-left: 50px;
+
+}
+
+#noproject
+{
+    padding: 20px;
+    margin: auto;
+}

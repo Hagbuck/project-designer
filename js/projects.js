@@ -65,7 +65,7 @@ function display_projects(stringJSON,id_user)
         else
           stringAdmin += "."
       }
-  */
+      */
       var stringProjet = '<div class="projet"> \
         <p class="namePBlock" onclick="get_diagrames(\''+value['id_projet']+'\',\''+value['nom_projet']+'\')">  '+value["nom_projet"]+' </p> \
         <p class="datePBlock"> <span> Créé le :</span>  '+value["date_creation_projet"]+' </p> \
@@ -75,6 +75,10 @@ function display_projects(stringJSON,id_user)
       <hr style="margin-bottom:10px">';
       $('#tabProjet').append(stringProjet);
   });
+  }
+  else
+  {
+    $('#mydiagrams').append('<div id="noproject"> <span> Vous n\'avez aucun projet, vous ne pouvez donc pas créer de diagramme. </div><hr style="margin-bottom:10px"></span>');
   }
 
 $('#tabProjet').append('<div id="addProjectButton" onclick="create_project('+id_user+')"> <span>+</span> </div><hr style="margin-top: 10px;">');
@@ -190,10 +194,14 @@ function display_diagrames(dataDiagram,idProject)
 
        $('#mydiagrams').append(stringDiagram);
 
-   });
- }
 
-$('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\''+idProject+'\')"> <span>+</span> </div><hr style="margin-bottom:10px">');
+   });
+   $('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\''+idProject+'\')"> <span>+</span> </div><hr style="margin-bottom:10px">');
+ }
+ else if(idProject != -1)
+     $('#mydiagrams').append('<div id="addDiagramButton" onclick="create_diagram(\''+idProject+'\')"> <span>+</span> </div><hr style="margin-bottom:10px">');
+
+
 }
 
 
@@ -225,7 +233,11 @@ async function tenta_crea(name,desc,user_id)
        data : 'fonction=createProject&user_id='+user_id+"&nom_projet="+name+"&description_projet="+desc,
        success : function(code_html, statut){
          if(code_html == "DONE")
-          swal({type: 'success',title: 'Le projet a bien été créé.',timer:3000})
+         {
+           swal({type: 'success',title: 'Le projet a bien été créé.',timer:3000});
+           document.location.href="myproject.php";
+         }
+
         else
          swal({type: 'error', title: 'Un problème est survenue.',html:code_html});
        },
