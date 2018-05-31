@@ -225,7 +225,7 @@ async function create_project(id_user)
 async function tenta_crea(name,desc,user_id)
 {
 
-  if(name != "" && name !=undefined && desc != "" && desc !=undefined)
+  if(name != "" && name !=undefined && desc != "" && desc !=undefined & name.indexOf(';') < 0  & desc.indexOf(';') < 0)
   {
     $.ajax({
        url : "traitement.php",
@@ -276,7 +276,7 @@ async function tenta_crea_diag(name,desc,id_projet)
 
   var user = 1
 
-  if(name != "" && name !=undefined && desc != "" && desc !=undefined && id_projet >= 0)
+  if(name != "" && name !=undefined && desc != "" && desc !=undefined && id_projet >= 0 & name.indexOf(';') < 0  & desc.indexOf(';') < 0)
   {
     $.ajax({
        url : "traitement.php",
