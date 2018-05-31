@@ -3,116 +3,38 @@
 require_once('\src\Database\MyDatabase.php');
 require_once('\src\Models\Utilisateur.php');
 
-class DAO_utilisateur
+class DAOUtilisateur
 {
     private $database;
-    private $daoAddress;
-
-    public function __construct(IDatabase $database, IDAOAddress $daoAddress)
+    public function __construct($database)
     {
         $this->database = $database;
-        $this->daoAddress = $daoAddress;
     }
 
-    public function check($login, $password)
+    public function create_user($user)
     {
-        $results = $this->database->query(
-            "SELECT pseudo_utilisateur " .
-            "FROM Utilisateur WHERE " .
-            "pseudo_utilisateur = '" . $login . "'" .
-            " AND mdp_utilisateur = '" . $this->database->hash($password) . "';");
+        $query = 'INSERT INTO Utilisateur(nom_utilisateur, prenom_utilisateur, pseudo_utilisateur, mdp_utilisateur, mail_utilisateur) VALUES(\''.$user->get_nom_utilisateur().'\', \''.$user->get_prenom_utilisateur().'\', \''.$user->get_pseudo_utilisateur().'\', \''.$user->get_mdp_utilisateur().'\', \''.$user->get_mail_utilisateur().'\');';
 
-        return $results->rowCount() > 0;
+        $this->database->query($query);
     }
 
-    public function getConnected()
+    public function get_user_with_pseudo($pseudo)
     {
-        if (!isset($_SESSION['login']))
-            return false;
+        $query = 'SELECT * FROM utilisateur WHERE pseudo_utilisateur = \''.$pseudo.'\';';
 
-        $results = $this->database->query(
-            "SELECT * FROM Utilisateur " .
-            "WHERE pseudo_utilisateur = '" . $_SESSION['login'] . "';"
-        );
-
-        if ($results->rowCount() < 1)
-            return false;
+        $results = $this->database->query($query);
 
         $row = $results->fetch();
 
-        $address = $this->daoAddress->get($row['id_lieu']);
-        if (!$address)
-            return false;
-
-        $user = new User(
-            $row['id_utilisateur'],
-            $row['pseudo_utilisateur'],
-            $row['mail_utilisateur'],
-            $row['prenom_utilisateur'],
-            $row['nom_utilisateur'],
-            $address
-        );
-
-        return $user;
-    }
-
-    public function get($id)
-    {
-        if (!isset($id))
-            return false;
-        if (!is_numeric($id))
-            return false;
-
-        $results = $this->database->query(
-            "SELECT * FROM Utilisateur " .
-            "WHERE id_utilisateur = " . $id . ";"
-        );
-
-        if ($results->rowCount() < 1)
-            return false;
-
-        $row = $results->fetch();
-
-        $address = $this->daoAddress->get($row['id_lieu']);
-        if (!$address)
-            return false;
-
-        $user = new User(
-            $row['id_utilisateur'],
-            $row['pseudo_utilisateur'],
-            $row['mail_utilisateur'],
-            $row['prenom_utilisateur'],
-            $row['nom_utilisateur'],
-            $address
-        );
-
-        return $user;
-    }
-
-    public function add(User $user)
-    {
-
-        $this->database->query(
-            "INSERT INTO utilisateur(" .
-            "pseudo_utilisateur, " .
-            "mail_utilisateur, " .
-            "mdp_utilisateur, " .
-            "prenom_utilisateur, " .
-            "nom_utilisateur, " .
-            "VALUES(" .
-            "'" . $user->getUsername() . "', " .
-            "'" . $user->getMail() . "', " .
-            "'" . $this->database->hash($user->getPassword()) . "', " .
-            "'" . $user->getPrenom() . "', " .
-            "'" . $user->getNom()");");
-
-        $user->setId($this->database->insertId());
-
-        return $user;
-    }
-
-    public function exists($login) {
-        $result = $this->database->query("SELECT pseudo_utilisateur FROM Utilisateur WHERE pseudo_utilisateur = '" . $login . "'");
-        return $result->rowCount() > 0;
+        if($row != false)
+        {
+            return new Utilisateur($row['id_utilisateur'],
+                            $row['pseudo_utilisateur'],
+                            $row['mail_utilisateur'],
+                            $row['prenom_utilisateur'],
+                            $row['nom_utilisateur'],
+                            null);
+        }
+        return null;
     }
 }

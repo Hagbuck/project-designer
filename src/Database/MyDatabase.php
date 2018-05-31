@@ -30,7 +30,7 @@ class MyDatabase
     {
         try
         {
-            return $this->pdo->query($query); // TODO:skeggib escape
+            return $this->pdo->query($query);
         }
 
         catch (\Exception $e)
