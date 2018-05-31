@@ -68,10 +68,10 @@ class DAOProjet
 
     public function get_all_user_pseudo_accessing($project_id)
     {
-        $query = 'SELECT Utilisateur.pseudo_utilisateur as pseudo 
-        FROM Accede, Utilisateur 
-        WHERE Accede.id_project = ' . $project_id . ' 
-        AND Accede.id_utilisateur = Utilisateur.id_utilisateur;'
+        $query = 'SELECT Utilisateur.pseudo_utilisateur as pseudo
+        FROM Accede, Utilisateur
+        WHERE Accede.id_project = ' . $project_id . '
+        AND Accede.id_utilisateur = Utilisateur.id_utilisateur;';
 
         $result = $this->database->query($query);
 

@@ -1,7 +1,15 @@
-<!-- [POLYTECH] Web Project - Project Designer  -->
-<!-- 2017 - 2018                                -->
-<!-- Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC   -->
+<?php
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
 
+/**
+* @file ~ index.php
+* @descritpion ~ Page d'accueil du Site Web
+*/
+?>
 <?php session_start();?>
 
 <!DOCTYPE html>

@@ -1,15 +1,37 @@
 <?php
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ traitement.php
+* @descritpion ~ Page Script gérant les requêtes AJAX et assurant leur réponse.
+*/
+?>
+<?php
+
 //SESSION
 session_start();
+
+//REQUIREMENTS
 require_once(__DIR__.'\src\Database\DAOBranche.php');
 require_once(__DIR__.'\src\Database\DAODiagramme.php');
 require_once(__DIR__.'\src\Database\DAOProjet.php');
 require_once(__DIR__.'\src\Database\DAOTag.php');
 require_once(__DIR__.'\src\Database\DAOUtilisateur.php');
+require_once("conf/conf.php");
 
-$db = new MyDatabase('localhost', 'projectdesigner', 'root', '');
+//VAR
+$db = new MyDatabase(DB_HOST,DB_NAME,DB_USER,DB_MDP);
+
+//ON VERIFIE QUE $_POST['fonction'] CONTIENT QUELQUE CHOSE
+// NOTE : $_POST['fonction'] contient un flag pour savoir quelle fonction éxéctuée.
 if(isset($_POST['fonction']))
 {
+
+    //CREATION D'UN PROJET
     if($_POST['fonction'] == 'createProject')
     {
         $dao = new DAOProjet($db);
@@ -18,6 +40,8 @@ if(isset($_POST['fonction']))
         $dao->createNewProjectWithUserAccess($projet, $_POST['user_id'], 1, 1);
         echo "DONE";
     }
+
+    //RECUPERATION DES PROJETS ASSOCIES A UN UTILISATEUR (JSON)
     else if($_POST['fonction'] == 'getUserProjects')
     {
         $dao = new DAOProjet($db);
@@ -28,6 +52,8 @@ if(isset($_POST['fonction']))
         }
         echo json_encode($arr_projects);
     }
+
+    //CREATION D'UN DIAGRAMME
     else if($_POST['fonction'] == 'createDiagram')
     {
         $dao = new DAODiagramme($db);
@@ -35,6 +61,8 @@ if(isset($_POST['fonction']))
         $dao->injectNewDiagram($diagram);
         echo "DONE";
     }
+
+    //RECUPERATION DES DIAGRAMMES APPARTENANT A UN PROJET (JSON)
     else if($_POST['fonction'] == 'getProjectDiagrams')
     {
         $dao = new DAODiagramme($db);
@@ -45,18 +73,24 @@ if(isset($_POST['fonction']))
         }
         echo json_encode($diagrams);
     }
+
+    //RECUPERATION DU NOM D'UN DIAGRAMME EN FONCTION DE SON ID
     else if($_POST['fonction'] == 'getNameDiagramById')
     {
         $dao = new DAODiagramme($db);
         $diagram = $dao->getNameDiagramById($_POST['digramme_id']);
         echo $diagram;
     }
+
+    //RECUPERATION DU NOM D'UN PROJET EN FONCTION DE SON ID
     else if($_POST['fonction'] == 'getNameProjectById')
     {
         $dao = new DAOProjet($db);
         $projet = $dao->getNameProjectById($_POST['projet_id']);
         echo $projet;
     }
+
+    //ENREGISTREMENT D'UNE NOUVELLE BRANCHE D'UN DIAGRAMME EN BASE DE DONNEES
     else if($_POST['fonction'] == 'createBranch')
     {
         $dao = new DAOBranche($db);
@@ -64,6 +98,8 @@ if(isset($_POST['fonction']))
         $dao->injectNewBranch($branch);
         echo "DONE";
     }
+
+    //SUPPRESION D'UN  BRANCHE D'UN DIAGRAMME EN BASE DE DONNEES
     else if($_POST['fonction'] == 'delBranch')
     {
         $dao = new DAOBranche($db);
@@ -71,6 +107,8 @@ if(isset($_POST['fonction']))
         $dao->delBranch($branch);
         echo "DONE";
     }
+
+    //RECUPERATION DES BRANCHES D'UN DIAGRAMME (JSON)
     else if($_POST['fonction'] == 'getBranch')
     {
         $dao = new DAOBranche($db);
@@ -81,6 +119,8 @@ if(isset($_POST['fonction']))
         }
         echo json_encode($arr_branches);
     }
+
+    //ENREGISTREMENT D'UN NOUVEAU TAG D'UN DIAGRAMME EN BASE DE DONNEES
     else if($_POST['fonction'] == 'createTag')
     {
         $dao = new DAOTag($db);
@@ -92,6 +132,8 @@ if(isset($_POST['fonction']))
         else
             echo "FAILED";
     }
+
+    //MODIFICATION D'UN TAG D'UN DIAGRAMME EN BASE DE DONNEES
     else if($_POST['fonction'] == 'updateTag')
     {
         $dao = new DAOTag($db);
@@ -99,12 +141,16 @@ if(isset($_POST['fonction']))
         $dao->updateTag($tag);
         echo json_encode($tag);
     }
+
+    //SUPPRESION D'UN TAG D'UN DIAGRAMME EN BASE DE DONNEES
     else if($_POST['fonction'] == 'removeTag')
     {
         $dao = new DAOTag($db);
         $dao->removeTag($_POST['tag_id']);
         echo "DONE";
     }
+
+    //RECUPERATION D'UN TAG D'UN DIAGRAMME (JSON)
     else if($_POST['fonction'] == 'getTags')
     {
         $dao = new DAOTag($db);
@@ -115,6 +161,8 @@ if(isset($_POST['fonction']))
         }
         echo json_encode($arr_tags);
     }
+
+    //VERIFIE LES IDENTIFIANTS D'UN UTILISATEUR VOULANT SE CONNECTER
     else if($_POST['fonction'] == 'testConnexion')
     {
         // cryptage mdp
@@ -129,6 +177,8 @@ if(isset($_POST['fonction']))
             if($_POST['pass'] == $user->get_mdp_utilisateur())
             {
                 echo "SUCCESS";
+
+                //SESSION
                 $_SESSION['user_pseudo'] = $user->get_pseudo_utilisateur();
                 $_SESSION['user_id'] = $user->get_id_utilisateur();
                 $_SESSION['user_name'] = $user->get_nom_utilisateur();
@@ -141,11 +191,15 @@ if(isset($_POST['fonction']))
         else
           echo "FAIL";
         }
+
+    //FONCTION DE LOGOUT DU SITE (DESCTRUCTION DE LA SESSION)
     else if($_POST['fonction'] == 'logOut')
     {
       session_destroy();
       echo "SUCCESS";
     }
+
+    //TENTE L'INSCRIPTION D'UN UTILISATEUR
     else if ($_POST['fonction'] == 'inscription')
     {
         if(!empty($_POST['pseudo']))
@@ -173,6 +227,8 @@ if(isset($_POST['fonction']))
                 echo 'Wrong passwords correspondance.';
         }
     }
+
+  //COMMANDE INCONNUE
   else
     echo "UNKNOW COMMAND";
 }
