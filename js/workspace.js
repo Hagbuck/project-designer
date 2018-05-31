@@ -239,6 +239,7 @@ async function newBranch(diagramme_id)
 {
   const {value: name} = await swal({
     title: 'Ajouter une branche',
+    confirmButtonColor: 'orange',
     html: '<input id="branchName" class="swal2-input" placeholder="Nom Branche">',
     preConfirm: (name) => tenta_crea_branch($(branchName).val(),diagramme_id)
   })
@@ -276,6 +277,7 @@ async function delBranch(diagramme_id)
   const {value: name} = await swal({
     title: 'Suppresion d\'un branche',
     type:"warning",
+    confirmButtonColor: 'orange',
     html: '<input id="branchName" class="swal2-input" placeholder="Nom Branche">',
     preConfirm: (name) => tenta_del_branch($(branchName).val(),diagramme_id)
   })
@@ -312,6 +314,7 @@ function invalid_access()
   swal({
       title: 'Accés Interdit',
       text: "Cette ressource n'est pas accessible de la sorte.",
+      confirmButtonColor: 'orange',
       type: 'error',
       confirmButtonText: 'Sortir'
     }).then((result) => {  if (result.value) {document.location.href="myproject.php";}})
