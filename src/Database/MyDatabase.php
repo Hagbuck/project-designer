@@ -1,7 +1,5 @@
 <?php
 
-/*namespace ProjectDesigner\Database;*/
-
 /**
  * Connexion with a PostgreSQL database
  */
