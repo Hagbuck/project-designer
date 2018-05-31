@@ -83,6 +83,71 @@ class DAOProjet
         }
         return $all_pseudo;
     }
+
+    public function add_user_to_project($pseudo, $project_id)
+    {
+        $query = 'SELECT id_utilisateur FROM Utilisateur WHERE pseudo_utilisateur = \'' . $pseudo . '\';';
+        $result = $this->database->query($query);
+        $row = $result->fetch();
+    
+        if($row != false) // L'utilisateur existe
+        {
+            $id_user = $row['id_utilisateur'];
+            
+            $query = 'SELECT * FROM Accede WHERE id_utilisateur = ' . $id_user . ';';
+            $result = $this->database->query($query);
+            $row = $result->fetch();
+
+            if($row == false) // L'utilisateur n'est pas dans le projet
+            {
+                $query = 'INSERT INTO Accede(id_projet, id_utilisateur, est_admin, est_moderateur) VALUES('.$project_id.', '.$id_user.', 1, 1);';
+                $this->database->query($query);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public function remove_user_from_project($pseudo, $project_id)
+    {
+        $query = 'SELECT id_utilisateur FROM Utilisateur WHERE pseudo_utilisateur = \'' . $pseudo . '\';';
+        $result = $this->database->query($query);
+        $row = $result->fetch();
+    
+        if($row != false) // L'utilisateur existe
+        {
+            $id_user = $row['id_utilisateur'];
+            $query = 'DELETE FROM Accede WHERE id_projet = ' . $project_id . ' AND id_utilisateur = ' . $id_user . ';';
+            $this->database->query($query);
+            return true;
+        }
+        return false;
+    }
+
+    public function delete_project($project_id)
+    {
+        // FOR EACH DIAGRAM
+        $query = 'SELECT id_diagramme FROM Diagramme WHERE id_projet = ' . $project_id . ';';
+        $result = $this->database->query($query);
+        while($row = $result->fetch())
+        {
+            // DELETE Diagramme tags
+            $query = 'DELETE FROM Tag WHERE id_diagramme = ' . $row['id_diagramme'] . ';';
+            $this->database->query($query);
+        }
+        
+        // DELETE ALL DIAGRAMS
+        $query = 'DELETE FROM Diagramme WHERE id_projet = ' . $project_id . ';';
+        $this->database->query($query);
+
+        // DELETE ALL Accede
+        $query = 'DELETE FROM Accede WHERE id_projet = ' . $project_id . ';';
+        $this->database->query($query);
+
+        // DELETE PROJET
+        $query = 'DELETE FROM Projet WHERE id_projet = ' . $project_id . ';';
+        $this->database->query($query);
+    }
 }
 
 ?>

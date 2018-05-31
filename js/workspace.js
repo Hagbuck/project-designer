@@ -166,6 +166,48 @@ function updateTag(diagramme_id){
     }
 }
 
+/*function updateAllTags(diagramme_id){
+    console.log('full update');
+    $.ajax({
+     url : "traitement.php",
+     type : 'POST',
+     data : 'fonction=getTags&diagramme_id='+diagramme_id,
+     dataType : "json",
+     success  : function(data){
+
+       if(data['#0'] != null)
+       {
+         $.each(data, function(index, value) {
+            console.log('Tag to update : ' + value['id_tag']);
+           var children = tags_groups.getChildren();
+           var tag_placed = false;
+            for(var j = 0; j < children.length; ++j){
+                if(children[j].id == value['id_tag']){
+                    console.log('> ' + value['id_tag'] + ' update ' + children[j].id);
+                    var tag_child = children[j].getChildren();
+                    tag_child[0].fill(value['couleur_tag']);
+                    tag_child[1].setText(value['texte_tag']);
+                    changeTagPosition(children[j], parseInt(value['pos_x_tag']), parseInt(value['pos_y_tag']));
+                    stage.draw();
+                    tag_placed = true;
+                }
+            }
+            if(tag_placed == false){ // On en créer un nouveau
+                console.log('> ' + value['id_tag'] + ' created');
+                var tag = createTag(value["texte_tag"], value["couleur_tag"], parseInt(value["id_tag"]), centerX, centerY, text_offset);
+                 changeTagPosition(tag, parseInt(value["pos_x_tag"], value["pos_y_tag"]));
+                tags_groups.add(tag);
+                stage.draw();
+            }
+          })
+       }
+        stage.draw();
+      }
+       ,
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to update_all_tags()");console.log(erreur)}
+    });
+}*/
+
 function removeTag(){
     var id = $('#tag_id').html();
     if(id != null && id != undefined && id != '' && id != 'none')

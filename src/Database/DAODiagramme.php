@@ -43,6 +43,15 @@ class DAODiagramme
         $query = 'INSERT INTO Diagramme(nom_diagramme, id_projet, description_diagramme) VALUES(\''.$diagram->get_nom_diagramme().'\',\''.$diagram->get_id_projet().'\',\''.$diagram->get_description_diagramme().'\')';
         $this->database->query($query);
     }
+
+    public function delete_diagram($diagram_id)
+    {
+        $query = 'DELETE FROM Tag WHERE id_diagramme = ' . $diagram_id . ';';
+        $this->database->query($query);
+
+        $query = 'DELETE FROM Diagramme WHERE id_diagramme = ' . $diagram_id . ';';
+        $this->database->query($query);
+    }
 }
 
 ?>

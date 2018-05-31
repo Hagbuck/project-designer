@@ -228,6 +228,39 @@ if(isset($_POST['fonction']))
         }
     }
 
+    else if($_POST['fonction'] == 'addContributor')
+    {
+        $dao = new DAOProjet($db);
+
+        if($dao->add_user_to_project($_POST['nom_utlisateur'], $_POST['id_projet']))
+            echo 'SUCCESS';
+        else
+            echo 'UNKNOW';
+    }
+
+    else if($_POST['fonction'] == 'removeContributor')
+    {
+        $dao = new DAOProjet($db);
+
+        if($dao->remove_user_from_project($_POST['nom_utlisateur'], $_POST['id_projet']))
+            echo 'SUCCESS';
+        else
+            echo 'UNKNOW';
+    }
+
+    else if($_POST['fonction'] == 'removeProject')
+    {
+        $dao = new DAOProjet($db);
+        $dao->delete_project($_POST['id_projet']);
+        echo 'SUCCESS';
+    }
+
+    else if($_POST['fonction'] == 'removeDiag')
+    {
+        $dao = new DAODiagramme($db);
+        $dao->delete_diagram($_POST['id_diagramme']);
+        echo 'SUCCESS';
+    }
   //COMMANDE INCONNUE
   else
     echo "UNKNOW COMMAND";
