@@ -218,6 +218,7 @@ async function create_project(id_user)
 {
   const {value: name,value :desc} = await swal({
     title: 'Nouveau Projet',
+    confirmButtonColor: 'orange',
     html:
       '<input id="projectName" class="swal2-input" placeholder="Nom projet">' +
       '<textarea id="projetDesc" class="swal2-textarea" placeholder="Description du projet...">',
@@ -266,6 +267,7 @@ async function create_diagram(id_projet)
 {
   const {value: name,value :desc} = await swal({
     title: 'Nouveau Diagramme',
+    confirmButtonColor: 'orange',
     html:
       '<input id="diagName" class="swal2-input" placeholder="Nom diagramme">' +
       '<textarea id="diagDesc" class="swal2-textarea" placeholder="Description du diagramme...">',
@@ -313,6 +315,7 @@ async function addContributor(idprojet)
 {
   const {value: name} = await swal({
     title: 'Ajouter un contributeur',
+    confirmButtonColor: 'orange',
     html:
       '<input id="contributorName" class="swal2-input" placeholder="Nom du contributeur">',
     focusConfirm: true,
@@ -358,6 +361,7 @@ async function removeContributor(idprojet)
 {
   const {value: name} = await swal({
     title: 'Suppresion d\'un contributeur',
+    confirmButtonColor: 'orange',
     html:
       '<input id="contributorName" class="swal2-input" placeholder="Nom du contributeur">',
     focusConfirm: true,
@@ -407,6 +411,8 @@ function removeProject(idProjet)
   text: "Voulez-vous vraiment supprimer ce projet ?",
   type: 'warning',
   showCancelButton: true,
+  confirmButtonColor: 'orange',
+  cancelButtonColor : '#6B6A6A',
   confirmButtonText: 'Confirmer',
   cancelButtonText : 'Annuler'
 }).then((result) => {
@@ -462,6 +468,8 @@ function removeDiag(id_diagramme)
     text: "Voulez-vous vraiment supprimer ce diagramme ?",
     type: 'warning',
     showCancelButton: true,
+    confirmButtonColor: 'orange',
+    cancelButtonColor : '#6B6A6A',
     confirmButtonText: 'Confirmer',
     cancelButtonText : 'Annuler'
   }).then((result) => {

@@ -21,6 +21,7 @@ function display_connexionIHM()
     input: 'text',
     confirmButtonText: 'Next &rarr;',
     showCancelButton: true,
+    confirmButtonColor: 'orange',
     progressSteps: ['1', '2']
   }).queue([
     {
@@ -113,6 +114,8 @@ function logOut()
     text: "Voulez-vous vous déconnecter ?",
     type: 'warning',
     showCancelButton: true,
+    confirmButtonColor: 'orange',
+    cancelButtonColor : '#6B6A6A',
     confirmButtonText: 'Déconnexion',
     cancelButtonText : 'Annuler'
   }).then((result) => {
@@ -170,6 +173,7 @@ async function display_inscriptionIHM()
 {
   const {value: pseudo,value :mail,value : pass, value : passC, value : nom, value : prenom} = await swal({
     title: 'Inscription',
+    confirmButtonColor: 'orange',
     html:
       '<input id="pseudo" class="swal2-input" placeholder="Votre Pseudo">' +
       '<input id="mail" class="swal2-input" placeholder="Votre m@il" type="mail">'  +
