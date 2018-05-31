@@ -1,3 +1,14 @@
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ workspace.js
+* @descritpion ~ Création du workspace.
+*/
+
   //DEFAULT PROPRIETIES
   var text_offset = 12;
   var window_offset = 20;

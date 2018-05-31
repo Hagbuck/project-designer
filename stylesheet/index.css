@@ -1,24 +1,16 @@
-#exampleDiag
-{
-  background-color: grey;
-  padding: 10px;
-  border-radius: 10px;
-  width: 500px;
-  border:2px solid orange;
-  margin:auto;
-  margin-top:15px;margin-bottom: 15px;
-  display: flex;
-  justify-content: space-around;
-  align-items: stretch;
-}
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
 
-#exampleDiag img
-{
-  text-align: center;
-  margin: auto;
-  height: 400px;
-}
+/**
+* @file ~ index.css
+* @descritpion ~ Style spécifique à la page index.php
+*/
 
+
+/**** BALISE DE BASES ****/
 html,body
 {
   background-image: url("pictures/backindex.jpg");
@@ -26,6 +18,29 @@ html,body
   background-repeat: no-repeat;
 }
 
+h1
+{
+  color:white;
+}
+
+h2
+{
+  font-size: 20px;
+  font-family:Quantify;
+  margin:15px 0 15px 0;
+}
+
+
+/**** BODY PRINCIPAL ****/
+.mainComponet
+{
+  background-color: #6B6A6A;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+/**** REDEFINITION DU FOOTER ****/
 #footer {
     position: fixed;
     left: 0;
@@ -33,18 +48,6 @@ html,body
     width: 100%;
     color: white;
     text-align: center;
-}
-
-h1
-{
-  color:white;
-}
-
-#sign_in
-{
-  width: 15%;
-  height: 15%;
-  cursor: pointer;
 }
 
 #foot_index
@@ -59,16 +62,10 @@ h1
   margin: auto;
 }
 
-h2
+/**** OTHER CLASS & ID ****/
+#sign_in
 {
-  font-size: 20px;
-  font-family:Quantify;
-  margin:15px 0 15px 0;
-}
-
-.mainComponet
-{
-  background-color: #6B6A6A;
-  padding: 10px;
-  border-radius: 10px;
+  width: 15%;
+  height: 15%;
+  cursor: pointer;
 }

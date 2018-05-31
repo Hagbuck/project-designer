@@ -1,9 +1,15 @@
-/**
- * [POLYTECH] Web Project - Project Designer
- * 2017 - 2018
- * Detcheberry Valentin - Vuillemin Anthony
- */
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
 
+/**
+* @file ~ default.css
+* @descritpion ~ Style de base du site Web. C'est le template principal.
+*/
+
+/**** BALISE DE BASES ****/
 *
 {
     padding: 0px;
@@ -29,12 +35,9 @@ h1
 }
 
 
-/** NAV **/
-
-nav{background-image: linear-gradient(to right, #333333, #6B6A6A);}
-
 nav
 {
+    background-image: linear-gradient(to right, #333333, #6B6A6A);
     height: 50px;
     border-bottom: 0.2em solid orange;
 }
@@ -44,22 +47,6 @@ section
   position:relative;
 }
 
-/** FOOTER **/
-
-#footer
-{
-    height: 40px;
-    padding-top:20px;
-    text-align:center;
-    border-top: 0.2em solid orange;
-    background-image: linear-gradient(to right, #333333, #6B6A6A);
-    color:white;
-    position: absolute;
-    /*
-    bottom: 0; left: 0; right: 0;
-    */
-    font-family: Open Sans;
-}
 
 iframe
 {
@@ -70,14 +57,14 @@ iframe
     margin-top: 2em;
 }
 
-
-
-/**** CLASS & ID ****/
+/**** BODY PRINCIPAL ****/
 .mainComponet
 {
   margin: 1em;
 }
 
+
+/***** MENU ****/
 #menu
 {
   display: flex;
@@ -133,6 +120,25 @@ iframe
 {
   min-width: 300px;
 }
+
+
+/** FOOTER **/
+#footer
+{
+    height: 40px;
+    padding-top:20px;
+    text-align:center;
+    border-top: 0.2em solid orange;
+    background-image: linear-gradient(to right, #333333, #6B6A6A);
+    color:white;
+    position: absolute;
+    /*
+    bottom: 0; left: 0; right: 0;
+    */
+    font-family: Open Sans;
+}
+
+
 
 /**** FONTS ***/
 @font-face {

@@ -1,3 +1,14 @@
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ index.css
+* @descritpion ~ Style spécifique à la page workspace.css
+*/
+
 #container,  #chatbox
 {
     vertical-align: top;

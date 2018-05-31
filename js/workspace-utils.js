@@ -1,3 +1,15 @@
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ workspace-utils.js
+* @descritpion ~ Scripts/Fonctions appelés lors de la modification d'un diagramme.
+*/
+
+
 // TODO : on click sur box
 // THEN envoyer l'obejt a la function js qui remplit le formulaire.
 // PUIS modification des database -> reload du shema
@@ -190,7 +202,7 @@ function remove_tag(){
     var id = $('#tag_id').html();
     if(id != null && id != undefined && id != '' && id != 'none')
     {
-        //id = id.substring(2); // On enlève le 
+        //id = id.substring(2); // On enlève le
         id = parseInt(id);
         var children = tags_groups.getChildren();
         for(var i = 0; i < children.length; ++i){
