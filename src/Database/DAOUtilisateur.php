@@ -33,8 +33,20 @@ class DAOUtilisateur
                             $row['mail_utilisateur'],
                             $row['prenom_utilisateur'],
                             $row['nom_utilisateur'],
-                            null);
+                            $row['mdp_utilisateur']);
         }
         return null;
+    }
+
+    public function is_user_already_exist($pseudo)
+    {
+        $query = 'SELECT COUNT(*) AS exist FROM utilisateur WHERE pseudo_utilisateur = \''.$pseudo.'\';';
+
+        $result = $this->database->query($query);
+        $row = $result->fetch();
+
+        if($row['exist'] != 0)
+            return true;
+        return false;
     }
 }

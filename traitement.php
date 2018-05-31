@@ -117,25 +117,22 @@ if(isset($_POST['fonction']))
     }
     else if($_POST['fonction'] == 'testConnexion')
     {
-        mysql_connect("localhost", "root", "");
-        mysql_select_db("projectdesigner");
-        $pseudo = mysql_real_escape_string(htmlspecialchars($_POST['pseudo']));
-        $mdp = mysql_real_escape_string(htmlspecialchars($_POST['pass']));
         // cryptage mdp
         //$mdp = sha1($mdp);
-        $nbre = mysql_query("SELECT COUNT(*) AS exist FROM utilisateur WHERE pseudo_utilisateur='$pseudo'");
-        $donnees = mysql_fetch_array($nbre);
-        if($donnees['exist'] != 0) // Si le pseudo existe.
+
+        $dao = new DAOUtilisateur($db);
+
+        if($dao->is_user_already_exist($_POST['pseudo'])) // Si le pseudo existe.
         {
-            $requete = mysql_query("SELECT * FROM utilisateur WHERE pseudo_utilisateur='$pseudo'");
-            $infos = mysql_fetch_array($requete);
-            if($mdp == $infos['mdp_utilisateur'])
+            $user = $dao->get_user_with_pseudo($_POST['pseudo']);
+
+            if($_POST['pass'] == $user->get_mdp_utilisateur())
             {
                 echo "SUCCESS";
-                $_SESSION['user_pseudo'] = $pseudo;
-                $_SESSION['user_id'] = $infos['id_utilisateur'];
-                $_SESSION['user_name'] = $infos['nom_utilisateur'];
-                $_SESSION['user_prenom'] = $infos['prenom_utilisateur'];
+                $_SESSION['user_pseudo'] = $user->get_pseudo_utilisateur();
+                $_SESSION['user_id'] = $user->get_id_utilisateur();
+                $_SESSION['user_name'] = $user->get_nom_utilisateur();
+                $_SESSION['user_prenom'] = $user->get_prenom_utilisateur();
                 //Autre variables de sessions ?
             }
             else // si couple pseudo/mdp incorrect
@@ -155,9 +152,6 @@ if(isset($_POST['fonction']))
         {
             if($_POST['pass'] == $_POST['passC']) // vérification mdp
             {
-                // cryptage mdp :
-                //$mdp1 = sha1($mdp1);
-
                 $user = new Utilisateur(0, $_POST['pseudo'], $_POST['mail'], $_POST['prenom'], $_POST['nom'], $_POST['pass']);
 
                 $dao = new DAOUtilisateur($db);
