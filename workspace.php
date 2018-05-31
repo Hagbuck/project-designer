@@ -92,5 +92,4 @@
 
 
     setInterval(function(){ updateAllTags(<?php echo $_GET['diag']; ?>); }, 5000);
-    ²
   </script>

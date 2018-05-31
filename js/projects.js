@@ -287,7 +287,7 @@ async function tenta_crea_diag(name,desc,id_projet)
        type : 'POST',
        data : 'fonction=createDiagram&id_projet='+id_projet+"&nom_diagramme="+name+"&description_diagramme="+desc,
        success : function(code_html, statut){
-         if(code_html == "SUCCESS")
+         if(code_html == "DONE")
          {
              swal({type: 'success',title: 'Le diagramme a bien été créé.',timer:3000})
              document.location.href="myproject.php";
