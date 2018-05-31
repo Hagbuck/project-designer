@@ -70,7 +70,11 @@ function display_projects(stringJSON,id_user)
         <p class="namePBlock" onclick="get_diagrames(\''+value['id_projet']+'\',\''+value['nom_projet']+'\')">  '+value["nom_projet"]+' </p> \
         <p class="datePBlock"> <span> Créé le :</span>  '+value["date_creation_projet"]+' </p> \
         <p class="descPBlock"> '+value["description_projet"]+' </p> \
-        <p class="adminBlock"> <span>Admin</span> : '+stringAdmin+' </p> \
+        <p class="adminBlock"> <span>Admin</span> : '+stringAdmin+' </p>  <br> \
+        <p class="project_action">  \
+          <i title="Ajouter un contributeur." class="fas fa-user-plus" onclick="addContributor('+value["id_projet"]+')"></i> \
+          <i title="Supprimer un contributeur." class="fas fa-user-minus" onclick="removeContributor('+value["id_projet"]+')"></i>  \
+          <i title="Supprimer le projet." class="fas fa-trash-alt"  onclick="removeProject('+value["id_projet"]+')"></i> </p> \
       </div> \
       <hr style="margin-bottom:10px">';
       $('#tabProjet').append(stringProjet);
@@ -187,7 +191,8 @@ function display_diagrames(dataDiagram,idProject)
        var stringDiagram = ' <div class="diagram"> \
                                <a class="diagName" href="workspace.php?project='+value["id_projet"]+'&diag='+value["id_diagramme"]+'"><div> <span>'+value["nom_diagramme"]+'</span></div> </a> \
                                <div class="diagInfo">\
-                                 <p class="diagDesc"> <span>Description</span> :'+value["description_diagramme"]+' </p> <br/>\
+                                 <p class="diagDesc"> <span>Description</span> :'+value["description_diagramme"]+' </p>  \
+                                 <p class="supressDiag">  <i title="Supprimer le diagramme." class="fas fa-trash-alt"  onclick="removeDiag('+value["id_diagramme"]+')"></i> <br/>\
                                </div>\
                            </div>\
        <hr style="margin-bottom:10px">';
@@ -259,7 +264,6 @@ async function tenta_crea(name,desc,user_id)
 
 async function create_diagram(id_projet)
 {
-  var id_user = 1
   const {value: name,value :desc} = await swal({
     title: 'Nouveau Diagramme',
     html:
@@ -273,8 +277,6 @@ async function create_diagram(id_projet)
 
 async function tenta_crea_diag(name,desc,id_projet)
 {
-
-  var user = 1
 
   if(name != "" && name !=undefined && desc != "" && desc !=undefined && id_projet >= 0 & name.indexOf(';') < 0  & desc.indexOf(';') < 0)
   {
@@ -299,5 +301,209 @@ async function tenta_crea_diag(name,desc,id_projet)
   else {
     swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
     return false;
+  }
+}
+
+/*******************************************************/
+/**************** GESTION DES PROJETS ******************/
+/*******************************************************/
+
+//AJOUT CONTRIBUTEUR
+async function addContributor(idprojet)
+{
+  const {value: name} = await swal({
+    title: 'Ajouter un contributeur',
+    html:
+      '<input id="contributorName" class="swal2-input" placeholder="Nom du contributeur">',
+    focusConfirm: true,
+    preConfirm: (name) => tenta_addContributor(idprojet,$(contributorName).val())
+  })
+}
+
+async function tenta_addContributor(idprojet,nameUser)
+{
+  //console.log(idprojet,nameUser)
+  if(nameUser != "" && nameUser !=undefined && nameUser.indexOf(';') < 0 )
+  {
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=addContributor&id_projet='+idprojet+"&nom_utlisateur="+nameUser,
+       success : function(code_html, statut){
+         if(code_html == "DONE")
+         {
+             swal({type: 'success',title: 'Le contributor a bien été ajouté au projet.',timer:3000})
+             document.location.href="myproject.php";
+         }
+
+         else if(code_html == "UNKNOW")
+           swal({type: 'error',title: 'Le contributor a ajouté n\'existe pas.',timer:3000})
+
+        else
+         swal({type: 'error', title: 'Un problème est survenue.',html:code_html});
+       },
+       error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+      });
+    return true;
+  }
+
+  else {
+    swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
+    return false;
+  }
+}
+
+//SUPPRESION CONTRIBUTEUR
+async function removeContributor(idprojet)
+{
+  const {value: name} = await swal({
+    title: 'Suppresion d\'un contributeur',
+    html:
+      '<input id="contributorName" class="swal2-input" placeholder="Nom du contributeur">',
+    focusConfirm: true,
+    preConfirm: (name) => tenta_removeContributor(idprojet,$(contributorName).val())
+  })
+}
+
+async function tenta_removeContributor(idprojet,nameUser)
+{
+  //console.log(idprojet,nameUser)
+  if(nameUser != "" && nameUser !=undefined && nameUser.indexOf(';') < 0 )
+  {
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=removeContributor&id_projet='+idprojet+"&nom_utlisateur="+nameUser,
+       success : function(code_html, statut){
+         if(code_html == "DONE")
+         {
+             swal({type: 'success',title: 'Le contributor a bien été supprimé du projet.',timer:3000})
+             document.location.href="myproject.php";
+         }
+
+         else if(code_html == "UNKNOW")
+           swal({type: 'error',title: 'Le contributor a supprimé n\'existe pas.',timer:3000})
+
+        else
+         swal({type: 'error', title: 'Un problème est survenue.',html:code_html});
+       },
+       error : function(resultat, statut, erreur){swal({type: 'error',title: 'Un problème est survenue.',html:erreur})}
+      });
+    return true;
+  }
+
+  else {
+    swal({type: 'error',title: 'Syntaxe Incorrect',timer:5000})
+    return false;
+  }
+}
+
+
+//SUPPRESION DU PROJET
+function removeProject(idProjet)
+{
+  swal({
+  title: 'Suppresion du projet.',
+  text: "Voulez-vous vraiment supprimer ce projet ?",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Confirmer',
+  cancelButtonText : 'Annuler'
+}).then((result) => {
+
+  if (result.value) {
+    //AJAX
+    $.ajax({
+       url : "traitement.php",
+       type : 'POST',
+       data : 'fonction=removeProject&id_projet='+idProjet,
+       dataType : "text",
+       success  : function(data){
+         console.log(data)
+         parseDataRemoveProject(data)
+       },
+       error : function(resultat, statut, erreur)
+       {
+         console.log("[ERROR] -> Fail to removeProject()");
+         console.log(erreur)
+         swal({
+             type: 'error',
+             title: 'Erreur Serveur',
+             text: erreur
+           })
+
+       }
+      });
+  }
+})
+}
+
+function parseDataRemoveProject(data)
+{
+  if(data=="SUCCESS")
+      document.location.href="myproject.php"
+
+  else
+  {
+    swal({
+        type: 'error',
+        title: 'Un problème est survenue',
+        html: data
+      })
+  }
+}
+
+
+//SUPPRESION Diagramme
+function removeDiag(id_diagramme)
+{
+    swal({
+    title: 'Suppresion du diagramme.',
+    text: "Voulez-vous vraiment supprimer ce diagramme ?",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Confirmer',
+    cancelButtonText : 'Annuler'
+  }).then((result) => {
+
+    if (result.value) {
+      //AJAX
+      $.ajax({
+         url : "traitement.php",
+         type : 'POST',
+         data : 'fonction=removeDiag&id_diagramme='+id_diagramme,
+         dataType : "text",
+         success  : function(data){
+           console.log(data)
+           parseDataRemoveDiag(data)
+         },
+         error : function(resultat, statut, erreur)
+         {
+           console.log("[ERROR] -> Fail to removeDiag()");
+           console.log(erreur)
+           swal({
+               type: 'error',
+               title: 'Erreur Serveur',
+               text: erreur
+             })
+
+         }
+        });
+    }
+  })
+}
+
+function parseDataRemoveDiag(data)
+{
+  if(data=="SUCCESS")
+      document.location.href="myproject.php"
+
+  else
+  {
+    swal({
+        type: 'error',
+        title: 'Un problème est survenue',
+        html: data
+      })
   }
 }

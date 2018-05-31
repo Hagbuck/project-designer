@@ -12,6 +12,8 @@
 ?>
 <script src="js/sweetalert2.js"></script>
 <script type="text/javascript" src="js/connexion_inscription.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 <header>
         <nav id="menu">
             <ul>

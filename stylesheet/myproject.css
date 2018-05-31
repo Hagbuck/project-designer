@@ -236,3 +236,25 @@
     padding: 20px;
     margin: auto;
 }
+
+.project_action
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.project_action i
+{
+  cursor: pointer;
+}
+
+.supressDiag
+{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.supressDiag i
+{
+  cursor : pointer;
+}
