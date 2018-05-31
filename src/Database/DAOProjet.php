@@ -65,6 +65,24 @@ class DAOProjet
         $query = 'INSERT INTO Accede(id_projet, id_utilisateur, est_admin, est_moderateur) VALUES('.$id_project.', '.$user_id.', '.$admin.', '.$modo.');';
         $this->database->query($query);
     }
+
+    public function get_all_user_pseudo_accessing($project_id)
+    {
+        $query = 'SELECT Utilisateur.pseudo_utilisateur as pseudo 
+        FROM Accede, Utilisateur 
+        WHERE Accede.id_project = ' . $project_id . ' 
+        AND Accede.id_utilisateur = Utilisateur.id_utilisateur;'
+
+        $result = $this->database->query($query);
+
+        $all_pseudo = '';
+
+        while($row = $result->fetch())
+        {
+            $all_pseudo += $row['pseudo'] . ';';
+        }
+        return $all_pseudo;
+    }
 }
 
 ?>
