@@ -89,12 +89,12 @@ class DAOProjet
         $query = 'SELECT id_utilisateur FROM Utilisateur WHERE pseudo_utilisateur = \'' . $pseudo . '\';';
         $result = $this->database->query($query);
         $row = $result->fetch();
-    
+
         if($row != false) // L'utilisateur existe
         {
             $id_user = $row['id_utilisateur'];
-            
-            $query = 'SELECT * FROM Accede WHERE id_utilisateur = ' . $id_user . ';';
+
+            $query = 'SELECT * FROM Accede WHERE id_utilisateur = ' . $id_user . ' AND id_projet = '.$project_id.';';
             $result = $this->database->query($query);
             $row = $result->fetch();
 
@@ -113,7 +113,7 @@ class DAOProjet
         $query = 'SELECT id_utilisateur FROM Utilisateur WHERE pseudo_utilisateur = \'' . $pseudo . '\';';
         $result = $this->database->query($query);
         $row = $result->fetch();
-    
+
         if($row != false) // L'utilisateur existe
         {
             $id_user = $row['id_utilisateur'];
@@ -135,7 +135,7 @@ class DAOProjet
             $query = 'DELETE FROM Tag WHERE id_diagramme = ' . $row['id_diagramme'] . ';';
             $this->database->query($query);
         }
-        
+
         // DELETE ALL DIAGRAMS
         $query = 'DELETE FROM Diagramme WHERE id_projet = ' . $project_id . ';';
         $this->database->query($query);

@@ -14,7 +14,7 @@
 
 //DATABASE PARAMS
 define("DB_USER","root");
-define("DB_MDP","");
+define("DB_MDP","mysql");
 define("DB_NAME","projectdesigner");
 define("DB_HOST","localhost");
 

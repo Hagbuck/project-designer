@@ -287,7 +287,7 @@ async function tenta_crea_diag(name,desc,id_projet)
        type : 'POST',
        data : 'fonction=createDiagram&id_projet='+id_projet+"&nom_diagramme="+name+"&description_diagramme="+desc,
        success : function(code_html, statut){
-         if(code_html == "DONE")
+         if(code_html == "SUCCESS")
          {
              swal({type: 'success',title: 'Le diagramme a bien été créé.',timer:3000})
              document.location.href="myproject.php";
@@ -333,7 +333,7 @@ async function tenta_addContributor(idprojet,nameUser)
        type : 'POST',
        data : 'fonction=addContributor&id_projet='+idprojet+"&nom_utlisateur="+nameUser,
        success : function(code_html, statut){
-         if(code_html == "DONE")
+         if(code_html == "SUCCESS")
          {
              swal({type: 'success',title: 'Le contributor a bien été ajouté au projet.',timer:3000})
              document.location.href="myproject.php";
@@ -379,7 +379,7 @@ async function tenta_removeContributor(idprojet,nameUser)
        type : 'POST',
        data : 'fonction=removeContributor&id_projet='+idprojet+"&nom_utlisateur="+nameUser,
        success : function(code_html, statut){
-         if(code_html == "DONE")
+         if(code_html == "SUCCESS")
          {
              swal({type: 'success',title: 'Le contributor a bien été supprimé du projet.',timer:3000})
              document.location.href="myproject.php";
