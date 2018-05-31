@@ -1,4 +1,6 @@
 <?php
+//SESSION
+session_start();
 
 require_once(__DIR__.'\src\Database\DAOBranche.php');
 require_once(__DIR__.'\src\Database\DAODiagramme.php');
@@ -148,31 +150,48 @@ if(isset($_POST['fonction']))
         echo json_encode($arr_tags);
     }
 
-    else if($_POST['fonction'] == 'connexion')
+    else if($_POST['fonction'] == 'testConnexion')
     {
-        mysql_connect("localhost", "root", "");
+        mysql_connect("localhost", "root", "mysql");
         mysql_select_db("projectdesigner");
         $pseudo = mysql_real_escape_string(htmlspecialchars($_POST['pseudo']));
-        $mdp = mysql_real_escape_string(htmlspecialchars($_POST['mdp']));
+        $mdp = mysql_real_escape_string(htmlspecialchars($_POST['pass']));
 
         // cryptage mdp
         //$mdp = sha1($mdp);
 
-        $nbre = mysql_query("SELECT COUNT(*) AS exist FROM connexion WHERE pseudo='$pseudo'");
+        $nbre = mysql_query("SELECT COUNT(*) AS exist FROM utilisateur WHERE pseudo_utilisateur='$pseudo'");
         $donnees = mysql_fetch_array($nbre);
+
         if($donnees['exist'] != 0) // Si le pseudo existe.
         {
-            $requete = mysql_query("SELECT * FROM connexion WHERE pseudo='$pseudo'");
+            $requete = mysql_query("SELECT * FROM utilisateur WHERE pseudo_utilisateur='$pseudo'");
             $infos = mysql_fetch_array($requete);
-            if($mdp == $infos['passe'])
+            if($mdp == $infos['mdp_utilisateur'])
             {
-                //CONNEXION
+                echo "SUCCESS";
+
+                $_SESSION['user_pseudo'] = $pseudo;
+                $_SESSION['user_id'] = $infos['id_utilisateur'];
+                $_SESSION['user_name'] = $infos['nom_utilisateur'];
+                $_SESSION['user_prenom'] = $infos['prenom_utilisateur'];
+                //Autre variables de sessions ?
             }
             else // si couple pseudo/mdp incorrect
-            {
-                echo 'Vous n\'avez pas rentré les bons identifiants';
-            }
+                echo 'FAIL';
+
         }
+
+        else
+          echo "FAIL";
+
+        }
+
+
+    else if($_POST['fonction'] == 'logOut')
+    {
+      session_destroy();
+      echo "SUCCESS";
     }
 
     else if ($_POST['fonction'] == 'inscription')
@@ -180,25 +199,37 @@ if(isset($_POST['fonction']))
         if(!empty($_POST['pseudo']))
         {
             //connection BD
-            mysql_connect("localhost", "root", "");
+            mysql_connect("localhost", "root", "mysql");
             mysql_select_db("projectdesigner");
 
-            $mdp1 = mysql_real_escape_string(htmlspecialchars($_POST['mdp1']));
-            $mdp2 = mysql_real_escape_string(htmlspecialchars($_POST['mdp2']));
+            $mdp1 = mysql_real_escape_string(htmlspecialchars($_POST['pass']));
+            $mdp2 = mysql_real_escape_string(htmlspecialchars($_POST['passC']));
             if($mdp1 == $mdp2) // vérification mdp
             {
                 $pseudo = mysql_real_escape_string(htmlspecialchars($_POST['pseudo']));
                 $mail = mysql_real_escape_string(htmlspecialchars($_POST['mail']));
+                $nom = mysql_real_escape_string(htmlspecialchars($_POST['nom']));
+                $prenom = mysql_real_escape_string(htmlspecialchars($_POST['prenom']));
                 // cryptage mdp :
                 //$mdp1 = sha1($mdp1);
 
                 mysql_query("INSERT INTO Utilisateur VALUES('', '$nom', '$prenom', '$pseudo', '$mdp1', '$mail')");
+
+                $requete = mysql_query("SELECT * FROM utilisateur WHERE pseudo_utilisateur='$pseudo'");
+                $infos = mysql_fetch_array($requete);
+
+                echo "DONE";
+
+                $_SESSION['user_pseudo'] = $pseudo;
+                $_SESSION['user_id'] = $infos['id_utilisateur'];
+                $_SESSION['user_name'] = $infos['nom_utilisateur'];
+                $_SESSION['user_prenom'] = $infos['prenom_utilisateur'];
+                //Autre variables de sessions ?
             }
 
             else
-            {
-                echo 'Les deux mots de passe que vous avez rentrés ne correspondent pas.';
-            }
+                echo 'Wrong passwords correspondance.';
+
         }
 
     }

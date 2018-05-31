@@ -2,6 +2,8 @@
 <!-- 2017 - 2018                                -->
 <!-- Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC   -->
 
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +37,7 @@
 
                 <div id="foot_index">
                   <h2>Alors, qu'attendez vous ? Transformez dès maintenant vos idées en projet !</h2>
-                  <img id="sign_in" src="stylesheet/pictures/sign_in.png" />
+                  <img onclick="display_inscriptionIHM()" id="sign_in" src="stylesheet/pictures/sign_in.png" />
                 </div>
             </p>
         </section>
