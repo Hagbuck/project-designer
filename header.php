@@ -1,3 +1,15 @@
+<?php
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ header.php
+* @descritpion ~ Header par défaut du site.
+*/
+?>
 <script src="js/sweetalert2.js"></script>
 <script type="text/javascript" src="js/connexion_inscription.js"></script>
 <header>

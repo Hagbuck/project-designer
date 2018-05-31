@@ -1,5 +1,13 @@
--- CREATE BD
--- Project designer
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ create_table.sql
+* @descritpion ~ Script de création des tables pour le site.
+*/
 
 CREATE TABLE Utilisateur (
     id_utilisateur INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,

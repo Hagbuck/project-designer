@@ -1,5 +1,13 @@
--- ADD DATA
--- PROJECT DESIGNER
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ generate_data.sql
+* @descritpion ~ Rempli la base de données de data par défaut.
+*/
 
 INSERT INTO Utilisateur(id_utilisateur, nom_utilisateur, prenom_utilisateur, pseudo_utilisateur, mdp_utilisateur, mail_utilisateur)
     VALUES(1, "Mensoif", "Gérard", "FreshWater91", "limonade1*", "g.mensoif@gmail.com");

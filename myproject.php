@@ -1,11 +1,18 @@
-<!-- [POLYTECH] Web Project - Project Designer  -->
-<!-- 2017 - 2018                                -->
-<!-- Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC   -->
+<?php
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ myproject.php
+* @descritpion ~ Interface permettant de consulter les projets et les diagrammes associés à l'utilisateur.
+*/
+?>
 <?php session_start();?>
 <!DOCTYPE html>
 
-<!-- RAJOUT CONVERT CANVA EN MODELE IMPRIMABLE
-+ font awseaome  -->
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -39,7 +46,7 @@
                 </div>
 
                 <div id="mydiagrams">
-                  <h2 id="nameProject"> Project Name  </h2>
+                  <h2 id="nameProject"> Vous n'avez pas de projet pour le moment.  </h2>
                   <hr>
                 </div>
                <!--   <div id="chatBox"> </div> -->

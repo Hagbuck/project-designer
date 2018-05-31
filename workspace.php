@@ -1,3 +1,15 @@
+<?php
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
+
+/**
+* @file ~ workspace.php
+* @descritpion ~ Affichage et modification d'un diagramme en particulier.
+*/
+?>
 <!DOCTYPE html>
 <html>
 <head>

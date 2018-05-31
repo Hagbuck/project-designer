@@ -1,7 +1,13 @@
--- [POLYTECH] Web Project - Project Designer
--- 2017 - 2018
--- Detcheberry Valentin - Vuillemin Anthony
+/******************************************************************************/
+/*************** [POLYTECH] Web Project - Project Designer  *******************/
+/************************** Année 2017-2018 ***********************************/
+/******* Detcheberry Valentin - Vuillemin Anthony - Corentin TROADEC **********/
+/******************************************************************************/
 
+/**
+* @file ~ create_database.sql
+* @descritpion ~ Création de la base de données pour le Site Web.
+*/
 
 CREATE DATABASE ProjectDesigner OWNER mysql
 SET client_encoding to 'latin1'
