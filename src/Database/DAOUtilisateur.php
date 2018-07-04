@@ -1,7 +1,7 @@
 <?php
 
-require_once('\src\Database\MyDatabase.php');
-require_once('\src\Models\Utilisateur.php');
+require_once(__DIR__ . '/MyDatabase.php');
+require_once(__DIR__ . '/../Models/Utilisateur.php');
 
 class DAOUtilisateur
 {
@@ -20,7 +20,7 @@ class DAOUtilisateur
 
     public function get_user_with_pseudo($pseudo)
     {
-        $query = 'SELECT * FROM utilisateur WHERE pseudo_utilisateur = \''.$pseudo.'\';';
+        $query = 'SELECT * FROM Utilisateur WHERE pseudo_utilisateur = \''.$pseudo.'\';';
 
         $results = $this->database->query($query);
 
@@ -40,7 +40,7 @@ class DAOUtilisateur
 
     public function is_user_already_exist($pseudo)
     {
-        $query = 'SELECT COUNT(*) AS exist FROM utilisateur WHERE pseudo_utilisateur = \''.$pseudo.'\';';
+        $query = 'SELECT COUNT(*) AS exist FROM Utilisateur WHERE pseudo_utilisateur = \''.$pseudo.'\';';
 
         $result = $this->database->query($query);
         $row = $result->fetch();

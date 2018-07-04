@@ -10,6 +10,7 @@
 * @descritpion ~ Affichage et modification d'un diagramme en particulier.
 */
 ?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,5 +92,5 @@
     }
 
 
-    setInterval(function(){ updateAllTags(<?php echo $_GET['diag']; ?>); }, 5000);
+    //setInterval(function(){ updateAllTags(<?php echo $_GET['diag']; ?>); }, 5000);
   </script>

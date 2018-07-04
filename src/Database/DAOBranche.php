@@ -1,7 +1,7 @@
 <?php
 
-require_once('\src\Database\MyDatabase.php');
-require_once('\src\Models\Branche.php');
+require_once(__DIR__ . '/MyDatabase.php');
+require_once(__DIR__ . '/../Models/Branche.php');
 
 
 class DAOBranche
@@ -16,7 +16,7 @@ class DAOBranche
     {
         $branches = array();
 
-        $query = 'SELECT * FROM branche WHERE id_diagramme = '.$id.';';
+        $query = 'SELECT * FROM Branche WHERE id_diagramme = '.$id.';';
 
         $results = $this->database->query($query);
 
@@ -35,7 +35,7 @@ class DAOBranche
     {
         $branches = array();
 
-        $query = 'SELECT * FROM branche WHERE id_diagramme = '.$id.' AND nom_branche like "'.$name.'";';
+        $query = 'SELECT * FROM Branche WHERE id_diagramme = '.$id.' AND nom_branche like "'.$name.'";';
 
         $results = $this->database->query($query);
 
@@ -51,7 +51,7 @@ class DAOBranche
 
     public function delBranch($branch)
     {
-      $query = 'DELETE FROM branche WHERE id_diagramme = '.$branch->get_id_diagramme().' AND nom_branche = \''.$branch->get_nom_branche().'\'';
+      $query = 'DELETE FROM Branche WHERE id_diagramme = '.$branch->get_id_diagramme().' AND nom_branche = \''.$branch->get_nom_branche().'\'';
       $this->database->query($query);
     }
 

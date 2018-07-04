@@ -22,7 +22,7 @@ function getUserProjects(id_user)
      data : 'fonction=getUserProjects&user_id='+id_user,
      dataType : "json",
      success  : function(data){getUserProjectsCallBackSuccess(data,id_user)},
-     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()");console.log(erreur)}
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to getUserProjects()");console.log(erreur);console.log(resultat.responseText)}
     });
 }
 

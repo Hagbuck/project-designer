@@ -16,11 +16,11 @@
 session_start();
 
 //REQUIREMENTS
-require_once(__DIR__.'\src\Database\DAOBranche.php');
-require_once(__DIR__.'\src\Database\DAODiagramme.php');
-require_once(__DIR__.'\src\Database\DAOProjet.php');
-require_once(__DIR__.'\src\Database\DAOTag.php');
-require_once(__DIR__.'\src\Database\DAOUtilisateur.php');
+require_once(__DIR__.'/src/Database/DAOBranche.php');
+require_once(__DIR__.'/src/Database/DAODiagramme.php');
+require_once(__DIR__.'/src/Database/DAOProjet.php');
+require_once(__DIR__.'/src/Database/DAOTag.php');
+require_once(__DIR__.'/src/Database/DAOUtilisateur.php');
 require_once("conf/conf.php");
 
 //VAR
@@ -47,7 +47,7 @@ if(isset($_POST['fonction']))
         $dao = new DAOProjet($db);
         $projects = $dao->getUserProjects($_POST['user_id']);
         $arr_projects = array();
-        for($i = 0; $i < count($projects); ++$i){
+        for($i = 0; $projects && $i < count($projects); ++$i){
             $arr_projects['#'.$i] = $projects[$i];
         }
         echo json_encode($arr_projects);
@@ -68,7 +68,7 @@ if(isset($_POST['fonction']))
         $dao = new DAODiagramme($db);
         $diagrams = $dao->getDiagramsFromProjectId($_POST['project_id']);
         $arr_diagrams = array();
-        for($i = 0; $i < count($diagrams); ++$i){
+        for($i = 0;$diagrams && $i < count($diagrams); ++$i){
             $arr_digrams['#'.$i] = $diagrams[$i];
         }
         echo json_encode($diagrams);

@@ -1,7 +1,7 @@
 <?php
 
-require_once('\src\Database\MyDatabase.php');
-require_once('\src\Models\Diagramme.php');
+require_once(__DIR__ . '/MyDatabase.php');
+require_once(__DIR__ . '/../Models/Diagramme.php');
 
 class DAODiagramme
 {
@@ -13,7 +13,7 @@ class DAODiagramme
 
     public function getNameDiagramById($id)
     {
-      $query = 'SELECT nom_diagramme FROM diagramme WHERE id_diagramme = '.$id.';';
+      $query = 'SELECT nom_diagramme FROM Diagramme WHERE id_diagramme = '.$id.';';
       $results = $this->database->query($query);
       while($row = $results->fetch())
           $diagram = $row['nom_diagramme'];
@@ -24,7 +24,7 @@ class DAODiagramme
     {
         $diagrams = array();
 
-        $query = 'SELECT * FROM diagramme WHERE id_projet = '.$id.';';
+        $query = 'SELECT * FROM Diagramme WHERE id_projet = '.$id.';';
 
         $results = $this->database->query($query);
 

@@ -1,7 +1,7 @@
 <?php
 
-require_once('\src\Database\MyDatabase.php');
-require_once('\src\Models\Projet.php');
+require_once(__DIR__ . '/MyDatabase.php');
+require_once(__DIR__ . '/../Models/Projet.php');
 
 class DAOProjet
 {
@@ -35,7 +35,7 @@ class DAOProjet
 
     public function getNameProjectById($id)
     {
-      $query = 'SELECT nom_projet FROM projet WHERE id_projet = '.$id.';';
+      $query = 'SELECT nom_projet FROM Projet WHERE id_projet = '.$id.';';
       $results = $this->database->query($query);
       while($row = $results->fetch())
           $projet = $row['nom_projet'];

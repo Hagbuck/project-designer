@@ -1,7 +1,7 @@
 <?php
 
-require_once('\src\Database\MyDatabase.php');
-require_once('\src\Models\Tag.php');
+require_once(__DIR__ . '/MyDatabase.php');
+require_once(__DIR__ . '/../Models/Tag.php');
 
 class DAOTag
 {
@@ -19,7 +19,7 @@ class DAOTag
 
     public function removeTag($tag_id)
     {
-        $query = 'DELETE FROM tag WHERE id_tag = '.$tag_id.' ;';
+        $query = 'DELETE FROM Tag WHERE id_tag = '.$tag_id.' ;';
         $this->database->query($query);
     }
 

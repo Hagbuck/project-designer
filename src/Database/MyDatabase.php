@@ -15,8 +15,18 @@ class MyDatabase
      */
     public function __construct($host, $db, $username, $password)
     {
-        $this->pdo = new \PDO('mysql:host=' . $host . ';dbname=' . $db, $username, $password);
-        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        try
+        {
+            $dbconnect = 'mysql:dbname=' . $db . ';host=' . $host;
+            $this->pdo = new \PDO($dbconnect, $username, $password);
+            $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        }
+
+        catch (PDOException $e)
+        {
+            echo 'Connection failed: ' . $e->getMessage() . '<br />';
+            $this->pdo = null;
+        }
     }
 
     public function __destruct()
@@ -26,14 +36,21 @@ class MyDatabase
 
     public function query($query)
     {
-        try
+        if($this->pdo != null)
         {
-            return $this->pdo->query($query);
-        }
+            try
+            {
+                return $this->pdo->query($query);
+            }
 
-        catch (\Exception $e)
+            catch (\Exception $e)
+            {
+                throw new \Exception("Query failed: " . $query . " -> " . $e->getMessage(), 0, $e);
+            }
+        }
+        else
         {
-            throw new \Exception("Query failed: " . $query . " -> " . $e->getMessage(), 0, $e);
+            echo 'PDO doesn\'t exist<br />';
         }
     }
 

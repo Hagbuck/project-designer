@@ -59,5 +59,5 @@ CREATE TABLE Branche(
     id_branche INTEGER NOT NULL AUTO_INCREMENT,
     nom_branche VARCHAR(255) NOT NULL,
     FOREIGN KEY (id_diagramme) REFERENCES Diagramme(id_diagramme),
-    PRIMARY KEY (id_diagramme, id_branche)
+    PRIMARY KEY (id_branche)
 );
