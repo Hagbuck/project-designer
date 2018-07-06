@@ -174,7 +174,7 @@ if(isset($_POST['fonction']))
         {
             $user = $dao->get_user_with_pseudo($_POST['pseudo']);
 
-            if($_POST['pass'] == $user->get_mdp_utilisateur())
+            if(sha1($_POST['pass']) == $user->get_mdp_utilisateur())
             {
                 echo "SUCCESS";
 
@@ -206,7 +206,7 @@ if(isset($_POST['fonction']))
         {
             if($_POST['pass'] == $_POST['passC']) // vérification mdp
             {
-                $user = new Utilisateur(0, $_POST['pseudo'], $_POST['mail'], $_POST['prenom'], $_POST['nom'], $_POST['pass']);
+                $user = new Utilisateur(0, $_POST['pseudo'], $_POST['mail'], $_POST['prenom'], $_POST['nom'], sha1($_POST['pass']));
 
                 $dao = new DAOUtilisateur($db);
                 $dao->create_user($user);
