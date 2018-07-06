@@ -134,6 +134,9 @@ class DAOProjet
             // DELETE Diagramme tags
             $query = 'DELETE FROM Tag WHERE id_diagramme = ' . $row['id_diagramme'] . ';';
             $this->database->query($query);
+
+            $query = 'DELETE FROM Branche WHERE id_diagramme = ' . $row['id_diagramme'] . ';';
+            $this->database->query($query);
         }
 
         // DELETE ALL DIAGRAMS

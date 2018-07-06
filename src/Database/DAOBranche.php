@@ -51,14 +51,14 @@ class DAOBranche
 
     public function delBranch($branch)
     {
-      $query = 'DELETE FROM Branche WHERE id_diagramme = '.$branch->get_id_diagramme().' AND nom_branche = \''.$branch->get_nom_branche().'\'';
-      $this->database->query($query);
+        $query = 'DELETE FROM Branche WHERE id_diagramme = '.$branch->get_id_diagramme().' AND nom_branche = \''.$branch->get_nom_branche().'\'';
+        $this->database->query($query);
     }
 
     public function injectNewBranch($branch)
     {
-      $query = 'INSERT INTO Branche(id_diagramme, nom_branche) VALUES('.$branch->get_id_diagramme().', \''.$branch->get_nom_branche().'\')';
-      $this->database->query($query);
+        $query = 'INSERT INTO Branche(id_diagramme, nom_branche) VALUES('.$branch->get_id_diagramme().', \''.$branch->get_nom_branche().'\')';
+        $this->database->query($query);
     }
 
     public function createBranches($branches)

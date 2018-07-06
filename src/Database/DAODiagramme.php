@@ -49,6 +49,9 @@ class DAODiagramme
         $query = 'DELETE FROM Tag WHERE id_diagramme = ' . $diagram_id . ';';
         $this->database->query($query);
 
+        $query = 'DELETE FROM Branche WHERE id_diagramme = '. $diagram_id . ';';
+        $this->database->query($query);
+
         $query = 'DELETE FROM Diagramme WHERE id_diagramme = ' . $diagram_id . ';';
         $this->database->query($query);
     }
