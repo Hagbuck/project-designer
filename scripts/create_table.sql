@@ -48,8 +48,8 @@ CREATE TABLE Tag(
     id_tag INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_diagramme INTEGER NOT NULL,
     texte_tag VARCHAR(32) NOT NULL,
-    pos_x_tag FLOAT(10, 10),
-    pos_y_tag FLOAT(10, 10),
+    pos_x_tag SMALLINT,
+    pos_y_tag SMALLINT,
     couleur_tag VARCHAR(256),
     FOREIGN KEY (id_diagramme) REFERENCES Diagramme(id_diagramme)
 );
