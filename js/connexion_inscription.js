@@ -28,7 +28,11 @@ function display_connexionIHM()
       title: 'Vos identifiants',
       text: 'Identifiant'
     },
-    'Mot de Passe',
+    {
+      title: 'Vos identifiants',
+      text: 'Mot de Passe',
+      input: 'password'
+    }
   ]).then((result) => {
     if (result.value) {
 
