@@ -46,7 +46,7 @@
   var tags_groups = new Konva.Group({});
 
 
-function display_branch(diagramme_id)
+function display_branch(diagramme_id, callback)
 {
   $.ajax({
      url : "traitement.php",
@@ -74,7 +74,7 @@ function display_branch(diagramme_id)
        layer.add(branches_group);
        stage.add(layer);
        stage.draw();
-
+       callback();
       }
        ,
      error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to display_branch()");console.log(erreur)}
@@ -323,8 +323,10 @@ function valid_access(projet,diag)
 {
   header_diagramme(diag);
   header_project(projet);
-  display_branch(diag);
-  display_tags(diag);
+  display_branch(diag, function(){
+    display_tags(diag); 
+  });
+
   $('#new_tag').attr("onclick","newTag("+diag+")")
   $('#new_branch').attr("onclick","newBranch("+diag+")")
   $('#del_branch').attr("onclick","delBranch("+diag+")")
