@@ -77,7 +77,7 @@ function display_branch(diagramme_id, callback)
        callback();
       }
        ,
-     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to display_branch()");console.log(erreur)}
+     error : function(resultat, statut, erreur){console.log("[ERROR] -> Fail to display_branch()");console.log(erreur);callback();}
     });
 }
 
