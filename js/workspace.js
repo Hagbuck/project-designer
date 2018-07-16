@@ -48,7 +48,6 @@
 
 function display_branch(diagramme_id)
 {
-
   $.ajax({
      url : "traitement.php",
      type : 'POST',
@@ -56,7 +55,7 @@ function display_branch(diagramme_id)
      dataType : "json",
      success  : function(data){
        var n = 1
-       var nb_branch =0
+       var nb_branch = 0
 
        $.each(data, function(index, value){nb_branch++})
 

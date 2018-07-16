@@ -52,17 +52,6 @@ function removeBranches(){
     }
 }
 
-function reloadBranches(){
-    console.log('Reload branches');
-    // Delete branches
-    removeBranches();
-    /*removeBranches();*/
-
-    // TODO : AJAX Recuperer branches
-    createBranches(4);
-    stage.draw();
-}
-
 function createBranches(nb){
     var nb_branch = nb;
     var angle = 2*Math.PI / nb_branch;
@@ -74,21 +63,6 @@ function createBranches(nb){
 
 function changeTagPosition(tag, x, y){
     tag.setPosition({x,y});
-}
-
-function updateTag(id, text, pos_x, pos_y, color){
-
-    console.log(id);
-    var children = tags_groups.getChildren();
-    for(var i = 0; i < children.length; ++i){
-        if(children[i].id == id){
-            var tag_child = children[i].getChildren();
-            tag_child[0].fill(color);
-            tag_child[1].setText(text);
-            changeTagPosition(children[i], pos_x, pos_y);
-            stage.draw();
-        }
-    }
 }
 
 function createTag(text, color, tag_id, centerX, centerY, text_offset){
@@ -219,6 +193,7 @@ function createBranch(text, angle, branch_size, center, window_offset){
     ** x = d*cos(alpha) + Ox
     ** y = d*cos(alpha) + Oy
     */
+    angle -= Math.PI/2; // Pour afficher la première branche verticalement
     var last_point_x = branch_size * Math.cos(angle) + center.position().x;
     var last_point_y = branch_size * Math.sin(angle) + center.position().y;
 
