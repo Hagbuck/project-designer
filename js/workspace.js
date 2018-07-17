@@ -151,7 +151,8 @@ function updateTag(diagramme_id){
                             if(children[j].id == id){
                                 var tag_child = children[j].getChildren();
                                 tag_child[0].fill(data['couleur_tag']);
-                                tag_child[1].setText(data['texte_tag']);
+                                tag_child[1].setText(subText(data['texte_tag']));
+                                tag_child[1].full_text = data['texte_tag'];
                                 changeTagPosition(children[j], parseInt(data['pos_x_tag']), parseInt(data['pos_y_tag']));
                                 stage.draw();
                             }

@@ -14,6 +14,15 @@
 // THEN envoyer l'obejt a la function js qui remplit le formulaire.
 // PUIS modification des database -> reload du shema
 
+var max_tag_text_length = 10;
+
+function subText(text){
+    if(text.length > max_tag_text_length){
+        text = text.substring(0, max_tag_text_length);
+    }
+    return text;
+}
+
 function fill_form_edit_tag(tag){
     var children = tag.getChildren();
 
@@ -21,7 +30,7 @@ function fill_form_edit_tag(tag){
 
     children[0].stroke('green');
 
-    $('input#tag_text').val(children[1].getText());
+    $('input#tag_text').val(tag.full_text);
     $('input#tag_color').val(children[0].getAttr('fill'));
     $('input#tag_hexa').val(children[0].getAttr('fill'));
     $('span#tag_id').html(tag.id);
@@ -69,6 +78,11 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
     var tag = new Konva.Group({
         draggable: true
     });
+
+    // Custom attributes;
+    tag.id = tag_id;
+    tag.full_text = text;
+
     var box = new Konva.Rect({
         x: centerX-100/2,
         y: centerY-50/2,
@@ -78,19 +92,20 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
         stroke: 'black',
         strokeWidth: 2,
     });
+
+    sub_text = subText(text);
+
     var box_text = new Konva.Text({
         x: box.position().x + text_offset,
         y: box.position().y + text_offset,
         fontFamily: 'Calibri',
         fontSize: 16,
-        text: text,
+        text: sub_text,
         fill: 'black'
     });
 
     tag.add(box);
     tag.add(box_text);
-
-    tag.id = tag_id;
 
     tag.on('click', function(){
         fill_form_edit_tag(tag);
@@ -102,58 +117,6 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
         // TODO : enregistrer pos dans DB
         fill_form_edit_tag(tag);
         updateTag(1);
-        console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
-    });
-
-    tag.on('dragstart', function(){
-        fill_form_edit_tag(tag);
-    });
-
-    // add cursor styling
-    tag.on('mouseover', function() {
-        document.body.style.cursor = 'pointer';
-    });
-    tag.on('mouseout', function() {
-        document.body.style.cursor = 'default';
-    });
-
-    return tag;
-}
-
-function createTagBis(text, color, tag_id, posX, posY,text_offset){
-    var tag = new Konva.Group({
-        draggable: true
-    });
-    var box = new Konva.Rect({
-        x: centerX - posX ,
-        y: centerY - posY,
-        width: 100,
-        height: 50,
-        fill: color,
-        stroke: 'black',
-        strokeWidth: 2,
-    });
-    var box_text = new Konva.Text({
-        x: box.position().x + text_offset,
-        y: box.position().y + text_offset,
-        fontFamily: 'Calibri',
-        fontSize: 16,
-        text: text,
-        fill: 'black'
-    });
-
-    tag.add(box);
-    tag.add(box_text);
-
-    tag.id = tag_id;
-
-    tag.on('click', function(){
-        fill_form_edit_tag(tag);
-        stage.draw();
-    });
-
-    tag.on('dragend', function() {
-        // TODO : enregistrer pos dans DB
         console.log(tag.id + ' | ' + tag.x() + ' : ' + tag.y());
     });
 
