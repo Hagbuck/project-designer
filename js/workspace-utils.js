@@ -14,13 +14,16 @@
 // THEN envoyer l'obejt a la function js qui remplit le formulaire.
 // PUIS modification des database -> reload du shema
 
-var max_tag_text_length = 10;
+var max_tag_text_length = 11;
 
 function subText(text){
+    new_text = text
     if(text.length > max_tag_text_length){
-        text = text.substring(0, max_tag_text_length);
+        new_text = text.substring(0, max_tag_text_length);
+        if(text.length > 2*max_tag_text_length)
+            new_text += '\n' + text.substring(max_tag_text_length, 2*max_tag_text_length);
     }
-    return text;
+    return new_text;
 }
 
 function fill_form_edit_tag(tag){
@@ -84,24 +87,28 @@ function createTag(text, color, tag_id, centerX, centerY, text_offset){
     tag.full_text = text;
 
     var box = new Konva.Rect({
-        x: centerX-100/2,
-        y: centerY-50/2,
-        width: 100,
-        height: 50,
-        fill: color,
-        stroke: 'black',
-        strokeWidth: 2,
+        x:              centerX-100/2,
+        y:              centerY-50/2,
+        width:          100,
+        height:         50,
+        fill:           color,
+        stroke:         'black',
+        strokeWidth:    2,
     });
 
     sub_text = subText(text);
 
     var box_text = new Konva.Text({
-        x: box.position().x + text_offset,
-        y: box.position().y + text_offset,
-        fontFamily: 'Calibri',
-        fontSize: 16,
-        text: sub_text,
-        fill: 'black'
+        x:          box.position().x,
+        y:          box.position().y,
+        width:      box.width,
+        height:     box.height,
+        padding:    text_offset,
+        fontFamily: 'Courrier',
+        fontSize:   16,
+        text:       sub_text,
+        fill:       'black'
+        //align:      'center'
     });
 
     tag.add(box);
@@ -165,19 +172,19 @@ function createBranch(text, angle, branch_size, center, window_offset){
 
     var line = new Konva.Line({
     points: [center.position().x, center.position().y, last_point_x, last_point_y],
-        stroke: 'black',
-        strokeWidth: 3,
-        lineCap: 'round',
-        lineJoin: 'round'
+        stroke:         'black',
+        strokeWidth:    3,
+        lineCap:        'round',
+        lineJoin:       'round'
     });
 
     var branch_text = new Konva.Text({
-        x: last_point_x,
-        y: last_point_y,
+        x:          last_point_x,
+        y:          last_point_y,
         fontFamily: 'Calibri',
-        fontSize: 22,
-        text: text,
-        fill: 'black'
+        fontSize:   22,
+        text:       text,
+        fill:       'black'
     });
 
     branch.add(line);

@@ -10,7 +10,7 @@
 */
 
   //DEFAULT PROPRIETIES
-  var text_offset = 12;
+  var text_offset = 6;
   var window_offset = 20;
   var branch_size = 275;
   var default_tag_color = '#F0FA0F';
@@ -136,7 +136,7 @@ function updateTag(diagramme_id){
         //id = id.substring(2); // On enlève le #
         id = parseInt(id);
         var children = tags_groups.getChildren();
-        for(var j = 0; j < children.length; ++j){
+        for(var j = 0; j < children.length; ++j){ //For each tags
             if(children[j].id == id){
                 var tag_child = children[j].getChildren();
                  $.ajax({
@@ -152,7 +152,7 @@ function updateTag(diagramme_id){
                                 var tag_child = children[j].getChildren();
                                 tag_child[0].fill(data['couleur_tag']);
                                 tag_child[1].setText(subText(data['texte_tag']));
-                                tag_child[1].full_text = data['texte_tag'];
+                                children[j].full_text = data['texte_tag'];
                                 changeTagPosition(children[j], parseInt(data['pos_x_tag']), parseInt(data['pos_y_tag']));
                                 stage.draw();
                             }
